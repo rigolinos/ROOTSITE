@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Root Code — Eficiência Silenciosa</title>
+  <meta name="description" content="Cultivando ecossistemas digitais onde a complexidade técnica floresce em simplicidade arquitetônica.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Root Code — Eficiência Silenciosa">
+  <meta property="og:description" content="Cultivando ecossistemas digitais onde a complexidade técnica floresce em simplicidade arquitetônica.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <svg class="loader-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path class="leaf-shape" d="M50 5 C20 5, 5 30, 5 55 C5 80, 25 95, 50 95 C75 95, 95 75, 95 50 C95 25, 75 5, 50 5Z" fill="#1B3022" />
+          <g class="leaf-veins" stroke="#98A99A" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <path d="M50 20 L50 80" />
+            <path d="M50 35 L30 50" />
+            <path d="M50 35 L70 48" />
+            <path d="M50 50 L25 65" />
+            <path d="M50 50 L72 63" />
+            <path d="M50 65 L35 78" />
+            <path d="M50 65 L68 76" />
+          </g>
+        </svg>
+      </div>
+      <div class="loader-text">ROOT CODE</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-status" id="loader-status">Inicializando...</div>
+    </div>
+  </div>
+
+  <!-- Visual Canvas (Canvas 2D — leaf, veins, roots, tree) -->
+  <canvas id="visual-canvas"></canvas>
+
+  <!-- Scroll Container (virtual height for scroll-driven animation) -->
+  <div id="scroll-container"></div>
+
+  <!-- Section Overlays -->
+  <div id="sections-wrapper">
+
+    <!-- Section 1: Hero -->
+    <div class="section-overlay" id="section-hero" data-section="0">
+      <div class="section-content hero-content">
+        <h1 class="hero-title">ROOT CODE</h1>
+        <p class="hero-tagline">Eficiência Silenciosa</p>
+        <p class="hero-subtitle">Cultivando ecossistemas digitais onde a complexidade<br>técnica floresce em simplicidade arquitetônica.</p>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+
+    <!-- Section 2: A Semente -->
+    <div class="section-overlay" id="section-semente" data-section="1">
+      <div class="section-content">
+        <h2 class="section-title">Toda revolução digital<br>começa com uma ideia.</h2>
+        <p class="section-subtitle">Transformamos conceitos em ecossistemas digitais — onde cada linha de código é uma raiz que sustenta o crescimento do seu negócio.</p>
+      </div>
+    </div>
+
+    <!-- Section 3: O Código-Raiz -->
+    <div class="section-overlay" id="section-codigo" data-section="2">
+      <div class="section-content">
+        <h2 class="section-title">Raízes invisíveis.<br>Estrutura inabalável.</h2>
+        <p class="section-subtitle">Código limpo, arquitetura sólida — a base que sustenta todo o ecossistema. Firme, invisível, mas sustentando toda a estrutura superior.</p>
+      </div>
+    </div>
+
+    <!-- Section 4: Planos -->
+    <div class="section-overlay" id="section-planos" data-section="3">
+      <div class="section-content planos-content">
+        <h2 class="section-title">Três caminhos.<br>Uma filosofia.</h2>
+        <div class="plans-grid">
+          <div class="plan-card" data-plan="essencial">
+            <div class="plan-icon">🌱</div>
+            <h3 class="plan-name">Essencial</h3>
+            <div class="plan-price">A partir de R$ 1.000</div>
+            <p class="plan-desc">Landing page otimizada para conversão</p>
+            <ul class="plan-features">
+              <li>SEO otimizado</li>
+              <li>Mobile-first</li>
+              <li>WhatsApp integrado</li>
+              <li>Formulários</li>
+            </ul>
+            <span class="plan-audience">Comércio local e profissionais</span>
+          </div>
+          <div class="plan-card featured" data-plan="profissional">
+            <div class="plan-icon">🌿</div>
+            <h3 class="plan-name">Profissional</h3>
+            <div class="plan-price">A partir de R$ 2.500</div>
+            <p class="plan-desc">Site multipáginas com inteligência de dados</p>
+            <ul class="plan-features">
+              <li>CRM integrado</li>
+              <li>Pixels &amp; Analytics</li>
+              <li>Blog</li>
+              <li>E-mail marketing</li>
+            </ul>
+            <span class="plan-audience">Empresas B2B e clínicas</span>
+          </div>
+          <div class="plan-card" data-plan="experience">
+            <div class="plan-icon">🌳</div>
+            <h3 class="plan-name">Experience</h3>
+            <div class="plan-price">A partir de R$ 4.000</div>
+            <p class="plan-desc">Experiência digital 3D sob medida</p>
+            <ul class="plan-features">
+              <li>WebGL / Three.js</li>
+              <li>Animações avançadas</li>
+              <li>UX Premium</li>
+              <li>Suporte dedicado</li>
+            </ul>
+            <span class="plan-audience">Mercado premium e SaaS</span>
+            <div class="plan-badge">★ Este site é um exemplo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Crescimento -->
+    <div class="section-overlay" id="section-crescimento" data-section="4">
+      <div class="section-content">
+        <h2 class="section-title">Seu projeto<br>ganha vida.</h2>
+        <p class="section-subtitle">Do primeiro pixel ao ecossistema completo — acompanhamos cada fase do crescimento digital do seu negócio.</p>
+      </div>
+    </div>
+
+    <!-- Section 6: Performance -->
+    <div class="section-overlay" id="section-performance" data-section="5">
+      <div class="section-content performance-content">
+        <h2 class="section-title">Gestão que evolui<br>com você.</h2>
+        <div class="tiers-grid">
+          <div class="tier-card">
+            <h3 class="tier-name">Suporte Standard</h3>
+            <div class="tier-price">R$ 250<span>/mês</span></div>
+            <ul class="tier-features">
+              <li>Manutenção preventiva</li>
+              <li>Hospedagem monitorada</li>
+              <li>Apoio técnico</li>
+            </ul>
+          </div>
+          <div class="tier-card featured">
+            <h3 class="tier-name">Gestão Growth</h3>
+            <div class="tier-price">R$ 500<span>/mês</span></div>
+            <ul class="tier-features">
+              <li>Tudo do Standard</li>
+              <li>Relatório mensal de dados</li>
+              <li>Call estratégica mensal</li>
+              <li>Evolução contínua</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 7: Resultados -->
+    <div class="section-overlay" id="section-resultados" data-section="6">
+      <div class="section-content resultados-content">
+        <h2 class="section-title">Eficiência<br>que se mede.</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">30</div>
+            <div class="stat-label">dias de garantia<br>pós-entrega</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">foco em performance<br>técnica</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">monitoramento<br>de uptime</div>
+          </div>
+        </div>
+        <p class="section-subtitle">Performance técnica sem ruídos — garantindo que o software seja uma ferramenta de simplificação para o seu negócio.</p>
+      </div>
+    </div>
+
+    <!-- Section 8: CTA / Loop -->
+    <div class="section-overlay" id="section-cta" data-section="7">
+      <div class="section-content cta-content">
+        <h2 class="section-title">O ciclo<br>continua.</h2>
+        <p class="section-subtitle">Pronto para cultivar seu ecossistema digital?</p>
+        <a href="https://wa.me/5500000000000" target="_blank" class="cta-button" id="cta-whatsapp">
+          <span class="cta-icon">💬</span>
+          Fale conosco
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main App Script -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>

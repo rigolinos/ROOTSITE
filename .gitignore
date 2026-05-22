@@ -1,0 +1,22 @@
+# Dependency folders
+node_modules/
+site-roots-next/node_modules/
+
+# Next.js build outputs
+site-roots-next/.next/
+site-roots-next/out/
+site-roots-next/build/
+
+# Local env files
+.env*
+site-roots-next/.env*
+
+# IDE/System files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+site-roots-next/*.log

@@ -1,0 +1,699 @@
+/* ==========================================================================
+   ROOT CODE — Eficiência Silenciosa
+   Main Stylesheet
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  --color-primary: #1B3022;
+  --color-secondary: #98A99A;
+  --color-tertiary: #F2F4F2;
+  --color-white: #FFFFFF;
+  --color-bg-dark: #0A0F0D;
+  --color-glow: #4ADE80;
+  --color-gold: #C8A96E;
+  --color-text: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --font-primary: 'Manrope', sans-serif;
+  --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --------------------------------------------------------------------------
+   Reset & Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-dark);
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--color-bg-dark);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.loaded {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* --------------------------------------------------------------------------
+   Loading Screen
+   -------------------------------------------------------------------------- */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-dark);
+  transition: opacity 0.8s var(--transition-smooth),
+              visibility 0.8s var(--transition-smooth),
+              transform 0.8s var(--transition-smooth);
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.loader-logo {
+  width: 80px;
+  height: 80px;
+  animation: pulse 2s ease infinite;
+}
+
+.loader-icon {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 20px rgba(75, 222, 128, 0.3));
+}
+
+.leaf-veins path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.leaf-veins {
+  animation: drawVeins 2s ease forwards;
+}
+
+.loader-text {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  color: var(--color-white);
+}
+
+.loader-bar-container {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-glow), var(--color-secondary));
+  transition: width 0.3s var(--transition-smooth);
+  border-radius: 1px;
+}
+
+.loader-status {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+}
+
+/* Loading Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes drawVeins {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Visual Canvas (Canvas 2D)
+   -------------------------------------------------------------------------- */
+#visual-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Container
+   -------------------------------------------------------------------------- */
+#scroll-container {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 800vh; /* 8 sections × 100vh */
+}
+
+body.loaded #scroll-container {
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Section Overlays
+   -------------------------------------------------------------------------- */
+#sections-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.6s var(--transition-smooth);
+  pointer-events: none;
+}
+
+.section-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.section-content {
+  text-align: center;
+  max-width: 900px;
+  padding: 2rem;
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Typography — Hero
+   -------------------------------------------------------------------------- */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--color-white);
+  text-shadow: 0 0 60px rgba(75, 222, 128, 0.3);
+  margin-bottom: 1rem;
+}
+
+.hero-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Typography — Sections
+   -------------------------------------------------------------------------- */
+.section-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+}
+
+.section-subtitle {
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Indicator
+   -------------------------------------------------------------------------- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.5s forwards;
+}
+
+.scroll-indicator span {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-secondary), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.3);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 0.5;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Plan Cards (Planos Section)
+   -------------------------------------------------------------------------- */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  max-width: 900px;
+}
+
+.plan-card {
+  background: rgba(27, 48, 34, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(152, 169, 154, 0.15);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: left;
+  transition: all 0.4s var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s var(--transition-smooth);
+}
+
+.plan-card:hover::before {
+  opacity: 1;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(152, 169, 154, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.plan-card.featured {
+  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(27, 48, 34, 0.5);
+}
+
+.plan-card.featured::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-glow), transparent);
+}
+
+.plan-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.plan-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+}
+
+.plan-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-glow);
+  margin-bottom: 1rem;
+}
+
+.plan-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.plan-features li {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  padding: 0.4rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.plan-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-glow);
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+
+.plan-audience {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.plan-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.65rem;
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--color-glow);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Tier Cards (Performance Section)
+   -------------------------------------------------------------------------- */
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  max-width: 700px;
+}
+
+.tier-card {
+  background: rgba(27, 48, 34, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(152, 169, 154, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: left;
+  transition: all 0.4s var(--transition-smooth);
+  pointer-events: auto;
+}
+
+.tier-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(152, 169, 154, 0.3);
+}
+
+.tier-card.featured {
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+.tier-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+}
+
+.tier-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-glow);
+  margin-bottom: 1rem;
+}
+
+.tier-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.tier-features {
+  list-style: none;
+  padding: 0;
+}
+
+.tier-features li {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  padding: 0.4rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.tier-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-glow);
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+
+/* --------------------------------------------------------------------------
+   Stats Grid (Resultados Section)
+   -------------------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   CTA Button
+   -------------------------------------------------------------------------- */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
+  border-radius: 60px;
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.4s var(--transition-smooth);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  margin-top: 2rem;
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  animation: glowPulse 3s ease infinite;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 62px;
+  background: linear-gradient(135deg, var(--color-glow), var(--color-primary), var(--color-glow));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s var(--transition-smooth);
+}
+
+.cta-button:hover::before {
+  opacity: 1;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(74, 222, 128, 0.25);
+  border-color: var(--color-glow);
+}
+
+.cta-icon {
+  font-size: 1.3rem;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(74, 222, 128, 0.25);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section-Specific Positioning
+   -------------------------------------------------------------------------- */
+.planos-content,
+.performance-content,
+.resultados-content {
+  max-width: 1000px;
+}
+
+.hero-content {
+  padding-bottom: 4rem;
+}
+
+/* --------------------------------------------------------------------------
+   Utility Classes
+   -------------------------------------------------------------------------- */
+.text-glow {
+  text-shadow: 0 0 30px rgba(74, 222, 128, 0.4);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — Tablet & Below
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 350px;
+    margin: 2rem auto 0;
+  }
+
+  .tiers-grid {
+    grid-template-columns: 1fr;
+    max-width: 350px;
+    margin: 2rem auto 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .section-content {
+    padding: 1.5rem;
+  }
+
+  .hero-title {
+    letter-spacing: 0.1em;
+  }
+
+  .plan-card,
+  .tier-card {
+    padding: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — Small Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+}

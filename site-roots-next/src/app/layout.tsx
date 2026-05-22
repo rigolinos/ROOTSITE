@@ -1,0 +1,41 @@
+import type { Metadata } from 'next';
+import { manrope } from '@/lib/fonts';
+import './globals.css';
+import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
+import FilmGrain from '@/components/effects/FilmGrain';
+import CustomCursor from '@/components/effects/CustomCursor';
+import ScrollProgressLine from '@/components/effects/ScrollProgressLine';
+
+export const metadata: Metadata = {
+  title: 'Root Code — Eficiência Silenciosa',
+  description:
+    'Cultivando ecossistemas digitais onde a complexidade técnica floresce em simplicidade arquitetônica.',
+  openGraph: {
+    title: 'Root Code — Eficiência Silenciosa',
+    description:
+      'Cultivando ecossistemas digitais onde a complexidade técnica floresce em simplicidade arquitetônica.',
+    type: 'website',
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="pt-BR" className={manrope.variable}>
+      <body className={manrope.className}>
+        <SmoothScrollProvider>
+          {/* Global Effects */}
+          <FilmGrain />
+          <CustomCursor />
+          <ScrollProgressLine />
+
+          {/* Page Content */}
+          {children}
+        </SmoothScrollProvider>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   ROOT CODE — Design System Tokens (Tailwind v4)
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme inline {
+  /* ── Brand Colors ──────────────────────────────────────────── */
+  --color-forest: #1B3022;
+  --color-sage: #98A99A;
+  --color-offwhite: #F2F4F2;
+  --color-glow: #4ADE80;
+  --color-gold: #C8A96E;
+  --color-gold-light: #E8D5A8;
+  --color-bgdark: #0A0F0D;
+  --color-bgmid: #0F1A13;
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-manrope: "Manrope", system-ui, sans-serif;
+
+  /* ── Animations ────────────────────────────────────────────── */
+  --animate-grain: grain 0.5s steps(6) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 3s ease infinite;
+  --animate-scroll-pulse: scroll-pulse 2s ease infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 30s linear infinite;
+
+  /* ── Keyframes ─────────────────────────────────────────────── */
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.1); }
+    50% { box-shadow: 0 0 40px rgba(74, 222, 128, 0.25); }
+  }
+
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+
+  @keyframes draw-stroke {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 0.5; transform: translateY(0); }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Base Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #0A0F0D;
+}
+
+/* Lenis Smooth Scroll Integration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: #0A0F0D;
+  color: #FFFFFF;
+  font-family: var(--font-manrope);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #1B3022;
+  color: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Custom Scrollbar
+   ═══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0F0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1B3022;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #98A99A;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Utility Classes
+   ═══════════════════════════════════════════════════════════════ */
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.text-glow {
+  text-shadow: 0 0 60px rgba(74, 222, 128, 0.3);
+}
+
+.text-glow-strong {
+  text-shadow: 0 0 80px rgba(74, 222, 128, 0.5),
+               0 0 120px rgba(74, 222, 128, 0.2);
+}
+
+/* Clip text reveal helper */
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.clip-reveal-visible {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* Glassmorphism card base */
+.glass-card {
+  background: rgba(27, 48, 34, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(152, 169, 154, 0.15);
+  border-radius: 16px;
+}
+
+.glass-card-featured {
+  background: rgba(27, 48, 34, 0.5);
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Desktop-only Cursor Hide
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
