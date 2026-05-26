@@ -28,12 +28,14 @@ function TiltCard({ children, className, isFeatured }: TiltCardProps) {
     const rotateY = (x - centerX) / 12;
 
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+    card.style.transition = 'none';
   };
 
   const handleMouseLeave = () => {
     const card = cardRef.current;
     if (!card) return;
     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   };
 
   return (
@@ -41,12 +43,8 @@ function TiltCard({ children, className, isFeatured }: TiltCardProps) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden cursor-default transition-all duration-300 ease-out select-none border border-sage/15 rounded-2xl ${
-        isFeatured
-          ? 'bg-forest/50 border-glow/30 after:absolute after:top-0 after:left-0 after:right-0 after:h-[2px] after:bg-gradient-to-r after:from-transparent after:via-glow after:to-transparent'
-          : 'bg-forest/20 hover:border-sage/35'
-      } ${className}`}
-      style={{ transformStyle: 'preserve-3d' }}
+      className={`${className} ${isFeatured ? 'featured' : ''}`}
+      style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
       <div
         className="absolute inset-0 bg-gradient-to-br from-glow/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
@@ -113,13 +111,13 @@ function StatItem({ target, label, isActive }: StatItemProps) {
   }, [isActive, target]);
 
   return (
-    <div className="text-center">
-      <div className="text-5xl md:text-7xl font-extrabold text-glow-strong text-gold mb-2 tabular-nums">
+    <div className="stat-item">
+      <div className="stat-number tabular-nums">
         {count}
         {typeof target === 'string' && target.includes('%') && '%'}
         {typeof target === 'string' && target.includes('/') && '/7'}
       </div>
-      <div className="text-xs md:text-sm text-sage leading-relaxed">
+      <div className="stat-label">
         {label}
       </div>
     </div>
@@ -145,171 +143,158 @@ export default function SectionContent() {
   return (
     <div id="sections-wrapper" className="fixed inset-0 z-10 pointer-events-none">
       
-      {/* SECTION 1: Hero */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-hero" data-section="0">
-        <div className="section-content text-center max-w-[900px] px-8 pb-16 pointer-events-auto">
-          <h1 className="hero-title text-glow font-manrope text-5xl md:text-8xl font-extrabold tracking-[0.15em] mb-4 text-white uppercase select-none">
-            ROOT CODE
-          </h1>
-          <p className="hero-tagline text-base md:text-2xl font-light tracking-[0.4em] uppercase text-sage mb-8 select-none">
-            Eficiência Silenciosa
-          </p>
-          <p className="hero-subtitle text-sm md:text-lg leading-relaxed text-white/60 max-w-[600px] mx-auto select-none">
+      {/* Section 1: Hero */}
+      <div className="section-overlay" id="section-hero" data-section="0">
+        <div className="section-content hero-content">
+          <h1 className="hero-title">ROOT CODE</h1>
+          <p className="hero-tagline">Eficiência Silenciosa</p>
+          <p className="hero-subtitle">
             Cultivando ecossistemas digitais onde a complexidade
             <br />
             técnica floresce em simplicidade arquitetônica.
           </p>
         </div>
-        <div className="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fade-in-up">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-sage">Scroll</span>
-          <div className="scroll-arrow w-[1px] h-10 bg-gradient-to-b from-sage to-transparent animate-scroll-pulse" />
+        <div className="scroll-indicator">
+          <span>Scroll</span>
+          <div className="scroll-arrow" />
         </div>
       </div>
 
-      {/* SECTION 2: Semente / Origem */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-semente" data-section="1">
-        <div className="section-content text-center max-w-[900px] px-8 pointer-events-auto">
-          <div className="text-xs font-semibold text-glow tracking-[0.3em] uppercase mb-4 text-glow-strong select-none">
-            [ NOSSA ORIGEM ]
-          </div>
-          <h2 className="section-title text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
-            Fundada sob o princípio
+      {/* Section 2: A Semente */}
+      <div className="section-overlay" id="section-semente" data-section="1">
+        <div className="section-content">
+          <h2 className="section-title">
+            Toda revolução digital
             <br />
-            da eficiência silenciosa.
+            começa com uma ideia.
           </h2>
-          <p className="section-subtitle text-sm md:text-lg leading-relaxed text-white/60 max-w-[650px] mx-auto">
-            A Root Code nasceu da paixão por eliminar o ruído e cultivar o essencial. Desenvolvemos ecossistemas digitais de alta performance que operam como raízes invisíveis: estruturas sólidas, limpas e inabaláveis que impulsionam e sustentam silenciosamente o crescimento de marcas e negócios memoráveis.
+          <p className="section-subtitle">
+            Transformamos conceitos em ecossistemas digitais — onde cada linha de código e cada automação se tornam raízes otimizadas que sustentam o crescimento dos seus processos e negócios.
           </p>
         </div>
       </div>
 
-      {/* SECTION 3: O Código-Raiz */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-codigo" data-section="2">
-        <div className="section-content text-center max-w-[900px] px-8 pointer-events-auto">
-          <h2 className="section-title text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+      {/* Section 3: O Código-Raiz */}
+      <div className="section-overlay" id="section-codigo" data-section="2">
+        <div className="section-content">
+          <h2 className="section-title">
             Raízes invisíveis.
             <br />
             Estrutura inabalável.
           </h2>
-          <p className="section-subtitle text-sm md:text-lg leading-relaxed text-white/60 max-w-[550px] mx-auto">
-            Código limpo, arquitetura sólida — a base que sustenta todo o ecossistema. Firme, invisível, mas sustentando toda a estrutura superior.
+          <p className="section-subtitle">
+            Código limpo e processos otimizados — a base sólida que sustenta todo o ecossistema. Firme, invisível, mas estruturando o crescimento do seu negócio.
           </p>
         </div>
       </div>
 
-      {/* SECTION 4: Planos / Serviços */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-planos" data-section="3">
-        <div className="section-content text-center max-w-[1000px] px-8 pointer-events-auto">
-          <div className="text-xs font-semibold text-glow tracking-[0.3em] uppercase mb-4 text-glow-strong select-none">
-            [ NOSSOS SERVIÇOS ]
-          </div>
-          <h2 className="section-title text-3xl md:text-5xl font-bold tracking-tight text-white mb-8">
+      {/* Section 4: Planos */}
+      <div className="section-overlay" id="section-planos" data-section="3">
+        <div className="section-content planos-content">
+          <h2 className="section-title">
             Três caminhos.
             <br />
             Uma filosofia.
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto mt-6">
+          <div className="plans-grid">
             
             {/* Plan 1: Essencial */}
-            <TiltCard className="p-6 md:p-8 text-left">
-              <div className="text-3xl mb-4">🌱</div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Essencial</h3>
-              <div className="text-sm font-semibold text-glow text-glow-strong text-glow mb-4">A partir de R$ 1.000</div>
-              <p className="text-xs md:text-sm text-white/60 mb-6 leading-relaxed">Landing page otimizada para conversão</p>
-              <ul className="space-y-3 mb-6">
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">SEO otimizado</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Mobile-first</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">WhatsApp integrado</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Formulários</li>
+            <TiltCard className="plan-card" data-plan="essencial">
+              <div className="plan-icon">🌱</div>
+              <h3 className="plan-name">Essencial</h3>
+              <p className="plan-desc">Landing page otimizada para conversão</p>
+              <ul className="plan-features">
+                <li>SEO otimizado</li>
+                <li>Mobile-first</li>
+                <li>WhatsApp integrado</li>
+                <li>Formulários</li>
               </ul>
-              <div className="text-[10px] tracking-wider uppercase font-semibold text-sage">Comércio local e profissionais</div>
+              <span className="plan-audience">Comércio local, produtos B2C e profissionais</span>
             </TiltCard>
 
             {/* Plan 2: Profissional */}
-            <TiltCard className="p-6 md:p-8 text-left" isFeatured>
-              <div className="text-3xl mb-4">🌿</div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Profissional</h3>
-              <div className="text-sm font-semibold text-glow text-glow-strong text-glow mb-4">A partir de R$ 2.500</div>
-              <p className="text-xs md:text-sm text-white/60 mb-6 leading-relaxed">Site multipáginas com inteligência de dados</p>
-              <ul className="space-y-3 mb-6">
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">CRM integrado</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Pixels &amp; Analytics</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Blog</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">E-mail marketing</li>
+            <TiltCard className="plan-card" isFeatured data-plan="profissional">
+              <div className="plan-icon">🌿</div>
+              <h3 className="plan-name">Profissional</h3>
+              <p className="plan-desc">Portais e sites multipáginas com integrações de dados e serviços</p>
+              <ul className="plan-features">
+                <li>CRM integrado</li>
+                <li>Pixels &amp; Analytics</li>
+                <li>Blog</li>
+                <li>E-mail marketing</li>
               </ul>
-              <div className="text-[10px] tracking-wider uppercase font-semibold text-sage">Empresas B2B e clínicas</div>
+              <span className="plan-audience">Empresas B2B e clínicas</span>
             </TiltCard>
 
             {/* Plan 3: Experience */}
-            <TiltCard className="p-6 md:p-8 text-left">
-              <div className="text-3xl mb-4">🌳</div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Experience</h3>
-              <div className="text-sm font-semibold text-glow text-glow-strong text-glow mb-4">A partir de R$ 4.000</div>
-              <p className="text-xs md:text-sm text-white/60 mb-6 leading-relaxed">Experiência digital 3D sob medida</p>
-              <ul className="space-y-3 mb-6">
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">WebGL / Three.js</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Animações avançadas</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">UX Premium</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Suporte dedicado</li>
+            <TiltCard className="plan-card" data-plan="experience">
+              <div className="plan-icon">🌳</div>
+              <h3 className="plan-name">Experience</h3>
+              <p className="plan-desc">Experiência digital 3D sob medida</p>
+              <ul className="plan-features">
+                <li>WebGL / Three.js</li>
+                <li>Animações avançadas</li>
+                <li>UX Premium</li>
+                <li>Suporte dedicado</li>
               </ul>
-              <div className="text-[10px] tracking-wider uppercase font-semibold text-sage mb-2">Mercado premium e SaaS</div>
-              <div className="absolute top-4 right-4 text-[9px] font-bold bg-glow/15 text-glow px-2.5 py-1 rounded-full border border-glow/20">★ Este site é um exemplo</div>
+              <span className="plan-audience">Mercado premium e SaaS</span>
+              <div className="plan-badge">★ Este site é um exemplo</div>
             </TiltCard>
 
           </div>
         </div>
       </div>
 
-      {/* SECTION 5: Crescimento */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-crescimento" data-section="4">
-        <div className="section-content text-center max-w-[900px] px-8 pointer-events-auto">
-          <h2 className="section-title text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+      {/* Section 5: Crescimento */}
+      <div className="section-overlay" id="section-crescimento" data-section="4">
+        <div className="section-content">
+          <h2 className="section-title">
             Seu projeto
             <br />
             ganha vida.
           </h2>
-          <p className="section-subtitle text-sm md:text-lg leading-relaxed text-white/60 max-w-[550px] mx-auto">
+          <p className="section-subtitle">
             Do primeiro pixel ao ecossistema completo — acompanhamos cada fase do crescimento digital do seu negócio.
           </p>
         </div>
       </div>
 
-      {/* SECTION 6: Performance */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-performance" data-section="5">
-        <div className="section-content text-center max-w-[1000px] px-8 pointer-events-auto">
-          <h2 className="section-title text-3xl md:text-5xl font-bold tracking-tight text-white mb-8">
+      {/* Section 6: Performance */}
+      <div className="section-overlay" id="section-performance" data-section="5">
+        <div className="section-content performance-content">
+          <h2 className="section-title">
             Gestão que evolui
             <br />
             com você.
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[700px] mx-auto mt-6">
+          <div className="tiers-grid">
             
             {/* Tier 1 */}
-            <TiltCard className="p-8 text-left">
-              <h3 className="text-lg md:text-xl font-bold text-white mb-3">Suporte Standard</h3>
-              <div className="text-3xl md:text-4xl font-extrabold text-glow text-glow-strong mb-6">
-                R$ 250<span className="text-xs md:text-sm font-normal text-white/60">/mês</span>
+            <TiltCard className="tier-card">
+              <h3 className="tier-name">Suporte Standard</h3>
+              <div className="tier-price">
+                R$ 250<span>/mês</span>
               </div>
-              <ul className="space-y-3">
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Manutenção preventiva</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Hospedagem monitorada</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Apoio técnico</li>
+              <ul className="tier-features">
+                <li>Manutenção preventiva</li>
+                <li>Hospedagem monitorada</li>
+                <li>Apoio técnico</li>
               </ul>
             </TiltCard>
 
             {/* Tier 2 */}
-            <TiltCard className="p-8 text-left" isFeatured>
-              <h3 className="text-lg md:text-xl font-bold text-white mb-3">Gestão Growth</h3>
-              <div className="text-3xl md:text-4xl font-extrabold text-glow text-glow-strong mb-6">
-                R$ 500<span className="text-xs md:text-sm font-normal text-white/60">/mês</span>
+            <TiltCard className="tier-card" isFeatured>
+              <h3 className="tier-name">Gestão Growth</h3>
+              <div className="tier-price">
+                R$ 500<span>/mês</span>
               </div>
-              <ul className="space-y-3">
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Tudo do Standard</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Relatório mensal de dados</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Call estratégica mensal</li>
-                <li className="text-xs md:text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-glow before:font-bold">Evolução contínua</li>
+              <ul className="tier-features">
+                <li>Tudo do Standard</li>
+                <li>Relatório mensal de dados</li>
+                <li>Call estratégica mensal</li>
+                <li>Evolução contínua</li>
               </ul>
             </TiltCard>
 
@@ -317,16 +302,16 @@ export default function SectionContent() {
         </div>
       </div>
 
-      {/* SECTION 7: Resultados */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-resultados" data-section="6">
-        <div className="section-content text-center max-w-[1000px] px-8 pointer-events-auto">
-          <h2 className="section-title text-3xl md:text-5xl font-bold tracking-tight text-white mb-8">
+      {/* Section 7: Resultados */}
+      <div className="section-overlay" id="section-resultados" data-section="6">
+        <div className="section-content resultados-content">
+          <h2 className="section-title">
             Eficiência
             <br />
             que se mede.
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[800px] mx-auto mb-10 mt-6">
+          <div className="stats-grid">
             <StatItem
               target={30}
               isActive={activeSection === 6}
@@ -344,38 +329,48 @@ export default function SectionContent() {
             />
           </div>
 
-          <p className="section-subtitle text-sm md:text-lg leading-relaxed text-white/60 max-w-[550px] mx-auto mt-6">
+          <p className="section-subtitle">
             Performance técnica sem ruídos — garantindo que o software seja uma ferramenta de simplificação para o seu negócio.
           </p>
         </div>
       </div>
 
-      {/* SECTION 8: CTA / Contato */}
-      <div className="section-overlay flex items-center justify-center absolute inset-0 w-full h-full opacity-0 pointer-events-none" id="section-cta" data-section="7">
-        <div className="section-content text-center max-w-[900px] px-8 pointer-events-auto">
-          <div className="text-xs font-semibold text-glow tracking-[0.3em] uppercase mb-4 text-glow-strong select-none">
-            [ CONTATO ]
-          </div>
-          <h2 className="section-title text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight mb-4">
+      {/* Section 8: CTA / Loop */}
+      <div className="section-overlay" id="section-cta" data-section="7">
+        <div className="section-content cta-content">
+          <h2 className="section-title">
             O ciclo
             <br />
             continua.
           </h2>
-          <p className="section-subtitle text-sm md:text-lg leading-relaxed text-white/60 max-w-[550px] mx-auto mb-8">
+          <p className="section-subtitle">
             Pronto para cultivar seu ecossistema digital?
           </p>
           
-          <div className="inline-block mt-4">
+          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
             <MagneticButton>
               <a
                 href="https://wa.me/5500000000000"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cta-button inline-flex items-center gap-3 px-10 py-4 bg-forest border border-glow/30 hover:border-glow text-white text-lg font-semibold rounded-full shadow-lg shadow-glow/10 hover:shadow-glow/25 select-none relative overflow-hidden transition-all duration-300 group animate-glow-pulse cursor-pointer"
+                className="cta-button"
                 id="cta-whatsapp"
+                style={{ marginTop: 0 }}
               >
-                <span className="text-xl">💬</span>
-                Fale conosco
+                <span className="cta-icon">💬</span>
+                WhatsApp
+              </a>
+            </MagneticButton>
+
+            <MagneticButton>
+              <a
+                href="mailto:rootcodecontato@gmail.com"
+                className="cta-button"
+                id="cta-email"
+                style={{ marginTop: 0 }}
+              >
+                <span className="cta-icon">✉️</span>
+                E-mail
               </a>
             </MagneticButton>
           </div>

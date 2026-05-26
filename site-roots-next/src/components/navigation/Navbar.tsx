@@ -13,7 +13,7 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const lenis = useLenis();
   const [visible, setVisible] = useState(false);
-  const lastScrollY = useRef(0);
+  const [activeSection, setActiveSection] = useState(0);
 
   // Initial entrance (after hero animation ~3s)
   useEffect(() => {
@@ -36,29 +36,44 @@ export default function Navbar() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Hide/show on scroll direction
+  // Listen to the custom activeSectionChange event
   useEffect(() => {
-    if (!lenis || !visible) return;
-
-    const handleScroll = () => {
-      const currentY = lenis.scroll;
-      const nav = navRef.current;
-      if (!nav) return;
-
-      if (currentY > lastScrollY.current && currentY > 100) {
-        // Scrolling down — hide
-        gsap.to(nav, { y: -60, duration: 0.4, ease: MOTION.ease.fade });
-      } else {
-        // Scrolling up — show
-        gsap.to(nav, { y: 0, duration: 0.4, ease: MOTION.ease.fade });
-      }
-
-      lastScrollY.current = currentY;
+    const handleSectionChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ index: number }>;
+      setActiveSection(customEvent.detail.index);
     };
 
-    lenis.on('scroll', handleScroll);
-    return () => { lenis.off('scroll', handleScroll); };
-  }, [lenis, visible]);
+    window.addEventListener('activeSectionChange', handleSectionChange);
+    return () => {
+      window.removeEventListener('activeSectionChange', handleSectionChange);
+    };
+  }, []);
+
+  // Control visibility of Navbar based on activeSection (0 = Hero, 7 = Contato)
+  useEffect(() => {
+    if (!visible) return; // wait until preloader/initial entry is done
+
+    const nav = navRef.current;
+    if (!nav) return;
+
+    if (activeSection === 0 || activeSection === 7) {
+      // Show Navbar
+      gsap.to(nav, {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: MOTION.ease.fade,
+      });
+    } else {
+      // Hide Navbar
+      gsap.to(nav, {
+        y: -60,
+        opacity: 0,
+        duration: 0.4,
+        ease: MOTION.ease.fade,
+      });
+    }
+  }, [activeSection, visible]);
 
   const scrollToSection = (sectionIndex: number) => {
     if (!lenis) return;

@@ -158,7 +158,7 @@ export default function CameraScrollSection() {
             }}
           >
             Transformamos conceitos em ecossistemas digitais — onde cada linha de
-            código é uma raiz que sustenta o crescimento do seu negócio.
+            código e cada automação se tornam raízes otimizadas que sustentam o crescimento dos seus processos e negócios.
           </p>
         </div>
 
@@ -189,9 +189,8 @@ export default function CameraScrollSection() {
               color: 'rgba(255, 255, 255, 0.6)',
             }}
           >
-            Código limpo, arquitetura sólida — a base que sustenta todo o
-            ecossistema. Firme, invisível, mas sustentando toda a estrutura
-            superior.
+            Código limpo e processos otimizados — a base sólida que sustenta todo o
+            ecossistema. Firme, invisível, mas estruturando o crescimento do seu negócio.
           </p>
         </div>
       </div>

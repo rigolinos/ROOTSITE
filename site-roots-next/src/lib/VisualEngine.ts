@@ -619,7 +619,7 @@ export class VisualEngine {
     const scale = size / 180;
 
     ctx.save();
-    ctx.translate(cx, cy + size * 0.5);
+    ctx.translate(cx, cy + size * 0.85);
     ctx.scale(scale, scale);
     ctx.lineCap = 'round';
 
@@ -684,7 +684,7 @@ export class VisualEngine {
     const scale = size / 180;
 
     ctx.save();
-    ctx.translate(cx, cy + size * 0.5);
+    ctx.translate(cx, cy + size * 0.85);
     ctx.scale(scale, scale);
     ctx.lineCap = 'round';
 
@@ -755,7 +755,7 @@ export class VisualEngine {
     const scale = size / 180;
 
     ctx.save();
-    ctx.translate(cx, cy + size * 0.5);
+    ctx.translate(cx, cy + size * 0.85);
     ctx.scale(scale, scale);
     ctx.lineCap = 'round';
 
