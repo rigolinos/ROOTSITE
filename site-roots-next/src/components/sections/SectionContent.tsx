@@ -347,33 +347,16 @@ export default function SectionContent() {
             Pronto para cultivar seu ecossistema digital?
           </p>
           
-          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <MagneticButton>
-              <a
-                href="https://wa.me/5500000000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cta-button"
-                id="cta-whatsapp"
-                style={{ marginTop: 0 }}
-              >
-                <span className="cta-icon">💬</span>
-                WhatsApp
-              </a>
-            </MagneticButton>
-
-            <MagneticButton>
-              <a
-                href="mailto:rootcodecontato@gmail.com"
-                className="cta-button"
-                id="cta-email"
-                style={{ marginTop: 0 }}
-              >
-                <span className="cta-icon">✉️</span>
-                E-mail
-              </a>
-            </MagneticButton>
-          </div>
+          <MagneticButton>
+            <a
+              href="mailto:rootcodecontato@gmail.com"
+              className="cta-button"
+              id="cta-email"
+            >
+              <span className="cta-icon">💬</span>
+              Fale conosco
+            </a>
+          </MagneticButton>
         </div>
       </div>
 
