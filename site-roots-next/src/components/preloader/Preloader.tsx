@@ -41,7 +41,10 @@ export default function Preloader() {
           opacity: 0,
           duration: MOTION.duration.min,
           ease: MOTION.ease.fade,
-          onComplete: () => setCompleted(true),
+          onComplete: () => {
+            setCompleted(true);
+            document.body.classList.add('loaded');
+          },
         });
       },
     });
