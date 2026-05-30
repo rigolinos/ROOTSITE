@@ -7,7 +7,7 @@
 Os valores de investimento inicial variam conforme a complexidade técnica e as necessidades específicas de cada projeto.
 
 ### Plano Essencial — R$ 1.000 a R$ 1.500
-- **Escopo:** One-page (Landing Page) otimizada para SEO e mobile
+- **Escopo:** Landing page e site institucional otimizados para SEO e mobile
 - **Diferencial:** Foco total em conversão (WhatsApp e formulários)
 - **Público:** Comércio Local e Profissionais
 - **Recorrência sugerida:** Manutenção Standard
