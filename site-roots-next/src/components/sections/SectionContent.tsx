@@ -203,7 +203,7 @@ export default function SectionContent() {
             <TiltCard className="plan-card" data-plan="essencial">
               <div className="plan-icon">🌱</div>
               <h3 className="plan-name">Essencial</h3>
-              <p className="plan-desc">Landing page e site institucional</p>
+              <p className="plan-desc">Landing page</p>
               <ul className="plan-features">
                 <li>SEO otimizado</li>
                 <li>Mobile-first</li>
