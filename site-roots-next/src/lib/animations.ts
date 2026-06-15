@@ -2,6 +2,16 @@
  * Root Code — Motion Design Constants
  * All animation timings, eases, and scrub values are centralized here.
  * 
+ * ============================================================================
+ * MANIFESTO DE DESEMPENHO (CI/CD GUARDRAILS)
+ * ============================================================================
+ * Qualquer nova animação de interface deve utilizar estritamente o motor global
+ * do GSAP com aceleração de hardware ativa (transform-gpu, will-change) e 
+ * inércia configurada.
+ * 
+ * É TERMINANTEMENTE PROIBIDO o uso de transições CSS lineares puras ou
+ * bibliotecas concorrentes (ex: Framer Motion).
+ * 
  * RULES (INVIOLABLE):
  * 1. Minimum duration: 0.8s — the site must BREATHE
  * 2. FORBIDDEN: "linear", "ease-in-out", "power1" 

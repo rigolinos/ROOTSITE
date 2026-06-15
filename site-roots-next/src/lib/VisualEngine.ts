@@ -1,7 +1,25 @@
 // ============================================
 // Root Code — Canvas 2D Visual Engine (TypeScript)
 // Crisp, recognizable shapes: leaf, veins, roots, tree
+// 
+// EVENT BRIDGE TYPINGS:
+// Strict interfaces for cross-DOM communication
 // ============================================
+
+export interface RootHoverEventDetail {
+  segmentId: string | null;
+}
+
+export interface TestimonialActiveEventDetail {
+  index: number;
+}
+
+declare global {
+  interface WindowEventMap {
+    'root-hover': CustomEvent<RootHoverEventDetail>;
+    'testimonial-active': CustomEvent<TestimonialActiveEventDetail>;
+  }
+}
 
 // ── Math & Interpolation Helpers ────────────────
 export function lerp(a: number, b: number, t: number): number {
@@ -135,6 +153,16 @@ export class VisualEngine {
   private dust: DustParticle[];
   private time: number = 0;
 
+  // Event Bridge State
+  private activeRootSegment: string | null = null;
+  private activeProjectColor: string | null = null;
+  private activeTestimonialIndex: number = 0;
+  private testimonialBurst: number = 0;
+  
+  // Handlers reference for cleanup
+  private _handleRootHover: (e: Event) => void;
+  private _handleTestimonialActive: (e: Event) => void;
+
   // Pre-generated structures
   private roots: Branch[] = [];
   private treeBranches: Branch[] = [];
@@ -146,10 +174,35 @@ export class VisualEngine {
       throw new Error('Could not obtain 2D rendering context');
     }
     this.ctx = context;
-    this.dust = createDustParticles(120);
+    this.dust = createDustParticles(150);
+
+    // Bind Event Bridge Handlers
+    this._handleRootHover = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      this.activeRootSegment = customEvent.detail.segmentId;
+      this.activeProjectColor = customEvent.detail.color || null;
+    };
+    
+    this._handleTestimonialActive = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      this.activeTestimonialIndex = customEvent.detail.index;
+      this.testimonialBurst = 1.0;
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('root-hover', this._handleRootHover);
+      window.addEventListener('testimonial-active', this._handleTestimonialActive);
+    }
 
     this._generateStructures();
     this.resize();
+  }
+
+  public destroy() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('root-hover', this._handleRootHover);
+      window.removeEventListener('testimonial-active', this._handleTestimonialActive);
+    }
   }
 
   private _generateStructures() {
@@ -166,7 +219,8 @@ export class VisualEngine {
   public resize() {
     if (typeof window === 'undefined') return;
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
-    this.w = window.innerWidth;
+    // Use clientWidth to avoid scrollbar offset on Windows
+    this.w = document.documentElement.clientWidth || window.innerWidth;
     this.h = window.innerHeight;
     this.canvas.width = this.w * this.dpr;
     this.canvas.height = this.h * this.dpr;
@@ -178,6 +232,11 @@ export class VisualEngine {
   // ── Main Draw Loop ──────────────────────────
   public draw(scrollProgress: number, deltaTime: number) {
     this.time += deltaTime;
+    // Decay burst
+    if (this.testimonialBurst > 0) {
+      this.testimonialBurst = Math.max(0, this.testimonialBurst - deltaTime * 1.5);
+    }
+    
     const ctx = this.ctx;
 
     // Clear
@@ -594,14 +653,19 @@ export class VisualEngine {
         this._drawVeins(ctx, sx, sy + float, currentSize, veinP, i === 2 ? COLORS.glow : COLORS.sage, 1);
       }
 
-      // Glow for Experience (premium)
-      if (i === 2 && seedP > 0.5) {
+      const planIds = ['essencial', 'profissional', 'experience'];
+      const isActive = this.activeRootSegment === planIds[i];
+
+      // Glow for active plan, or inherently for Experience if no other is active
+      const shouldGlow = isActive || (i === 2 && seedP > 0.5 && !this.activeRootSegment);
+
+      if (shouldGlow) {
         ctx.save();
         this._leafPath(ctx, sx, sy + float, currentSize);
         ctx.shadowColor = COLORS.glow;
-        ctx.shadowBlur = 20;
-        ctx.strokeStyle = `rgba(74, 222, 128, 0.15)`;
-        ctx.lineWidth = 2;
+        ctx.shadowBlur = isActive ? 30 : 20;
+        ctx.strokeStyle = isActive ? `rgba(74, 222, 128, 0.4)` : `rgba(74, 222, 128, 0.15)`;
+        ctx.lineWidth = isActive ? 3 : 2;
         ctx.stroke();
         ctx.restore();
       }
@@ -714,21 +778,48 @@ export class VisualEngine {
         const t = localPulse / pulseSpeed;
         const px = lerp(branch.start[0], branch.end[0], t);
         const py = lerp(branch.start[1], branch.end[1], t);
-        const pulseSize = 4 - branch.depth * 0.5;
-        const pulseAlpha = Math.sin(t * Math.PI) * 0.9;
+        
+        // Intensify with testimonial burst
+        const burstMultiplier = 1 + (this.testimonialBurst * 1.5);
+        const pulseSize = (4 - branch.depth * 0.5) * burstMultiplier;
+        const pulseAlpha = Math.sin(t * Math.PI) * (0.9 + this.testimonialBurst);
 
-        if (pulseSize > 0.5) {
-          // Glow
-          ctx.beginPath();
-          ctx.arc(px, py, pulseSize + 4, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(74, 222, 128, ${pulseAlpha * 0.2})`;
-          ctx.fill();
-          // Core
-          ctx.beginPath();
-          ctx.arc(px, py, pulseSize, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(74, 222, 128, ${pulseAlpha})`;
-          ctx.fill();
-        }
+          if (pulseSize > 0.5) {
+            let rgb = 'rgba(74, 222, 128'; // Default Emerald
+            
+            // If there's an active project hovered, use its color
+            if (this.activeProjectColor) {
+              // activeProjectColor comes as hex like #10b981
+              // We need to just inject it if possible, but let's assume it's hex, so we'll just use it directly for pulse glow.
+            } else if (this.activeTestimonialIndex !== undefined) {
+              // Choose color based on testimonial index
+              const colors = [
+                'rgba(74, 222, 128', // Emerald
+                'rgba(56, 189, 248', // Sky
+                'rgba(250, 204, 21'  // Yellow
+              ];
+              rgb = colors[this.activeTestimonialIndex % colors.length];
+            }
+
+            const fillStyleGlow = this.activeProjectColor 
+              ? `${this.activeProjectColor}${Math.floor(pulseAlpha * 0.2 * 255).toString(16).padStart(2,'0')}`
+              : `${rgb}, ${pulseAlpha * 0.2})`;
+
+            const fillStyleCore = this.activeProjectColor
+              ? `${this.activeProjectColor}${Math.floor(pulseAlpha * 255).toString(16).padStart(2,'0')}`
+              : `${rgb}, ${pulseAlpha})`;
+
+            // Glow
+            ctx.beginPath();
+            ctx.arc(px, py, pulseSize + 4, 0, Math.PI * 2);
+            ctx.fillStyle = fillStyleGlow;
+            ctx.fill();
+            // Core
+            ctx.beginPath();
+            ctx.arc(px, py, pulseSize, 0, Math.PI * 2);
+            ctx.fillStyle = fillStyleCore;
+            ctx.fill();
+          }
       }
     });
 

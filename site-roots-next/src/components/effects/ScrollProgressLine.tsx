@@ -5,13 +5,15 @@ import { useLenis } from '@/hooks/useLenis';
 
 const SECTIONS = [
   { id: 0, label: 'Root' },
-  { id: 1, label: 'Origem' },
-  { id: 2, label: 'Código' },
+  { id: 1, label: 'Manifesto' },
+  { id: 2, label: 'Processo' },
   { id: 3, label: 'Serviços' },
-  { id: 4, label: 'Evolução' },
-  { id: 5, label: 'Gestão' },
-  { id: 6, label: 'Métricas' },
-  { id: 7, label: 'Contato' },
+  { id: 4, label: 'Portfólio' },
+  { id: 5, label: 'Depoimentos' },
+  { id: 6, label: 'Gestão' },
+  { id: 7, label: 'Métricas' },
+  { id: 8, label: 'FAQ' },
+  { id: 9, label: 'Contato' },
 ];
 
 export default function ScrollProgressLine() {
@@ -56,7 +58,7 @@ export default function ScrollProgressLine() {
   const scrollToSection = (index: number) => {
     if (!lenis) return;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (index + 0.5) / 8; // target the middle of the section for perfect canvas state
+    const progress = (index + 0.5) / 10; // target the middle of the section for perfect canvas state
     const targetScroll = progress * maxScroll;
     lenis.scrollTo(targetScroll, {
       duration: 1.5,

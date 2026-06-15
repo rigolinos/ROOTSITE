@@ -56,7 +56,7 @@ export default function Navbar() {
     const nav = navRef.current;
     if (!nav) return;
 
-    if (activeSection === 0 || activeSection === 7) {
+    if (activeSection === 0 || activeSection === 9) {
       // Show Navbar
       gsap.to(nav, {
         y: 0,
@@ -78,7 +78,7 @@ export default function Navbar() {
   const scrollToSection = (sectionIndex: number) => {
     if (!lenis) return;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (sectionIndex + 0.5) / 8; // middle of that section
+    const progress = (sectionIndex + 0.5) / 10; // middle of that section
     const targetScroll = progress * maxScroll;
     lenis.scrollTo(targetScroll, {
       duration: 1.8,
@@ -103,15 +103,15 @@ export default function Navbar() {
         {/* Minimalist Navigation Menu */}
         <div className="flex items-center gap-6 md:gap-10">
           <button
-            onClick={() => scrollToSection(1)} // Section 1 (Semente) = Origem
+            onClick={() => scrollToSection(2)} // Section 2 (Processo)
             className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
             style={{ letterSpacing: '0.15em' }}
           >
-            Origem
+            Processo
             <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
           </button>
           <button
-            onClick={() => scrollToSection(3)} // Section 3 (Planos) = Serviços
+            onClick={() => scrollToSection(3)} // Section 3 (Planos)
             className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
             style={{ letterSpacing: '0.15em' }}
           >
@@ -119,7 +119,15 @@ export default function Navbar() {
             <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
           </button>
           <button
-            onClick={() => scrollToSection(7)} // Section 7 (CTA) = Contato
+            onClick={() => scrollToSection(4)} // Section 4 (Portfólio)
+            className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
+            style={{ letterSpacing: '0.15em' }}
+          >
+            Portfólio
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
+          </button>
+          <button
+            onClick={() => scrollToSection(9)} // Section 9 (CTA)
             className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
             style={{ letterSpacing: '0.15em' }}
           >

@@ -159,6 +159,10 @@ export default function PlanosSection() {
       duration: 0.4,
       ease: 'power3.out',
     });
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('root-hover', { detail: { segmentId: String(index) } }));
+    }
   };
 
   const handleMouseLeave = (index: number) => {
@@ -171,6 +175,10 @@ export default function PlanosSection() {
       duration: MOTION.duration.min,
       ease: MOTION.ease.fade,
     });
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('root-hover', { detail: { segmentId: null } }));
+    }
   };
 
   return (

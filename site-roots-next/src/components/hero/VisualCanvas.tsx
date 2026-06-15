@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useLenis } from '@/hooks/useLenis';
 import { VisualEngine, clamp, smoothstep } from '@/lib/VisualEngine';
 
-const SECTION_COUNT = 8;
+const SECTION_COUNT = 10;
 
 function getSectionProgress(scrollProgress: number) {
   const sectionSize = 1 / SECTION_COUNT;
@@ -150,6 +150,9 @@ export default function VisualCanvas() {
 
     return () => {
       cancelAnimationFrame(animId);
+      if (engineRef.current) {
+        engineRef.current.destroy();
+      }
       clearInterval(loopInterval);
       window.removeEventListener('resize', handleResize);
     };

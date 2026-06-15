@@ -5,6 +5,8 @@ import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import FilmGrain from '@/components/effects/FilmGrain';
 import CustomCursor from '@/components/effects/CustomCursor';
 import ScrollProgressLine from '@/components/effects/ScrollProgressLine';
+import AmbientOrbs from '@/components/effects/AmbientOrbs';
+import VignetteOverlay from '@/components/effects/VignetteOverlay';
 
 export const metadata: Metadata = {
   title: 'Root Code — Eficiência Silenciosa',
@@ -28,6 +30,8 @@ export default function RootLayout({
       <body className={manrope.className}>
         <SmoothScrollProvider>
           {/* Global Effects */}
+          <AmbientOrbs />
+          <VignetteOverlay />
           <FilmGrain />
           <CustomCursor />
           <ScrollProgressLine />
