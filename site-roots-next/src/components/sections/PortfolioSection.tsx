@@ -66,8 +66,8 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
   ];
 
   const portalRef = useRef<HTMLDivElement>(null);
-  const xTo = useRef<gsap.QuickToFunc>();
-  const yTo = useRef<gsap.QuickToFunc>();
+  const xTo = useRef<any>(null);
+  const yTo = useRef<any>(null);
   const [mounted, setMounted] = useState(false);
   const [activeProject, setActiveProject] = useState<number>(0);
 
