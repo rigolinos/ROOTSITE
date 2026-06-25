@@ -2,6 +2,7 @@ import Preloader from '@/components/preloader/Preloader';
 import Navbar from '@/components/navigation/Navbar';
 import VisualCanvas from '@/components/hero/VisualCanvas';
 import SectionContent from '@/components/sections/SectionContent';
+import ScrollProgressLine from '@/components/effects/ScrollProgressLine';
 
 /**
  * Root Code — Cinematic Interactive One-Pager
@@ -20,6 +21,7 @@ export default function Home() {
 
       {/* Global Navigation */}
       <Navbar />
+      <ScrollProgressLine />
 
       {/* ── Fixed Experience Layer ── */}
       {/* FIXED: Background Procedural L-System Canvas (z-1) */}

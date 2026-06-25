@@ -49,7 +49,7 @@ export default function Navbar() {
   const scrollToSection = (sectionIndex: number) => {
     if (!lenis) return;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (sectionIndex + 0.5) / 10; // middle of that section
+    const progress = (sectionIndex + 0.5) / 9; // middle of that section
     const targetScroll = progress * maxScroll;
     
     if (isMobileMenuOpen) {
@@ -104,10 +104,10 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-[100] pointer-events-none opacity-0"
+        className="fixed top-0 left-0 right-0 z-[200] pointer-events-none opacity-0"
         style={{ transform: 'translateY(-60px)' }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between pointer-events-auto">
+        <div className="max-w-7xl mx-auto w-full pt-8 md:pt-10 pb-5 flex items-center justify-between pointer-events-auto" style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
           <button
             onClick={() => scrollToSection(0)}
             className="text-white font-bold tracking-widest cursor-pointer hover:text-glow transition-all duration-300 select-none bg-transparent border-none outline-none"
@@ -155,14 +155,19 @@ export default function Navbar() {
           {/* Mobile Leaf Menu Trigger */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden w-12 h-12 flex items-center justify-center rounded-full bg-[#0A0F0D]/80 backdrop-blur-sm border border-white/10 text-white cursor-pointer hover:bg-[#1B3022]/80 transition-all z-[201] relative"
+            className="md:hidden w-11 h-11 flex items-center justify-center bg-transparent border-none outline-none cursor-pointer z-[201] relative translate-y-1.5"
             aria-label="Toggle Menu"
           >
-            {isMobileMenuOpen ? (
-              <span className="text-xl">✕</span>
-            ) : (
-              <img src="/logos/root-leaf.svg" alt="Menu" className="w-6 h-6 invert opacity-80" />
-            )}
+            <img 
+              src="/logos/root-leaf.svg" 
+              alt="Menu" 
+              className={`absolute inset-0 w-11 h-11 invert transition-all duration-700 ease-out ${isMobileMenuOpen ? 'rotate-[45deg] opacity-0 scale-110' : 'rotate-0 opacity-90 scale-100'}`} 
+            />
+            <span 
+              className={`absolute text-4xl text-white font-light transition-all duration-500 ease-out ${isMobileMenuOpen ? 'opacity-90 rotate-0 scale-100 delay-300' : 'opacity-0 -rotate-45 scale-50'}`}
+            >
+              ✕
+            </span>
           </button>
         </div>
       </nav>

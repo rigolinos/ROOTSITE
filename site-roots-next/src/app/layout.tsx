@@ -18,6 +18,9 @@ export const metadata: Metadata = {
       'Cultivando ecossistemas digitais onde a complexidade técnica floresce em simplicidade arquitetônica.',
     type: 'website',
   },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({

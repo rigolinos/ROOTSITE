@@ -57,7 +57,7 @@ export default function ScrollProgressLine() {
   const scrollToSection = (index: number) => {
     if (!lenis) return;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (index + 0.5) / 10; // target the middle of the section for perfect canvas state
+    const progress = (index + 0.5) / 9; // target the middle of the section for perfect canvas state
     const targetScroll = progress * maxScroll;
     lenis.scrollTo(targetScroll, {
       duration: 1.5,

@@ -54,7 +54,7 @@ export default function HeroTypography() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="text-center w-full flex flex-col items-center justify-start pt-[20vh] md:pt-[25vh] h-full">
+    <div ref={containerRef} className="text-center w-full flex flex-col items-center justify-start h-full px-4" style={{ paddingTop: '22vh' }}>
       <h1
         ref={titleRef}
         className="text-glow mb-4"

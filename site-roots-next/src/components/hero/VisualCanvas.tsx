@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useLenis } from '@/hooks/useLenis';
 import { VisualEngine, clamp, smoothstep } from '@/lib/VisualEngine';
+import { ScrollTrigger } from '@/lib/gsap-register';
 
 const SECTION_COUNT = 9;
 

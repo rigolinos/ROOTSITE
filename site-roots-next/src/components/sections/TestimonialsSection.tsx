@@ -66,10 +66,10 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStart) return;
     const touchEnd = e.changedTouches[0].clientX;
-    if (touchStart - touchEnd > 50) {
+    if (touchStart - touchEnd > 30) {
       changeTestimonial((currentIndex + 1) % testimonials.length);
     }
-    if (touchStart - touchEnd < -50) {
+    if (touchStart - touchEnd < -30) {
       changeTestimonial((currentIndex - 1 + testimonials.length) % testimonials.length);
     }
     setTouchStart(null);
@@ -95,12 +95,15 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
 
   return (
     <div className="section-content w-full max-w-[800px]" ref={containerRef} style={{ opacity: 0 }}>
-      <h2 className="section-title text-glow text-center mb-16 tracking-widest text-sm md:text-base uppercase">
+      <h2 
+        className="section-title text-glow text-center mb-8 md:mb-16 uppercase tracking-widest leading-tight"
+        style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}
+      >
         O que dizem nossos clientes.
       </h2>
       
       <div 
-        className="testimonial-container mx-auto mt-12 flex items-center justify-center min-h-[300px]"
+        className="testimonial-container mx-auto mt-4 md:mt-12 flex items-center justify-center min-h-[380px] md:min-h-[300px] touch-pan-y"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >

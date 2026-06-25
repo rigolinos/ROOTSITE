@@ -282,7 +282,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
         document.body
       )}
 
-      <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 border-y border-white/[0.05]" onMouseLeave={handleMouseLeaveGrid}>
+      <div className="portfolio-grid mx-auto relative z-10 flex md:grid md:grid-cols-2 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:border-y border-white/[0.05] pb-4 md:pb-0" onMouseLeave={handleMouseLeaveGrid}>
         {/* Animated Cross Lines (Horizontal & Vertical) */}
         <div className="cross-line-h hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-glow/20 pointer-events-none scale-x-0 origin-center z-20" />
         <div className="cross-line-v hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-glow/20 pointer-events-none scale-y-0 origin-center z-20" />
@@ -293,30 +293,30 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
             href={proj.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`portfolio-card-anim w-full p-10 md:p-14 lg:p-20 block no-underline group relative cursor-none flex flex-col justify-center items-center text-center ${
-              i === 4 ? 'md:col-span-2 border-t border-white/[0.05] md:border-t-0' : ''
+            className={`portfolio-card-anim bg-[#0A0F0D]/50 backdrop-blur-md w-[85vw] md:w-full flex-shrink-0 snap-center py-8 px-4 md:p-14 lg:p-20 block no-underline group relative flex flex-col justify-center items-center text-center md:cursor-none ${
+              i === 4 ? 'md:col-span-2 md:border-t-0' : ''
             } ${
               i % 2 === 0 && i !== 4 ? 'md:border-r border-white/[0.05]' : ''
             } ${
-              i < 4 ? 'border-b border-white/[0.05] md:border-b' : ''
+              i < 4 ? 'md:border-b border-white/[0.05] border-r border-white/[0.05]' : ''
             }`}
             onMouseMove={handleMouseMoveCard}
-            onMouseEnter={() => handleMouseEnter(i)}
+            onMouseEnter={typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0) ? undefined : () => handleMouseEnter(i)}
           >
             <div className="inner-content transition-transform duration-500 ease-out will-change-transform flex flex-col items-center justify-center max-w-lg mx-auto">
-              <div className="text-[10px] font-mono text-white/20 mb-8 tracking-widest">0{i + 1} // {i === 4 ? 'HIGHLIGHT' : 'PROJECT'}</div>
+              <div className="text-[10px] font-mono text-white/20 mb-4 md:mb-8 tracking-widest">0{i + 1} // {i === 4 ? 'HIGHLIGHT' : 'PROJECT'}</div>
               
-              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-5">{proj.category}</div>
-              <h3 className="text-4xl md:text-5xl font-extralight tracking-tight text-white mb-8 group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
+              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-3 md:mb-5">{proj.category}</div>
+              <h3 className="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4 md:mb-8 group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
               
-              <div className="meta-stack flex flex-wrap justify-center gap-3 mt-2 opacity-100 md:opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="meta-stack flex flex-wrap justify-center gap-2 md:gap-3 mt-2 opacity-100 md:opacity-60 group-hover:opacity-100 transition-opacity duration-500">
                 {proj.stack.map((tech, j) => (
-                  <span key={j} className="text-[9px] uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 text-white/70">
+                  <span key={j} className="text-[9px] uppercase tracking-widest px-2 py-1 md:px-3 rounded-full border border-white/10 text-white/70">
                     {tech}
                   </span>
                 ))}
               </div>
-              <p className="text-white/60 text-xs mt-6 md:hidden block max-w-sm mx-auto leading-relaxed text-center">
+              <p className="text-white/60 text-xs mt-4 md:hidden block max-w-sm mx-auto leading-relaxed text-center px-2">
                 {proj.description}
               </p>
             </div>
