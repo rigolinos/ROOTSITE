@@ -194,8 +194,18 @@ export default function SectionContent() {
         <ProcessoSection isActive={activeSection === 2} />
       </div>
 
-      {/* Section 3: Serviços (Planos) */}
-      <div className={`section-overlay ${activeSection === 3 ? 'active' : ''}`} id="section-planos" data-section="3">
+      {/* Section 3: Projetos (ex-Portfólio) */}
+      <div className={`section-overlay ${activeSection === 3 ? 'active' : ''}`} id="section-projetos" data-section="3">
+        <PortfolioSection isActive={activeSection === 3} />
+      </div>
+
+      {/* Section 4: Depoimentos */}
+      <div className={`section-overlay ${activeSection === 4 ? 'active' : ''}`} id="section-depoimentos" data-section="4">
+        <TestimonialsSection isActive={activeSection === 4} />
+      </div>
+
+      {/* Section 5: Serviços (Planos) */}
+      <div className={`section-overlay ${activeSection === 5 ? 'active' : ''}`} id="section-servicos" data-section="5">
         <div className="section-content planos-content w-full max-w-[1200px]">
           <h2 className="section-title text-glow">
             Três caminhos.
@@ -209,6 +219,7 @@ export default function SectionContent() {
               <div className="plan-icon">🌱</div>
               <h3 className="plan-name">Essencial</h3>
               <p className="plan-desc">Landing page de alta conversão</p>
+              <div className="text-glow font-bold text-xl my-4 tracking-widest">A partir de R$ 3.500</div>
               <ul className="plan-features">
                 <li>SEO otimizado</li>
                 <li>Mobile-first</li>
@@ -223,6 +234,7 @@ export default function SectionContent() {
               <div className="plan-icon">🌿</div>
               <h3 className="plan-name">Profissional</h3>
               <p className="plan-desc">Plataformas escaláveis</p>
+              <div className="text-glow font-bold text-xl my-4 tracking-widest">A partir de R$ 7.000</div>
               <ul className="plan-features">
                 <li>CRM integrado</li>
                 <li>Pixels &amp; Analytics Premium</li>
@@ -237,6 +249,7 @@ export default function SectionContent() {
               <div className="plan-icon">🌳</div>
               <h3 className="plan-name">Experience</h3>
               <p className="plan-desc">Experiência digital premium imersiva</p>
+              <div className="text-glow font-bold text-xl my-4 tracking-widest">Sob Consulta</div>
               <ul className="plan-features">
                 <li>WebGL / Three.js</li>
                 <li>Animações com GSAP</li>
@@ -250,18 +263,8 @@ export default function SectionContent() {
         </div>
       </div>
 
-      {/* Section 4: Portfólio */}
-      <div className={`section-overlay ${activeSection === 4 ? 'active' : ''}`} id="section-portfolio" data-section="4">
-        <PortfolioSection isActive={activeSection === 4} />
-      </div>
-
-      {/* Section 5: Depoimentos */}
-      <div className={`section-overlay ${activeSection === 5 ? 'active' : ''}`} id="section-depoimentos" data-section="5">
-        <TestimonialsSection isActive={activeSection === 5} />
-      </div>
-
       {/* Section 6: Performance (Gestão) */}
-      <div className={`section-overlay ${activeSection === 6 ? 'active' : ''}`} id="section-performance" data-section="6">
+      <div className={`section-overlay ${activeSection === 6 ? 'active' : ''}`} id="section-gestao" data-section="6">
         <div className="section-content performance-content">
           <h2 className="section-title text-glow">
             Gestão que evolui
@@ -305,10 +308,13 @@ export default function SectionContent() {
         <FAQSection isActive={activeSection === 7} />
       </div>
 
-      {/* Section 8: Call to Action Final */}
-      <div className={`section-overlay ${activeSection === 8 ? 'active' : ''}`} id="section-cta" data-section="8">
-        <div className="section-content cta-content flex flex-col items-center justify-center">
-          <h2 className="section-title text-glow">
+      {/* Section 8: Call to Action Final (Contato) */}
+      <div className={`section-overlay ${activeSection === 8 ? 'active' : ''}`} id="section-contato" data-section="8">
+        <div className="section-content cta-content flex flex-col items-center justify-start pt-[15vh]">
+          <h2 
+            className="section-title text-glow leading-tight mb-4"
+            style={{ fontSize: 'clamp(2.5rem, 8vw, 5.5rem)' }}
+          >
             O ciclo
             <br />
             continua.
@@ -323,10 +329,12 @@ export default function SectionContent() {
                 href="https://wa.me/5551999019398?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20Root%20Code."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cta-button bg-glow/10 border-glow text-glow hover:bg-glow/20"
+                className="cta-button bg-glow/10 border-glow text-glow hover:bg-glow/20 flex items-center justify-center gap-2"
                 id="cta-whatsapp"
               >
-                <span className="cta-icon">📱</span>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12c0 2.17.69 4.18 1.86 5.82L3 21l3.29-.86C7.8 21.32 9.83 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1.12 14.5c-.38.1-.78.15-1.19.15-1.84 0-3.52-.72-4.75-1.93l.03-.03c1.55-1.55 3.55-2.58 5.75-2.65V12h.01c.21 2.2 1.25 4.2 2.8 5.75l-.03.03c-1.22 1.2-2.9 1.92-4.74 1.92-.4 0-.8-.04-1.19-.13l3.31-3.11zM18.5 12c0 3.58-2.92 6.5-6.5 6.5S5.5 15.58 5.5 12 8.42 5.5 12 5.5s6.5 2.92 6.5 6.5z"/>
+                </svg>
                 Chamar no WhatsApp
               </a>
             </MagneticButton>
@@ -336,10 +344,12 @@ export default function SectionContent() {
                 href="https://www.instagram.com/rootingcode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cta-button"
+                className="cta-button flex items-center justify-center gap-2"
                 id="cta-instagram"
               >
-                <span className="cta-icon">📸</span>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
                 Instagram
               </a>
             </MagneticButton>

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useLenis } from '@/hooks/useLenis';
 import { VisualEngine, clamp, smoothstep } from '@/lib/VisualEngine';
 
-const SECTION_COUNT = 10;
+const SECTION_COUNT = 9;
 
 function getSectionProgress(scrollProgress: number) {
   const sectionSize = 1 / SECTION_COUNT;

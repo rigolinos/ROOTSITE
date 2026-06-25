@@ -7,13 +7,12 @@ const SECTIONS = [
   { id: 0, label: 'Root' },
   { id: 1, label: 'Manifesto' },
   { id: 2, label: 'Processo' },
-  { id: 3, label: 'Serviços' },
-  { id: 4, label: 'Portfólio' },
-  { id: 5, label: 'Depoimentos' },
+  { id: 3, label: 'Projetos' },
+  { id: 4, label: 'Depoimentos' },
+  { id: 5, label: 'Serviços' },
   { id: 6, label: 'Gestão' },
-  { id: 7, label: 'Métricas' },
-  { id: 8, label: 'FAQ' },
-  { id: 9, label: 'Contato' },
+  { id: 7, label: 'FAQ' },
+  { id: 8, label: 'Contato' },
 ];
 
 export default function ScrollProgressLine() {
@@ -67,15 +66,13 @@ export default function ScrollProgressLine() {
 
   return (
     <div 
+      className="hidden md:flex flex-col items-center"
       style={{
         position: 'fixed',
         left: '30px',
         top: '50%',
         transform: 'translateY(-50%)',
         zIndex: 9999,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         userSelect: 'none',
         pointerEvents: 'auto',
       }}

@@ -54,7 +54,7 @@ export default function HeroTypography() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="text-center w-full flex flex-col items-center justify-center">
+    <div ref={containerRef} className="text-center w-full flex flex-col items-center justify-start pt-[20vh] md:pt-[25vh] h-full">
       <h1
         ref={titleRef}
         className="text-glow mb-4"

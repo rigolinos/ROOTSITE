@@ -211,7 +211,10 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       className="section-content w-full max-w-[1200px] opacity-0" 
       ref={containerRef} 
     >
-      <h2 className="section-title text-glow text-center mb-16 uppercase tracking-widest text-sm md:text-base">
+      <h2 
+        className="section-title text-glow text-center mb-16 uppercase tracking-widest"
+        style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}
+      >
         Projetos Selecionados
       </h2>
       
@@ -219,7 +222,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       {mounted && typeof document !== 'undefined' && createPortal(
         <div 
           ref={portalRef}
-          className="fixed top-0 left-0 w-[340px] pointer-events-none z-[99999] flex flex-col backdrop-blur-xl border border-white/10 bg-zinc-950/80 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] opacity-0"
+          className="fixed top-0 left-0 w-[340px] pointer-events-none z-[99999] hidden md:flex flex-col backdrop-blur-xl border border-white/10 bg-zinc-950/80 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] opacity-0"
         >
           {/* Media Frame */}
           <div className="h-[200px] w-full relative overflow-hidden bg-zinc-900">
@@ -306,13 +309,16 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-5">{proj.category}</div>
               <h3 className="text-4xl md:text-5xl font-extralight tracking-tight text-white mb-8 group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
               
-              <div className="meta-stack flex flex-wrap justify-center gap-3 mt-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="meta-stack flex flex-wrap justify-center gap-3 mt-2 opacity-100 md:opacity-60 group-hover:opacity-100 transition-opacity duration-500">
                 {proj.stack.map((tech, j) => (
                   <span key={j} className="text-[9px] uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 text-white/70">
                     {tech}
                   </span>
                 ))}
               </div>
+              <p className="text-white/60 text-xs mt-6 md:hidden block max-w-sm mx-auto leading-relaxed text-center">
+                {proj.description}
+              </p>
             </div>
           </a>
         ))}

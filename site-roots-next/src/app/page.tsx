@@ -29,8 +29,8 @@ export default function Home() {
       <SectionContent />
 
       {/* ── Scroll Physical Track Layer ── */}
-      {/* 1000vh height triggers scroll events for Lenis & GSAP ticker sync */}
-      <main id="scroll-container" className="relative w-full h-[1000vh] z-0 pointer-events-none" />
+      {/* 900vh height triggers scroll events for Lenis & GSAP ticker sync */}
+      <main id="scroll-container" className="relative w-full h-[900vh] z-0 pointer-events-none" />
     </>
   );
 }

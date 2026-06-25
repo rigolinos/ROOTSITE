@@ -56,8 +56,11 @@ export default function FAQSection({ isActive }: FAQSectionProps) {
 
   return (
     <div className="section-content w-full max-w-[800px]" ref={containerRef} style={{ opacity: 0 }}>
-      <h2 className="section-title text-glow text-center mb-16 tracking-widest text-sm md:text-base uppercase">
-        Perguntas Frequentes.
+      <h2 
+        className="section-title text-glow text-center mb-16 uppercase tracking-widest"
+        style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}
+      >
+        Perguntas Frequentes
       </h2>
       
       <div className="faq-accordion space-y-4">

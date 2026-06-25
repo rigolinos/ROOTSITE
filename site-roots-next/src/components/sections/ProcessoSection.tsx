@@ -131,7 +131,7 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
         </defs>
       </svg>
 
-      <h2 className="section-title text-glow mb-24 md:mb-40 text-center tracking-[0.3em] uppercase text-xl md:text-3xl font-light">
+      <h2 className="section-title text-glow mb-12 md:mb-40 text-center tracking-[0.3em] uppercase text-xl md:text-3xl font-light">
         A Jornada
       </h2>
       
@@ -145,20 +145,20 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
           className="absolute top-[48px] md:top-[64px] left-[5%] right-[5%] h-[2px] bg-glow shadow-[0_0_20px_rgba(74,222,128,0.8),0_0_40px_rgba(74,222,128,0.4)] hidden md:block origin-center" 
         />
 
-        <div className="flex flex-col md:flex-row justify-between relative z-10 gap-16 md:gap-4 px-[5%]">
+        <div className="flex flex-col md:flex-row justify-between relative z-10 gap-8 md:gap-4 px-[5%]">
           {steps.map((step, i) => (
             <div key={i} className="process-step flex-1 flex flex-col md:items-center text-left md:text-center group">
               
               {/* Premium Balloon - Liquid/Gooey */}
               <div 
-                className="process-circle w-24 h-24 md:w-32 md:h-32 mb-12 relative cursor-crosshair group"
+                className="process-circle w-16 h-16 md:w-32 md:h-32 mb-6 md:mb-12 relative cursor-crosshair group"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ filter: 'url(#gooey)' }}
               >
                 {/* Main Body */}
                 <div className="absolute inset-0 bg-[#1B3022] rounded-full flex items-center justify-center transition-all duration-700 group-hover:scale-110 shadow-[0_10px_30px_rgba(0,0,0,0.8)] group-hover:shadow-[0_0_50px_rgba(74,222,128,0.2)] z-10 border border-[#98A99A]/20">
-                  <span className="text-white font-black text-2xl md:text-4xl relative z-20 transition-all duration-500 group-hover:text-glow group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">{step.num}</span>
+                  <span className="text-white font-black text-xl md:text-4xl relative z-20 transition-all duration-500 group-hover:text-glow group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">{step.num}</span>
                   {/* Inner Glow */}
                   <div className="absolute inset-0 rounded-full bg-glow/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
                 </div>
@@ -174,7 +174,7 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
                 <h3 className="text-xl md:text-2xl font-light text-white mb-4 tracking-[0.2em] group-hover:text-glow transition-colors duration-500">
                   {step.title}
                 </h3>
-                <p className="text-sm md:text-base text-white/50 leading-relaxed max-w-[280px] mx-auto font-light group-hover:text-white/80 transition-colors duration-500">
+                <p className="text-sm md:text-base text-white/50 leading-relaxed max-w-[280px] line-clamp-2 md:line-clamp-none mx-auto font-light group-hover:text-white/80 transition-colors duration-500">
                   {step.desc}
                 </p>
               </div>

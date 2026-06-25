@@ -10,9 +10,11 @@ interface TestimonialsSectionProps {
 
 export default function TestimonialsSection({ isActive }: TestimonialsSectionProps) {
   const testimonials = [
-    { name: 'Rodrigo Rigo', role: 'CEO & Estrategista de IA', text: 'Eles entenderam o que eu queria antes de eu terminar de explicar. O site ficou mais profissional do que eu imaginava, e tudo foi entregue antes do prazo.', initials: 'RR' },
-    { name: 'Equipe Riff Sports', role: 'Founders', text: 'Queríamos algo que transmitisse energia e profissionalismo. O resultado superou as expectativas — nossos clientes elogiam o site constantemente.', initials: 'RS' },
-    { name: 'Amanda S.', role: 'Veterinária — PetConnect', text: 'Eu não entendia nada de tecnologia, mas eles me guiaram em cada etapa. Hoje tenho um sistema que funciona sozinho e meus clientes adoram.', initials: 'AS' },
+    { name: 'Rodrigo Rigo', role: 'CEO & Estrategista de IA', text: 'Eles entenderam o que eu queria antes de eu terminar de explicar. O site ficou mais profissional do que eu imaginava, e tudo foi entregue antes do prazo.', initials: 'RR', logo: '/projects/deep-rules.png' },
+    { name: 'Equipe Riff Sports', role: 'Founders', text: 'Queríamos algo que transmitisse energia e profissionalismo. O resultado superou as expectativas — nossos clientes elogiam o site constantemente.', initials: 'RS', logo: '/projects/riff-sports.png' },
+    { name: 'Amanda S.', role: 'Veterinária — PetConnect', text: 'Eu não entendia nada de tecnologia, mas eles me guiaram em cada etapa. Hoje tenho um sistema que funciona sozinho e meus clientes adoram.', initials: 'AS', logo: '/projects/petconnect.png' },
+    { name: 'Marcos T.', role: 'Diretor de Marketing', text: 'A entrega foi impecável e a performance do site mudou nosso jogo de conversão de leads. A melhor decisão técnica que tomamos este ano.', initials: 'MT', logo: null },
+    { name: 'Luiza B.', role: 'Head of Growth', text: 'Surreal o nível de detalhe e carinho que eles colocam no código. Nosso novo portal carrega instantaneamente no mobile.', initials: 'LB', logo: null },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,9 +57,23 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
   useEffect(() => {
     const timer = setInterval(() => {
       changeTestimonial((currentIndex + 1) % testimonials.length);
-    }, 6000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [currentIndex, testimonials.length]);
+
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => setTouchStart(e.targetTouches[0].clientX);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    if (touchStart - touchEnd > 50) {
+      changeTestimonial((currentIndex + 1) % testimonials.length);
+    }
+    if (touchStart - touchEnd < -50) {
+      changeTestimonial((currentIndex - 1 + testimonials.length) % testimonials.length);
+    }
+    setTouchStart(null);
+  };
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -83,16 +99,24 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
         O que dizem nossos clientes.
       </h2>
       
-      <div className="testimonial-container mx-auto mt-12 flex items-center justify-center min-h-[300px]">
-        <div ref={textRef} className="text-center px-4 md:px-12 will-change-transform">
+      <div 
+        className="testimonial-container mx-auto mt-12 flex items-center justify-center min-h-[300px]"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div ref={textRef} className="text-center px-4 md:px-12 will-change-transform cursor-grab active:cursor-grabbing">
           <div className="text-glow text-6xl opacity-30 mb-6 leading-none select-none">"</div>
           <p className="text-lg md:text-xl text-white/90 italic font-light leading-relaxed mb-8">
             {testimonials[currentIndex].text}
           </p>
           <div className="flex flex-col items-center justify-center">
-            <div className="w-12 h-12 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-sm font-black text-glow tracking-widest mb-3 shadow-[0_0_20px_rgba(74,222,128,0.1)]">
-              {testimonials[currentIndex].initials}
-            </div>
+            {testimonials[currentIndex].logo ? (
+              <img src={testimonials[currentIndex].logo} alt={testimonials[currentIndex].name} className="w-12 h-12 object-contain p-1 rounded-full border border-white/10 bg-white/5 mb-3" />
+            ) : (
+              <div className="w-12 h-12 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-sm font-black text-glow tracking-widest mb-3 shadow-[0_0_20px_rgba(74,222,128,0.1)]">
+                {testimonials[currentIndex].initials}
+              </div>
+            )}
             <h4 className="text-white font-bold tracking-wide">{testimonials[currentIndex].name}</h4>
             <span className="text-xs text-glow uppercase tracking-widest mt-1">{testimonials[currentIndex].role}</span>
           </div>
