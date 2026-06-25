@@ -98,62 +98,12 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
     return () => window.removeEventListener('mousemove', handleWindowMouseMove);
   }, [mounted]);
 
-  const handleMouseMoveCard = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--shine-x', `${x}px`);
-    e.currentTarget.style.setProperty('--shine-y', `${y}px`);
-    
-    // Slight parallax on inner content
-    const inner = e.currentTarget.querySelector('.inner-content') as HTMLElement;
-    if (inner) {
-      const moveX = (x - rect.width / 2) * 0.05;
-      const moveY = (y - rect.height / 2) * 0.05;
-      inner.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    }
-  };
-
   const handleMouseEnter = (i: number) => {
     setActiveProject(i);
-    const allCards = document.querySelectorAll('.portfolio-card-anim');
-    allCards.forEach((c, idx) => {
-      if (idx === i) {
-        gsap.to(c, { scale: 1.05, duration: 0.6, ease: 'expo.out' });
-        const meta = c.querySelector('.meta-stack');
-        if(meta) gsap.to(meta, { y: 0, opacity: 1, duration: 0.4, ease: 'back.out(1.2)' });
-      } else {
-        const diff = idx - i;
-        const pushX = diff > 0 ? 10 : diff < 0 ? -10 : 0;
-        gsap.to(c, { scale: 0.95, x: pushX, opacity: 0.3, duration: 0.6, ease: 'expo.out' });
-      }
-    });
-
-    if (portalRef.current) {
-      const yOffset = i < 3 ? 10 : -110; // Top 3 open downwards, bottom 2 open upwards
-      gsap.set(portalRef.current, { yPercent: yOffset });
-      gsap.to(portalRef.current, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power3.out' });
-    }
-
-    if (typeof window !== 'undefined') {
-      const colors = ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#06b6d4'];
-      window.dispatchEvent(new CustomEvent('root-hover', { detail: { segmentId: `project-${i}`, color: colors[i % colors.length] } }));
-    }
   };
 
   const handleMouseLeaveGrid = () => {
-    const allCards = document.querySelectorAll('.portfolio-card-anim');
-    gsap.to(allCards, { scale: 1, x: 0, opacity: 1, zIndex: 1, duration: 0.6, ease: 'expo.out' });
-    const allMeta = document.querySelectorAll('.meta-stack');
-    gsap.to(allMeta, { y: 20, opacity: 0, duration: 0.4, ease: 'power2.out' });
-
-    if (portalRef.current) {
-      gsap.to(portalRef.current, { scale: 0.8, opacity: 0, filter: 'blur(10px)', duration: 0.4, ease: 'power3.out' });
-    }
-
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('root-hover', { detail: { segmentId: null } }));
-    }
+    setActiveProject(-1);
   };
 
   useEffect(() => {
@@ -218,69 +168,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
         Projetos Selecionados
       </h2>
       
-      {/* Floating Preview Portal - Rendered at root body via createPortal */}
-      {mounted && typeof document !== 'undefined' && createPortal(
-        <div 
-          ref={portalRef}
-          className="fixed top-0 left-0 w-[340px] pointer-events-none z-[99999] hidden md:flex flex-col backdrop-blur-xl border border-white/10 bg-zinc-950/80 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] opacity-0"
-        >
-          {/* Media Frame */}
-          <div className="h-[200px] w-full relative overflow-hidden bg-zinc-900">
-             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent mix-blend-overlay z-10" />
-             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent z-10" />
-             
-             {projects[activeProject]?.image ? (
-               <img 
-                 src={projects[activeProject].image} 
-                 alt={projects[activeProject].name}
-                 className="absolute inset-0 w-full h-full object-cover"
-                 style={{ filter: 'saturate(0.85) contrast(1.1)' }}
-               />
-             ) : (
-               <div className="absolute inset-0 flex items-center justify-center bg-[#0d1610]" style={{ filter: 'saturate(0.8)' }}>
-                 <span className="text-white/10 font-black text-4xl uppercase tracking-tighter mix-blend-overlay text-center px-4 leading-none">
-                   {projects[activeProject]?.name}
-                 </span>
-                 {/* Decorative grid */}
-                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px]" />
-               </div>
-             )}
-          </div>
-          {/* Metadata Area */}
-          <div className="p-6 flex flex-col gap-4 relative z-20">
-             <div>
-               <div className="text-[10px] font-bold text-glow uppercase tracking-[0.2em] mb-1.5">{projects[activeProject]?.category}</div>
-               <h4 className="text-white font-bold text-xl tracking-wide">{projects[activeProject]?.name}</h4>
-             </div>
-             
-             {projects[activeProject]?.description && (
-               <p className="text-white/60 text-xs leading-relaxed">
-                 {projects[activeProject]?.description}
-               </p>
-             )}
-             
-             {projects[activeProject]?.bullets && (
-               <ul className="flex flex-col gap-1 mt-1">
-                 {projects[activeProject].bullets.map((bullet, idx) => (
-                   <li key={idx} className="text-white/80 text-[11px] flex items-center gap-2">
-                     <span className="w-1 h-1 rounded-full bg-glow/50" />
-                     {bullet}
-                   </li>
-                 ))}
-               </ul>
-             )}
-
-             <div className="flex flex-wrap gap-2 mt-2 pt-4 border-t border-white/5">
-               {projects[activeProject]?.stack.map((t, j) => (
-                  <span key={j} className="text-[9px] uppercase font-bold tracking-wider px-2 py-1.5 rounded-md border border-white/10 bg-white/5 text-white/70">
-                    {t}
-                  </span>
-               ))}
-             </div>
-          </div>
-        </div>,
-        document.body
-      )}
+      {/* Portal Removido */}
 
       <div className="portfolio-grid mx-auto relative z-10 flex md:grid md:grid-cols-2 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:border-y border-white/[0.05] pb-4 md:pb-0" onMouseLeave={handleMouseLeaveGrid}>
         {/* Animated Cross Lines (Horizontal & Vertical) */}
@@ -293,23 +181,21 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
             href={proj.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`portfolio-card-anim bg-[#0A0F0D]/50 backdrop-blur-md w-[85vw] md:w-full flex-shrink-0 snap-center py-8 px-4 md:p-14 lg:p-20 block no-underline group relative flex flex-col justify-center items-center text-center md:cursor-none ${
+            className={`portfolio-card-anim bg-[#0A0F0D]/50 backdrop-blur-md w-[85vw] md:w-full flex-shrink-0 snap-center py-8 px-4 md:p-14 lg:p-20 block no-underline group relative flex flex-col justify-center items-center text-center cursor-pointer ${
               i === 4 ? 'md:col-span-2 md:border-t-0' : ''
             } ${
               i % 2 === 0 && i !== 4 ? 'md:border-r border-white/[0.05]' : ''
             } ${
               i < 4 ? 'md:border-b border-white/[0.05] border-r border-white/[0.05]' : ''
             }`}
-            onMouseMove={handleMouseMoveCard}
-            onMouseEnter={typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0) ? undefined : () => handleMouseEnter(i)}
           >
-            <div className="inner-content transition-transform duration-500 ease-out will-change-transform flex flex-col items-center justify-center max-w-lg mx-auto">
+            <div className="inner-content flex flex-col items-center justify-center max-w-lg mx-auto pointer-events-none">
               <div className="text-[10px] font-mono text-white/20 mb-4 md:mb-8 tracking-widest">0{i + 1} // {i === 4 ? 'HIGHLIGHT' : 'PROJECT'}</div>
               
               <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-3 md:mb-5">{proj.category}</div>
-              <h3 className="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4 md:mb-8 group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
+              <h3 className="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4 md:mb-8 md:group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
               
-              <div className="meta-stack flex flex-wrap justify-center gap-2 md:gap-3 mt-2 opacity-100 md:opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="meta-stack flex flex-wrap justify-center gap-2 md:gap-3 mt-2 opacity-100 md:opacity-60 md:group-hover:opacity-100 transition-opacity duration-500">
                 {proj.stack.map((tech, j) => (
                   <span key={j} className="text-[9px] uppercase tracking-widest px-2 py-1 md:px-3 rounded-full border border-white/10 text-white/70">
                     {tech}
