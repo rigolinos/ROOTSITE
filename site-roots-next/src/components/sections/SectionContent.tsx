@@ -219,7 +219,7 @@ export default function SectionContent() {
               <div className="plan-icon">🌱</div>
               <h3 className="plan-name">Essencial</h3>
               <p className="plan-desc">Landing page de alta conversão</p>
-              <div className="text-glow font-bold text-xl my-4 tracking-widest">R$ 1.500</div>
+              <div className="text-glow font-bold text-xl my-4 tracking-widest">A partir de R$ 1.500</div>
               <ul className="plan-features">
                 <li>SEO otimizado</li>
                 <li>Mobile-first</li>
@@ -234,7 +234,7 @@ export default function SectionContent() {
               <div className="plan-icon">🌿</div>
               <h3 className="plan-name">Profissional</h3>
               <p className="plan-desc">Plataformas escaláveis</p>
-              <div className="text-glow font-bold text-xl my-4 tracking-widest">R$ 3.000</div>
+              <div className="text-glow font-bold text-xl my-4 tracking-widest">A partir de R$ 3.000</div>
               <ul className="plan-features">
                 <li>CRM integrado</li>
                 <li>Pixels &amp; Analytics Premium</li>

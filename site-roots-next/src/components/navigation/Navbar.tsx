@@ -41,7 +41,7 @@ export default function Navbar() {
           }
         );
       }
-    }, 3200);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);

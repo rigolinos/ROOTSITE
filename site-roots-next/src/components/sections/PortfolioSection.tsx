@@ -14,34 +14,14 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
   const projects = [
     { 
-      name: 'Cabeleireiros App', 
-      category: 'Marketplace • Prototipagem', 
-      stack: ['React', 'Next.js', 'Low-Code'], 
-      url: 'https://cabelereiros1.vercel.app/', 
-      gradient: 'from-purple-900/40 to-purple-950/40', 
-      image: '/projects/cabelereiros.png',
-      description: 'Marketplace conectando profissionais de beleza a clientes. Sistema de agendamento, portfólio e avaliações.',
-      bullets: ['Prototipagem Rápida e MVP', 'Validação de mercado', 'Integração de agendamentos']
-    },
-    { 
-      name: 'Pet Connect', 
-      category: 'Social Impact • AI Assisted', 
-      stack: ['React 19', 'Tailwind', 'Node.js'], 
-      url: 'https://petsupport.vercel.app/', 
-      gradient: 'from-blue-900/40 to-blue-950/40', 
-      image: '/projects/petconnect.png',
-      description: 'Sistema interno inteligente para gestão de doações e logística de ONGs de animais, conectando doadores a necessidades urgentes.',
-      bullets: ['Desenvolvedor Full-Cycle', 'Automações de Conexão', 'Dashboards de Dados']
-    },
-    { 
-      name: 'Riff Sports', 
-      category: 'Sports Tech • SaaS', 
-      stack: ['Next.js', 'Tailwind CSS', 'Framer Motion'], 
-      url: 'https://riffsports.vercel.app/', 
-      gradient: 'from-green-900/40 to-green-950/40', 
-      image: '/projects/riff-sports.png',
-      description: 'Plataforma SaaS focada em infraestrutura e gestão de ecossistemas esportivos. Solução completa para agendamentos e gestão das quadras.',
-      bullets: ['Website Institucional', 'Alta Performance & SEO', 'Foco em Conversão']
+      name: 'Deep Rules', 
+      category: 'Dev Tools • IA', 
+      stack: ['React', 'Vite', 'TypeScript'], 
+      url: 'https://deep-rules.vercel.app/', 
+      gradient: 'from-cyan-900/40 to-cyan-950/40', 
+      image: '/projects/deep-rules.png',
+      description: 'Ferramenta avançada para desenvolvedores, mapeando regras de arquitetura e garantindo governança em codebases complexos.',
+      bullets: ['Análise de Código AST', 'Visualização de Dados', 'Interface Futurista']
     },
     { 
       name: 'Mentes que Inspiram', 
@@ -54,14 +34,34 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       bullets: ['Experiência Cinematográfica', 'Animações Complexas', 'Design Interativo']
     },
     { 
-      name: 'Deep Rules', 
-      category: 'Dev Tools • IA', 
-      stack: ['React', 'Vite', 'TypeScript'], 
-      url: 'https://deep-rules.vercel.app/', 
-      gradient: 'from-cyan-900/40 to-cyan-950/40', 
-      image: '/projects/deep-rules.png',
-      description: 'Ferramenta avançada para desenvolvedores, mapeando regras de arquitetura e garantindo governança em codebases complexos.',
-      bullets: ['Análise de Código AST', 'Visualização de Dados', 'Interface Futurista']
+      name: 'Riff Sports', 
+      category: 'Sports Tech • SaaS', 
+      stack: ['Next.js', 'Tailwind CSS', 'Framer Motion'], 
+      url: 'https://riffsports.vercel.app/', 
+      gradient: 'from-green-900/40 to-green-950/40', 
+      image: '/projects/riff-sports.png',
+      description: 'Plataforma SaaS focada em infraestrutura e gestão de ecossistemas esportivos. Solução completa para agendamentos e gestão das quadras.',
+      bullets: ['Website Institucional', 'Alta Performance & SEO', 'Foco em Conversão']
+    },
+    { 
+      name: 'Pet Connect', 
+      category: 'Social Impact • AI Assisted', 
+      stack: ['React 19', 'Tailwind', 'Node.js'], 
+      url: 'https://petsupport.vercel.app/', 
+      gradient: 'from-blue-900/40 to-blue-950/40', 
+      image: '/projects/petconnect.png',
+      description: 'Sistema interno inteligente para gestão de doações e logística de ONGs de animais, conectando doadores a necessidades urgentes.',
+      bullets: ['Desenvolvedor Full-Cycle', 'Automações de Conexão', 'Dashboards de Dados']
+    },
+    { 
+      name: 'Cabeleireiros App', 
+      category: 'Marketplace • Prototipagem', 
+      stack: ['React', 'Next.js', 'Low-Code'], 
+      url: 'https://cabelereiros1.vercel.app/', 
+      gradient: 'from-purple-900/40 to-purple-950/40', 
+      image: '/projects/cabelereiros.png',
+      description: 'Marketplace conectando profissionais de beleza a clientes. Sistema de agendamento, portfólio e avaliações.',
+      bullets: ['Prototipagem Rápida e MVP', 'Validação de mercado', 'Integração de agendamentos']
     },
   ];
 
@@ -170,7 +170,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       
       {/* Portal Removido */}
 
-      <div className="portfolio-grid mx-auto relative z-10 flex md:grid md:grid-cols-2 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:border-y border-white/[0.05] pb-4 md:pb-0" onMouseLeave={handleMouseLeaveGrid}>
+      <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 md:border-y border-white/[0.05]" onMouseLeave={handleMouseLeaveGrid}>
         {/* Animated Cross Lines (Horizontal & Vertical) */}
         <div className="cross-line-h hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-glow/20 pointer-events-none scale-x-0 origin-center z-20" />
         <div className="cross-line-v hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-glow/20 pointer-events-none scale-y-0 origin-center z-20" />
@@ -181,30 +181,17 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
             href={proj.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`portfolio-card-anim bg-[#0A0F0D]/50 backdrop-blur-md w-[85vw] md:w-full flex-shrink-0 snap-center py-8 px-4 md:p-14 lg:p-20 block no-underline group relative flex flex-col justify-center items-center text-center cursor-pointer ${
-              i === 4 ? 'md:col-span-2 md:border-t-0' : ''
+            className={`portfolio-card-anim block no-underline group relative overflow-hidden cursor-pointer border-b border-white/[0.05] ${
+              i === 4 ? 'md:col-span-2' : ''
             } ${
               i % 2 === 0 && i !== 4 ? 'md:border-r border-white/[0.05]' : ''
-            } ${
-              i < 4 ? 'md:border-b border-white/[0.05] border-r border-white/[0.05]' : ''
             }`}
+            onMouseEnter={() => handleMouseEnter(i)}
           >
-            <div className="inner-content flex flex-col items-center justify-center max-w-lg mx-auto pointer-events-none">
-              <div className="text-[10px] font-mono text-white/20 mb-4 md:mb-8 tracking-widest">0{i + 1} // {i === 4 ? 'HIGHLIGHT' : 'PROJECT'}</div>
-              
-              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-3 md:mb-5">{proj.category}</div>
-              <h3 className="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4 md:mb-8 md:group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
-              
-              <div className="meta-stack flex flex-wrap justify-center gap-2 md:gap-3 mt-2 opacity-100 md:opacity-60 md:group-hover:opacity-100 transition-opacity duration-500">
-                {proj.stack.map((tech, j) => (
-                  <span key={j} className="text-[9px] uppercase tracking-widest px-2 py-1 md:px-3 rounded-full border border-white/10 text-white/70">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <p className="text-white/60 text-xs mt-4 md:hidden block max-w-sm mx-auto leading-relaxed text-center px-2">
-                {proj.description}
-              </p>
+            {/* Content */}
+            <div className="flex flex-col items-center justify-center text-center py-10 px-6 md:p-14 lg:p-20 pointer-events-none bg-[#0A0F0D]/40">
+              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-3">{proj.category}</div>
+              <h3 className="text-2xl md:text-5xl font-extralight tracking-tight text-white md:group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
             </div>
           </a>
         ))}

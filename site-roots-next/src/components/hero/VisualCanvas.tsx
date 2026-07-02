@@ -102,15 +102,15 @@ export default function VisualCanvas() {
         if (i === index) {
           let opacity = 0;
           if (i === 0) {
-            // Hero: visible early, fades out at the end
-            opacity = smoothstep(0.2, 0.35, secProgress) * (1 - smoothstep(0.85, 1, secProgress));
+            // Hero: fully visible from start, fades out at the end
+            opacity = 1 - smoothstep(0.8, 0.95, secProgress);
           } else if (i === SECTION_COUNT - 1) {
             // CTA: fades in and stays
             opacity = smoothstep(0.15, 0.4, secProgress);
           } else {
-            // Middle sections
-            const fadeIn = smoothstep(0.05, 0.25, secProgress);
-            const fadeOut = 1 - smoothstep(0.8, 0.95, secProgress);
+            // Middle sections — wider curves to eliminate black gaps
+            const fadeIn = smoothstep(0.0, 0.18, secProgress);
+            const fadeOut = 1 - smoothstep(0.82, 1.0, secProgress);
             opacity = fadeIn * fadeOut;
           }
           el.style.opacity = String(opacity);
@@ -125,6 +125,23 @@ export default function VisualCanvas() {
           el.style.opacity = '0';
         }
       });
+
+      // ═══ DYNAMIC CANVAS DIMMING ═══
+      // Hero: canvas is the star (100%). Content sections: text dominates (25%). CTA: focus on action (15%).
+      if (canvasRef.current) {
+        let canvasOpacity = 1;
+        if (index === 0) {
+          // Hero → fade canvas down as we leave
+          canvasOpacity = 1 - smoothstep(0.7, 1.0, secProgress) * 0.75;
+        } else if (index === SECTION_COUNT - 1) {
+          // CTA
+          canvasOpacity = 0.15;
+        } else {
+          // Content sections — subtle background
+          canvasOpacity = 0.25;
+        }
+        canvasRef.current.style.opacity = String(canvasOpacity);
+      }
     };
 
     tick();
