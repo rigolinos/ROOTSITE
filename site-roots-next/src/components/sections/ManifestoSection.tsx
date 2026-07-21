@@ -57,10 +57,10 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
   };
 
   const cards = [
-    { num: '01', title: 'Estratégia antes do código', desc: 'Cada projeto começa com imersão no negócio. Entendemos antes de construir.' },
-    { num: '02', title: 'Performance obsessiva', desc: 'Lighthouse 95+, Core Web Vitals otimizados. Velocidade como feature.' },
-    { num: '03', title: 'Código que cresce', desc: 'Arquitetura escalável desde o dia 1. Seu site evolui sem reconstruir.' },
-    { num: '04', title: 'Suporte real', desc: 'Não desaparecemos após a entrega. Acompanhamento contínuo e proativo.' },
+    { num: '01', title: 'Entendimento do Seu Negócio', desc: 'Não iniciamos o design sem entender seu público, suas metas e quem é seu cliente ideal.' },
+    { num: '02', title: 'Carregamento Instantâneo', desc: 'Cada segundo de demora custa vendas. Nossos sites carregam em menos de 1 segundo em qualquer celular.' },
+    { num: '03', title: 'Design 100% Exclusivo', desc: 'Zero templates prontos. Sua empresa recebe uma identidade digital única e impossível de ser copiada.' },
+    { num: '04', title: 'Parceria Contínua', desc: 'Você nunca fica na mão. Garantimos seu site sempre no ar, seguro, atualizado e evoluindo.' },
   ];
 
   useEffect(() => {
@@ -107,8 +107,9 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
 
   return (
     <div className="section-content w-full relative max-w-[1200px] mx-auto min-h-[600px] flex flex-col justify-center" ref={containerRef} style={{ opacity: 0 }}>
-      <h2 className="section-title text-glow text-center mb-16 uppercase tracking-widest text-sm md:text-base relative z-20">
-        A Fundação
+      <h2 className="section-title text-center mb-16 uppercase relative z-20">
+        <span className="text-glow tracking-widest text-sm md:text-base block mb-2">Por que a Root Code?</span>
+        <span className="text-white/80 font-light tracking-wide text-lg md:text-2xl normal-case">Construímos sites para marcas que recusam o genérico.</span>
       </h2>
       
       {/* Structural Grid Lines (Visible on Desktop) */}

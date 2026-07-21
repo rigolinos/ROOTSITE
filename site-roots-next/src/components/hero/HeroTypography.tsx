@@ -86,17 +86,19 @@ export default function HeroTypography() {
 
       <p
         ref={subtitleRef}
-        className="will-change-transform max-w-xl mx-auto"
+        className="will-change-transform max-w-2xl mx-auto"
         style={{
-          fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+          fontSize: 'clamp(0.95rem, 1.8vw, 1.25rem)',
           fontWeight: 400,
           lineHeight: 1.8,
-          color: 'rgba(255, 255, 255, 0.6)',
+          color: 'rgba(255, 255, 255, 0.8)',
         }}
       >
-        Cultivando ecossistemas digitais onde a complexidade
-        <br />
-        técnica floresce em simplicidade arquitetônica.
+        <span className="block text-glow font-semibold mb-2 text-sm md:text-base tracking-widest uppercase">
+          Sua marca merece um site à altura do seu negócio.
+        </span>
+        Criamos experiências digitais exclusivas e ultra-rápidas, desenhadas para posicionar
+        sua empresa como líder de mercado e converter visitantes em clientes.
       </p>
     </div>
   );

@@ -3,6 +3,8 @@ import Navbar from '@/components/navigation/Navbar';
 import VisualCanvas from '@/components/hero/VisualCanvas';
 import SectionContent from '@/components/sections/SectionContent';
 import ScrollProgressLine from '@/components/effects/ScrollProgressLine';
+import ChapterLabel from '@/components/navigation/ChapterLabel';
+import NextSectionHint from '@/components/effects/NextSectionHint';
 
 /**
  * Root Code — Cinematic Interactive One-Pager
@@ -21,7 +23,9 @@ export default function Home() {
 
       {/* Global Navigation */}
       <Navbar />
+      <ChapterLabel />
       <ScrollProgressLine />
+      <NextSectionHint />
 
       {/* ── Fixed Experience Layer ── */}
       {/* FIXED: Background Procedural L-System Canvas (z-1) */}

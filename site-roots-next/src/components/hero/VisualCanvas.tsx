@@ -77,9 +77,15 @@ export default function VisualCanvas() {
 
       const progress = scrollState.current.currentProgress;
 
+      // ═══ S3.3: MICRO-PAUSE — Slow canvas animation in decision sections ═══
+      const { index: currentIdx } = getSectionProgress(progress);
+      const isDecisionSection = [5, 6, 7].includes(currentIdx); // Planos, Gestão, FAQ
+      const canvasSpeedMultiplier = isDecisionSection ? 0.2 : 1.0;
+      const adjustedDeltaTime = deltaTime * canvasSpeedMultiplier;
+
       // Draw Visual Engine Canvas frame
       if (engineRef.current) {
-        engineRef.current.draw(progress, deltaTime);
+        engineRef.current.draw(progress, adjustedDeltaTime);
       }
 
       // Update Section Overlay opacities and parallax translations
@@ -108,9 +114,9 @@ export default function VisualCanvas() {
             // CTA: fades in and stays
             opacity = smoothstep(0.15, 0.4, secProgress);
           } else {
-            // Middle sections — wider curves to eliminate black gaps
-            const fadeIn = smoothstep(0.0, 0.18, secProgress);
-            const fadeOut = 1 - smoothstep(0.82, 1.0, secProgress);
+            // S2.1: Wider fade curves — content visible for 76% of section (was 64%)
+            const fadeIn = smoothstep(0.0, 0.12, secProgress);
+            const fadeOut = 1 - smoothstep(0.88, 1.0, secProgress);
             opacity = fadeIn * fadeOut;
           }
           el.style.opacity = String(opacity);
@@ -126,21 +132,32 @@ export default function VisualCanvas() {
         }
       });
 
-      // ═══ DYNAMIC CANVAS DIMMING ═══
-      // Hero: canvas is the star (100%). Content sections: text dominates (25%). CTA: focus on action (15%).
+      // ═══ S1.2: DYNAMIC CANVAS DIMMING — Per-section opacity profiles ═══
+      // Narrative sections: canvas present but subordinate. Decision sections: minimal distraction.
       if (canvasRef.current) {
-        let canvasOpacity = 1;
+        const SECTION_CANVAS_OPACITY: Record<number, number> = {
+          0: 1.0,   // Hero — canvas is protagonist
+          1: 0.35,  // Manifesto — text + canvas coexist
+          2: 0.30,  // Processo — structured content
+          3: 0.20,  // Projetos — cards need focus
+          4: 0.18,  // Depoimentos — social proof, text important
+          5: 0.10,  // Planos — purchase decision, minimal distraction
+          6: 0.10,  // Gestão — purchase decision
+          7: 0.12,  // FAQ — dense reading
+          8: 0.08,  // Contato — maximum focus on CTA
+        };
+
+        let targetCanvasOpacity = SECTION_CANVAS_OPACITY[index] ?? 0.25;
+
+        // Hero: fade canvas down as we transition out
         if (index === 0) {
-          // Hero → fade canvas down as we leave
-          canvasOpacity = 1 - smoothstep(0.7, 1.0, secProgress) * 0.75;
-        } else if (index === SECTION_COUNT - 1) {
-          // CTA
-          canvasOpacity = 0.15;
-        } else {
-          // Content sections — subtle background
-          canvasOpacity = 0.25;
+          targetCanvasOpacity = 1 - smoothstep(0.7, 1.0, secProgress) * 0.65;
         }
-        canvasRef.current.style.opacity = String(canvasOpacity);
+
+        // Smooth lerp transition between opacity profiles (0.05 for max smoothness)
+        const currentCanvasOpacity = parseFloat(canvasRef.current.style.opacity || '1');
+        const lerpedOpacity = currentCanvasOpacity + (targetCanvasOpacity - currentCanvasOpacity) * 0.05;
+        canvasRef.current.style.opacity = String(lerpedOpacity);
       }
     };
 

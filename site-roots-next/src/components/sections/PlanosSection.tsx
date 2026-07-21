@@ -14,32 +14,47 @@ const plans = [
   {
     icon: '🌱',
     name: 'Essencial',
-    price: 'A partir de R$ 1.000',
-    desc: 'Landing page otimizada para conversão',
-    features: ['SEO otimizado', 'Mobile-first', 'WhatsApp integrado', 'Formulários'],
-    audience: 'Comércio local e profissionais',
+    price: null,
+    desc: 'Ideal para quem precisa lançar um produto, serviço ou campanha com foco total e imediato em captação de clientes.',
+    features: [
+      'Design focado em conversão direta para WhatsApp',
+      'Otimização total para telas de celulares',
+      'Formulários inteligentes de captação de leads',
+      'Integração com ferramentas de anúncios e métricas'
+    ],
+    audience: 'Lançamentos e profissionais liberais',
     featured: false,
-    badge: null,
+    badge: 'PROPOSTA SOB MEDIDA',
   },
   {
     icon: '🌿',
     name: 'Profissional',
-    price: 'A partir de R$ 2.500',
-    desc: 'Site multipáginas com inteligência de dados',
-    features: ['CRM integrado', 'Pixels & Analytics', 'Blog', 'E-mail marketing'],
-    audience: 'Empresas B2B e clínicas',
+    price: null,
+    desc: 'A solução completa para empresas que buscam autoridade inquestionável, posicionamento premium e múltiplos canais de contato.',
+    features: [
+      'Múltiplas páginas personalizadas para cada serviço',
+      'Painel amigável para você atualizar conteúdos (CMS)',
+      'SEO avançado para sua empresa ser encontrada no Google',
+      'Integração completa com CRM e automações'
+    ],
+    audience: 'Clínicas, escritórios e empresas B2B',
     featured: true,
-    badge: null,
+    badge: '★ MAIS SOLICITADO',
   },
   {
     icon: '🌳',
     name: 'Experience',
-    price: 'A partir de R$ 4.000',
-    desc: 'Experiência digital 3D sob medida',
-    features: ['WebGL / Three.js', 'Animações avançadas', 'UX Premium', 'Suporte dedicado'],
-    audience: 'Mercado premium e SaaS',
+    price: null,
+    desc: 'Uma experiência visual cinematográfica com animações 3D e interatividade avançada para marcas que lideram seus mercados.',
+    features: [
+      'Animações interativas e elementos 3D sob medida',
+      'Experiência de navegação exclusiva e memorável',
+      'Arquitetura de altíssimo desempenho e segurança',
+      'Design assinado para impressionar investidores'
+    ],
+    audience: 'Marcas de luxo, construtoras e startups',
     featured: false,
-    badge: '★ Este site é um exemplo',
+    badge: 'PROJETO EXCLUSIVO',
   },
 ];
 
@@ -188,9 +203,9 @@ export default function PlanosSection() {
       style={{ minHeight: '100dvh' }}
     >
       {/* Title */}
-      <div ref={titleRef} className="text-center pt-20 md:pt-32 pb-10 md:pb-16 px-6 opacity-0">
+      <div ref={titleRef} className="text-center pt-20 md:pt-32 pb-10 md:pb-16 px-6 opacity-0 max-w-3xl mx-auto">
         <h2
-          className="text-white mb-4"
+          className="text-white mb-3 text-glow"
           style={{
             fontSize: 'clamp(2rem, 5vw, 4rem)',
             fontWeight: 700,
@@ -198,10 +213,11 @@ export default function PlanosSection() {
             letterSpacing: '-0.02em',
           }}
         >
-          Três caminhos.
-          <br />
-          Uma filosofia.
+          Soluções Sob Medida
         </h2>
+        <p className="text-white/70 text-base md:text-xl font-light tracking-wide">
+          Escolha o formato ideal para o momento do seu negócio.
+        </p>
       </div>
 
       {/* Cards Track */}
@@ -252,9 +268,9 @@ export default function PlanosSection() {
               </span>
             )}
 
-            <span className="text-3xl mb-4">{plan.icon}</span>
-            <h3 className="text-white text-xl font-bold mb-2">{plan.name}</h3>
-            <p className="text-glow text-sm font-semibold mb-4">{plan.price}</p>
+            <span className="text-3xl mb-4">{plan.icon}</span>\r
+            <h3 className="text-white text-xl font-bold mb-2">{plan.name}</h3>\r
+            {plan.price && <p className="text-glow text-sm font-semibold mb-4">{plan.price}</p>}\r
             <p className="text-white/60 text-sm mb-6 leading-relaxed">{plan.desc}</p>
 
             <ul className="flex-1 space-y-2 mb-6">

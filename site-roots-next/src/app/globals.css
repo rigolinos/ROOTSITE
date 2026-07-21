@@ -632,6 +632,60 @@ body.loaded #scroll-container {
   }
 }
 
+/* ── S1.1: CTA Button Variants ── */
+.cta-button--primary {
+  padding: 1.1rem 3rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1.5px solid rgba(74, 222, 128, 0.5);
+  color: #4ADE80;
+  letter-spacing: 0.04em;
+  animation: ctaGlowPulse 2.5s ease infinite;
+}
+
+.cta-button--primary:hover {
+  background: rgba(74, 222, 128, 0.22);
+  border-color: #4ADE80;
+  transform: scale(1.06);
+  box-shadow: 0 0 50px rgba(74, 222, 128, 0.35), 0 0 100px rgba(74, 222, 128, 0.15);
+}
+
+@keyframes ctaGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.12), 0 0 40px rgba(74, 222, 128, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(74, 222, 128, 0.25), 0 0 70px rgba(74, 222, 128, 0.1);
+  }
+}
+
+.cta-button--secondary {
+  padding: 0.7rem 1.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+  animation: none;
+}
+
+.cta-button--secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.03);
+  box-shadow: none;
+}
+
+/* ── S3.2: Bobbing Arrow Animation ── */
+@keyframes bobArrow {
+  0%, 100% { transform: translateY(-3px); }
+  50% { transform: translateY(3px); }
+}
+
 /* --------------------------------------------------------------------------
    Section-Specific Positioning
    -------------------------------------------------------------------------- */
@@ -686,7 +740,7 @@ body.loaded #scroll-container {
   }
   
   .plan-card, .tier-card {
-    min-width: 85vw;
+    min-width: 78vw;
     scroll-snap-align: center;
     flex-shrink: 0;
   }

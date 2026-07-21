@@ -10,12 +10,26 @@ interface FAQSectionProps {
 
 export default function FAQSection({ isActive }: FAQSectionProps) {
   const faqs = [
-    { q: 'Quanto tempo leva para criar um site?', a: 'Depende da complexidade. Um site Essencial leva de 2 a 3 semanas. Profissional, de 4 a 6 semanas. Experience, de 6 a 12 semanas. Trabalhamos com sprints semanais para que você acompanhe a evolução em tempo real.' },
-    { q: 'Vocês fazem sites para qualquer nicho?', a: 'Sim. Já atendemos clínicas, escritórios de advocacia, e-commerces, startups de tecnologia e projetos pessoais. Cada projeto é customizado — não usamos templates.' },
-    { q: 'O que está incluído na manutenção mensal?', a: 'No plano Standard (R$ 250/mês): hospedagem monitorada, backups, atualizações de segurança e suporte técnico. No Growth (R$ 500/mês): tudo do Standard + relatório mensal de métricas, call estratégica e evolução contínua do site.' },
-    { q: 'Posso pedir alterações depois que o site está pronto?', a: 'Claro. Oferecemos 30 dias de garantia pós-entrega para ajustes. Após esse período, alterações são feitas via plano de manutenção ou sob orçamento pontual.' },
-    { q: 'Vocês trabalham com SEO?', a: 'Sim. Todos os nossos sites são construídos com SEO técnico otimizado: meta tags, estrutura semântica, performance Lighthouse 95+, sitemap e schema markup. Para SEO de conteúdo (blog, palavras-chave), oferecemos como serviço adicional.' },
-    { q: 'Como funciona o pagamento?', a: 'Trabalhamos com 50% na aprovação do projeto e 50% na entrega. Para planos de manutenção, a cobrança é mensal via Pix ou boleto.' },
+    { 
+      q: 'Quanto tempo leva para meu site ficar pronto?', 
+      a: 'Projetos focados em conversão (Landing Pages) levam de 2 a 3 semanas. Sites institucionais completos levam de 4 a 6 semanas. Apresentamos prévias semanais para você acompanhar tudo de perto.' 
+    },
+    { 
+      q: 'Não entendo nada de tecnologia. Vocês me ajudam após a entrega?', 
+      a: 'Com certeza! Entregamos o site pronto para usar e fornecemos treinamento simples para você ou sua equipe. Além disso, oferecemos nossos planos de gestão mensal para cuidarmos de tudo por você.' 
+    },
+    { 
+      q: 'Por que não usar um construtor de sites gratuito ou um template pronto?', 
+      a: 'Templates prontos são lentos, genéricos e parecem iguais a milhares de outros na internet. Um site exclusivo da Root Code é construído do zero para a sua marca, carrega instantaneamente e passa a autoridade que seu cliente exige.' 
+    },
+    { 
+      q: 'O site já vem preparado para aparecer no Google?', 
+      a: 'Sim! Todos os nossos sites são entregues com a estrutura técnica perfeita que o Google exige para indexar e ranquear sua empresa com rapidez.' 
+    },
+    { 
+      q: 'Como funciona o investimento e o pagamento?', 
+      a: 'Trabalhamos com pagamento facilitado (50% no início do projeto e 50% na entrega). Cada projeto recebe um orçamento personalizado de acordo com as necessidades do seu negócio.' 
+    },
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -62,6 +76,9 @@ export default function FAQSection({ isActive }: FAQSectionProps) {
       >
         Perguntas Frequentes
       </h2>
+      <p className="text-center text-white/40 text-xs tracking-wider uppercase mb-10 -mt-10">
+        {faqs.length} perguntas · Clique para expandir
+      </p>
       
       <div className="faq-accordion space-y-4">
         {faqs.map((faq, i) => (

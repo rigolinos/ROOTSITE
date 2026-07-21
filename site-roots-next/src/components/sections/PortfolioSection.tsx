@@ -15,53 +15,53 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
   const projects = [
     { 
       name: 'Deep Rules', 
-      category: 'Dev Tools • IA', 
-      stack: ['React', 'Vite', 'TypeScript'], 
+      category: 'Plataforma Corporativa • B2B', 
+      stack: ['Governança Digital', 'Alta Performance', 'Design Exclusivo'], 
       url: 'https://deep-rules.vercel.app/', 
       gradient: 'from-cyan-900/40 to-cyan-950/40', 
       image: '/projects/deep-rules.png',
-      description: 'Ferramenta avançada para desenvolvedores, mapeando regras de arquitetura e garantindo governança em codebases complexos.',
-      bullets: ['Análise de Código AST', 'Visualização de Dados', 'Interface Futurista']
+      description: 'Plataforma corporativa de ponta com governança digital, garantindo escalabilidade e controle arquitetural para empresas complexas.',
+      bullets: ['Plataforma Corporativa', 'Alta Conversão', 'Design Exclusivo']
     },
     { 
       name: 'Mentes que Inspiram', 
-      category: 'Entretenimento • Mídia', 
-      stack: ['GSAP', 'Locomotive', 'Vanilla JS'], 
+      category: 'Experiência Imersiva • Mídia', 
+      stack: ['Storytelling Visual', 'Cinematográfico', 'Interatividade'], 
       url: 'https://mentesqueinspiram.com/', 
       gradient: 'from-amber-900/40 to-amber-950/40', 
       image: '/projects/mentes-que-inspiram.png',
-      description: 'Plataforma digital imersiva para talk show. Foco em storytelling visual e transições fluidas para engajar a audiência.',
-      bullets: ['Experiência Cinematográfica', 'Animações Complexas', 'Design Interativo']
+      description: 'Experiência digital imersiva para marca de mídia, desenhada com storytelling cinematográfico e transições fluidas que encantam a audiência.',
+      bullets: ['Experiência Imersiva', 'Storytelling Premium', 'Engajamento Máximo']
     },
     { 
       name: 'Riff Sports', 
-      category: 'Sports Tech • SaaS', 
-      stack: ['Next.js', 'Tailwind CSS', 'Framer Motion'], 
+      category: 'Landing Page de Alta Conversão • SaaS', 
+      stack: ['Captação de Clientes', 'Performance Extrema', 'Gestão de Quadras'], 
       url: 'https://riffsports.vercel.app/', 
       gradient: 'from-green-900/40 to-green-950/40', 
       image: '/projects/riff-sports.png',
-      description: 'Plataforma SaaS focada em infraestrutura e gestão de ecossistemas esportivos. Solução completa para agendamentos e gestão das quadras.',
-      bullets: ['Website Institucional', 'Alta Performance & SEO', 'Foco em Conversão']
+      description: 'Ecossistema digital completo e landing page de alta conversão para gestão e agendamento esportivo, transformando visitantes em clientes ativos.',
+      bullets: ['Landing Page de Alta Conversão', 'Performance Instantânea', 'Sistema Integrado']
     },
     { 
       name: 'Pet Connect', 
-      category: 'Social Impact • AI Assisted', 
-      stack: ['React 19', 'Tailwind', 'Node.js'], 
+      category: 'Plataforma Institucional • Conexão', 
+      stack: ['Sistema Inteligente', 'Painel de Gestão', 'Conectividade'], 
       url: 'https://petsupport.vercel.app/', 
       gradient: 'from-blue-900/40 to-blue-950/40', 
       image: '/projects/petconnect.png',
-      description: 'Sistema interno inteligente para gestão de doações e logística de ONGs de animais, conectando doadores a necessidades urgentes.',
-      bullets: ['Desenvolvedor Full-Cycle', 'Automações de Conexão', 'Dashboards de Dados']
+      description: 'Plataforma institucional inteligente que conecta doadores a necessidades urgentes com agilidade, clareza e painel de gestão intuitivo.',
+      bullets: ['Plataforma Institucional', 'Gestão Simples', 'Confiabilidade']
     },
     { 
       name: 'Cabeleireiros App', 
-      category: 'Marketplace • Prototipagem', 
-      stack: ['React', 'Next.js', 'Low-Code'], 
+      category: 'Marketplace • Agendamentos', 
+      stack: ['Captação Rápida', 'Portfólio Digital', 'Agendamento Online'], 
       url: 'https://cabelereiros1.vercel.app/', 
       gradient: 'from-purple-900/40 to-purple-950/40', 
       image: '/projects/cabelereiros.png',
-      description: 'Marketplace conectando profissionais de beleza a clientes. Sistema de agendamento, portfólio e avaliações.',
-      bullets: ['Prototipagem Rápida e MVP', 'Validação de mercado', 'Integração de agendamentos']
+      description: 'Plataforma focada em agendamentos e exibição de portfólio para profissionais de beleza, facilitando o contato direto e conversão no WhatsApp.',
+      bullets: ['Landing Page de Alta Conversão', 'Agendamento Prático', 'Visual Premium']
     },
   ];
 
@@ -162,10 +162,10 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       ref={containerRef} 
     >
       <h2 
-        className="section-title text-glow text-center mb-16 uppercase tracking-widest"
-        style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}
+        className="section-title text-center mb-16 relative z-20"
       >
-        Projetos Selecionados
+        <span className="text-glow uppercase tracking-widest block mb-2" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>Projetos Desenvolvidos</span>
+        <span className="text-white/70 font-light tracking-wide text-sm md:text-lg block">Conheça alguns dos ecossistemas digitais que criamos para nossos clientes.</span>
       </h2>
       
       {/* Portal Removido */}

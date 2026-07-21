@@ -151,6 +151,12 @@ export default function ScrollProgressLine() {
         >
           {SECTIONS.map((sec) => {
             const isActive = activeSection === sec.id;
+            const isCta = sec.id === 8;
+            const dotColor = isCta ? '#C8A96E' : '#4ADE80';
+            const dotGlow = isCta 
+              ? '0 0 12px #C8A96E, 0 0 20px rgba(200, 169, 110, 0.6)' 
+              : '0 0 12px #4ADE80, 0 0 20px rgba(74, 222, 128, 0.6)';
+
             return (
               <div 
                 key={sec.id} 
@@ -173,12 +179,12 @@ export default function ScrollProgressLine() {
                 {/* Clickable Dot */}
                 <div 
                   style={{
-                    width: isActive ? '10px' : '6px',
-                    height: isActive ? '10px' : '6px',
+                    width: isActive ? '10px' : (isCta ? '8px' : '6px'),
+                    height: isActive ? '10px' : (isCta ? '8px' : '6px'),
                     borderRadius: '50%',
-                    backgroundColor: isActive ? '#4ADE80' : 'transparent',
-                    border: isActive ? '2px solid #4ADE80' : '2px solid rgba(152, 169, 154, 0.5)',
-                    boxShadow: isActive ? '0 0 12px #4ADE80, 0 0 20px rgba(74, 222, 128, 0.6)' : 'none',
+                    backgroundColor: isActive ? dotColor : (isCta ? 'rgba(200, 169, 110, 0.3)' : 'transparent'),
+                    border: isActive ? `2px solid ${dotColor}` : (isCta ? '2px solid #C8A96E' : '2px solid rgba(152, 169, 154, 0.5)'),
+                    boxShadow: isActive ? dotGlow : (isCta ? '0 0 8px rgba(200, 169, 110, 0.4)' : 'none'),
                     transform: isActive ? 'scale(1.2)' : 'scale(1)',
                     transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   }}
@@ -186,7 +192,7 @@ export default function ScrollProgressLine() {
 
                 {/* Sleek active text label */}
                 <span 
-                  className="text-glow"
+                  className={isCta ? '' : 'text-glow'}
                   style={{
                     position: 'absolute',
                     left: '32px',
@@ -199,6 +205,7 @@ export default function ScrollProgressLine() {
                     opacity: isActive ? 1 : 0,
                     transform: isActive ? 'translateX(0px)' : 'translateX(-8px)',
                     transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    textShadow: isCta && isActive ? '0 0 10px rgba(200, 169, 110, 0.6)' : undefined,
                   }}
                 >
                   {sec.label}
@@ -215,7 +222,7 @@ export default function ScrollProgressLine() {
                       letterSpacing: '0.25em',
                       textTransform: 'uppercase',
                       whiteSpace: 'nowrap',
-                      color: '#4ADE80',
+                      color: dotColor,
                       opacity: 0,
                       transform: 'translateX(-8px)',
                       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',

@@ -13,10 +13,10 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
   const lineRef = useRef<HTMLDivElement>(null);
 
   const steps = [
-    { num: '01', title: 'DESCOBERTA', desc: 'Imersão profunda no ecossistema e nas metas vitais do seu negócio.' },
-    { num: '02', title: 'ARQUITETURA', desc: 'Topologia técnica de ponta e wireframes baseados em alta conversão.' },
-    { num: '03', title: 'ENGENHARIA', desc: 'Desenvolvimento ágil com código limpo, escalável e iterativo.' },
-    { num: '04', title: 'DEPLOYMENT', desc: 'Lançamento otimizado com extrema performance (Lighthouse 95+).' },
+    { num: '01', title: 'DIAGNÓSTICO & ESTRATÉGIA', desc: 'Mapeamos os objetivos da sua empresa e definimos a estrutura ideal de conversão.' },
+    { num: '02', title: 'DESIGN & PROTOTIPAGEM', desc: 'Criamos o visual exclusivo do seu site para você aprovar antes de ir ao ar.' },
+    { num: '03', title: 'DESENVOLVIMENTO & PERFORMANCE', desc: 'Construímos o site com tecnologia de ponta para garantir velocidade extrema e segurança.' },
+    { num: '04', title: 'LANÇAMENTO & ACOMPANHAMENTO', desc: 'Colocamos seu site no ar e acompanhamos os primeiros resultados.' },
   ];
 
   // Magnetic hover effect for the balloons
@@ -131,8 +131,9 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
         </defs>
       </svg>
 
-      <h2 className="section-title text-glow mb-12 md:mb-40 text-center tracking-[0.3em] uppercase text-xl md:text-3xl font-light">
-        A Jornada
+      <h2 className="section-title mb-12 md:mb-32 text-center relative z-20">
+        <span className="text-glow tracking-[0.3em] uppercase text-xl md:text-3xl font-light block mb-3">Como Transformamos Sua Presença Digital</span>
+        <span className="text-white/70 font-light tracking-wide text-sm md:text-lg normal-case block">Um método claro, transparente e sem jargões complicados.</span>
       </h2>
       
       <div className="relative w-full">

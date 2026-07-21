@@ -76,10 +76,10 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
   return (
     <div className="section-content w-full max-w-[800px]" ref={containerRef} style={{ opacity: 0 }}>
       <h2 
-        className="section-title text-glow text-center mb-8 md:mb-16 uppercase tracking-widest leading-tight"
-        style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}
+        className="section-title text-center mb-8 md:mb-16 relative z-20"
       >
-        O que dizem nossos clientes.
+        <span className="text-glow uppercase tracking-widest block mb-2 leading-tight" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>O Que Nossos Clientes Dizem</span>
+        <span className="text-white/70 font-light tracking-wide text-sm md:text-lg block normal-case">Resultados reais de quem confiou sua marca à Root Code.</span>
       </h2>
       
       <div 
