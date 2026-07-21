@@ -173,11 +173,13 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
               </div>
               
               {/* Premium Text */}
-              <div className="process-text px-2">
-                <h3 className="text-base md:text-xl font-medium text-white mb-3 tracking-[0.15em] group-hover:text-glow transition-colors duration-500">
-                  {step.title}
-                </h3>
-                <p className="text-sm md:text-base text-white/75 leading-relaxed max-w-[300px] mx-auto font-light group-hover:text-white transition-colors duration-500">
+              <div className="process-text px-2 w-full flex flex-col items-center">
+                <div className="min-h-[52px] md:min-h-[64px] flex items-center justify-center mb-3">
+                  <h3 className="text-base md:text-lg font-semibold text-white tracking-[0.12em] uppercase group-hover:text-glow transition-colors duration-500 leading-snug">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-sm md:text-[15px] text-white/80 leading-relaxed max-w-[280px] mx-auto font-light group-hover:text-white transition-colors duration-500">
                   {step.desc}
                 </p>
               </div>

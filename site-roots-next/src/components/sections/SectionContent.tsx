@@ -213,51 +213,63 @@ export default function SectionContent() {
           <p className="text-white/70 text-center mb-8 md:mb-12 text-sm md:text-lg font-light max-w-xl mx-auto">
             Escolha o formato ideal para o momento do seu negócio.
           </p>
-          
-          <div className="plans-grid">
+          <div className="plans-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-4 mx-auto">
             {/* Plan 1: Essencial */}
-            <TiltCard className="plan-card" data-plan="essencial">
-              <div className="plan-icon">🌱</div>
-              <h3 className="plan-name">Essencial</h3>
-              <p className="plan-desc">Ideal para lançar um produto, serviço ou campanha com foco total e imediato em captação de clientes.</p>
-              <ul className="plan-features">
-                <li>Design focado em conversão para WhatsApp</li>
-                <li>Otimização total para telas mobile</li>
-                <li>Formulários inteligentes de captação</li>
-                <li>Integração com ferramentas de anúncios</li>
-              </ul>
-              <span className="plan-audience">Lançamentos e profissionais liberais</span>
-              <div className="plan-badge font-mono text-[0.65rem] tracking-wider">[ PROPOSTA SOB MEDIDA ]</div>
+            <TiltCard className="plan-card p-8 md:p-9 rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 hover:border-glow/30" data-plan="essencial">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="plan-icon text-3xl">🌱</span>
+                  <div className="plan-badge font-mono text-[0.65rem] tracking-wider text-glow bg-white/[0.04] px-3 py-1 rounded-full border border-white/10">[ PROPOSTA SOB MEDIDA ]</div>
+                </div>
+                <h3 className="plan-name text-2xl font-bold text-white mb-2">Essencial</h3>
+                <p className="plan-desc text-sm text-white/75 font-light leading-relaxed mb-6">Ideal para lançar um produto, serviço ou campanha com foco total e imediato em captação de clientes.</p>
+                <ul className="plan-features space-y-3 text-white/80 text-sm font-light mb-8">
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Design focado em conversão para WhatsApp</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Otimização total para telas mobile</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Formulários inteligentes de captação</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Integração com ferramentas de anúncios</span></li>
+                </ul>
+              </div>
+              <span className="plan-audience text-xs font-semibold text-glow/80 uppercase tracking-widest pt-4 border-t border-white/[0.06] block">Lançamentos e profissionais liberais</span>
             </TiltCard>
 
             {/* Plan 2: Profissional */}
-            <TiltCard className="plan-card" isFeatured data-plan="profissional">
-              <div className="plan-icon">🌿</div>
-              <h3 className="plan-name">Profissional</h3>
-              <p className="plan-desc">A solução completa para empresas que buscam autoridade inquestionável, posicionamento premium e múltiplos canais.</p>
-              <ul className="plan-features">
-                <li>Múltiplas páginas personalizadas</li>
-                <li>Painel amigável para atualizar conteúdos (CMS)</li>
-                <li>SEO avançado para ser encontrado no Google</li>
-                <li>Integração completa com CRM e automações</li>
-              </ul>
-              <span className="plan-audience">Clínicas, escritórios e empresas B2B</span>
-              <div className="plan-badge">★ MAIS SOLICITADO</div>
+            <TiltCard className="plan-card p-8 md:p-9 rounded-2xl border border-glow/40 bg-[#0A0F0D]/80 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 shadow-[0_0_35px_rgba(74,222,128,0.12)] relative overflow-hidden" isFeatured data-plan="profissional">
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-glow to-transparent" />
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="plan-icon text-3xl">🌿</span>
+                  <div className="plan-badge font-mono text-[0.65rem] tracking-wider text-glow bg-glow/15 px-3 py-1 rounded-full font-bold">★ MAIS SOLICITADO</div>
+                </div>
+                <h3 className="plan-name text-2xl font-bold text-white mb-2">Profissional</h3>
+                <p className="plan-desc text-sm text-white/80 font-light leading-relaxed mb-6">A solução completa para empresas que buscam autoridade inquestionável, posicionamento premium e múltiplos canais.</p>
+                <ul className="plan-features space-y-3 text-white/85 text-sm font-light mb-8">
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Múltiplas páginas personalizadas</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Painel amigável para atualizar conteúdos (CMS)</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>SEO avançado para ser encontrado no Google</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Integração completa com CRM e automações</span></li>
+                </ul>
+              </div>
+              <span className="plan-audience text-xs font-semibold text-glow uppercase tracking-widest pt-4 border-t border-white/[0.08] block">Clínicas, escritórios e empresas B2B</span>
             </TiltCard>
 
             {/* Plan 3: Experience */}
-            <TiltCard className="plan-card" data-plan="experience">
-              <div className="plan-icon">🌳</div>
-              <h3 className="plan-name">Experience</h3>
-              <p className="plan-desc">Uma experiência visual cinematográfica com animações 3D e interatividade avançada para marcas que lideram seus mercados.</p>
-              <ul className="plan-features">
-                <li>Animações interativas e elementos 3D</li>
-                <li>Experiência de navegação exclusiva</li>
-                <li>Arquitetura de altíssimo desempenho</li>
-                <li>Design assinado para impressionar investidores</li>
-              </ul>
-              <span className="plan-audience">Marcas de luxo, construtoras e startups</span>
-              <div className="plan-badge font-mono text-[0.65rem] tracking-wider">[ PROJETO EXCLUSIVO ]</div>
+            <TiltCard className="plan-card p-8 md:p-9 rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 hover:border-glow/30" data-plan="experience">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="plan-icon text-3xl">🌳</span>
+                  <div className="plan-badge font-mono text-[0.65rem] tracking-wider text-glow bg-white/[0.04] px-3 py-1 rounded-full border border-white/10">[ PROJETO EXCLUSIVO ]</div>
+                </div>
+                <h3 className="plan-name text-2xl font-bold text-white mb-2">Experience</h3>
+                <p className="plan-desc text-sm text-white/75 font-light leading-relaxed mb-6">Uma experiência visual cinematográfica com animações 3D e interatividade avançada para marcas que lideram seus mercados.</p>
+                <ul className="plan-features space-y-3 text-white/80 text-sm font-light mb-8">
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Animações interativas e elementos 3D</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Experiência de navegação exclusiva</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Arquitetura de altíssimo desempenho</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Design assinado para impressionar investidores</span></li>
+                </ul>
+              </div>
+              <span className="plan-audience text-xs font-semibold text-glow/80 uppercase tracking-widest pt-4 border-t border-white/[0.06] block">Marcas de luxo, construtoras e startups</span>
             </TiltCard>
           </div>
         </div>
@@ -273,29 +285,34 @@ export default function SectionContent() {
             Seu site sempre atualizado, seguro e gerando resultados sem você se preocupar com tecnologia.
           </p>
 
-          <div className="tiers-grid mt-4 mx-auto">
+          <div className="tiers-grid mt-6 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl">
             {/* Tier 1 */}
-            <TiltCard className="tier-card">
-              <span className="text-xs font-semibold text-glow uppercase tracking-widest block mb-2">[ Manutenção &amp; Hospedagem ]</span>
-              <h3 className="tier-name">Suporte Standard</h3>
-              <ul className="tier-features">
-                <li>Hospedagem de alta velocidade</li>
-                <li>Backups diários automatizados</li>
-                <li>Monitoramento de segurança 24/7</li>
-                <li>Suporte técnico prioritário</li>
-              </ul>
+            <TiltCard className="tier-card p-8 md:p-10 rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 hover:border-glow/30">
+              <div>
+                <span className="text-xs font-semibold text-glow uppercase tracking-widest block mb-3 font-mono">[ Manutenção &amp; Hospedagem ]</span>
+                <h3 className="tier-name text-2xl md:text-3xl font-bold text-white mb-6">Suporte Standard</h3>
+                <ul className="tier-features space-y-3.5 text-white/80 text-sm md:text-base font-light leading-relaxed">
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Hospedagem de alta velocidade</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Backups diários automatizados</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Monitoramento de segurança 24/7</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Suporte técnico prioritário</span></li>
+                </ul>
+              </div>
             </TiltCard>
 
             {/* Tier 2 */}
-            <TiltCard className="tier-card" isFeatured>
-              <span className="text-xs font-semibold text-glow uppercase tracking-widest block mb-2">[ Parceria Estratégica ]</span>
-              <h3 className="tier-name">Gestão Growth</h3>
-              <ul className="tier-features">
-                <li>Tudo do Suporte Standard</li>
-                <li>Relatório mensal de acessos e dados</li>
-                <li>Reunião estratégica mensal de otimização</li>
-                <li>Evolução contínua e melhorias no site</li>
-              </ul>
+            <TiltCard className="tier-card p-8 md:p-10 rounded-2xl border border-glow/40 bg-[#0A0F0D]/80 backdrop-blur-xl flex flex-col justify-between shadow-[0_0_35px_rgba(74,222,128,0.12)] transition-all duration-300 relative overflow-hidden" isFeatured>
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-glow to-transparent" />
+              <div>
+                <span className="text-xs font-semibold text-glow uppercase tracking-widest block mb-3 font-mono">[ Parceria Estratégica ]</span>
+                <h3 className="tier-name text-2xl md:text-3xl font-bold text-white mb-6">Gestão Growth</h3>
+                <ul className="tier-features space-y-3.5 text-white/85 text-sm md:text-base font-light leading-relaxed">
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Tudo do Suporte Standard</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Relatório mensal de acessos e dados</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Reunião estratégica mensal de otimização</span></li>
+                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Evolução contínua e melhorias no site</span></li>
+                </ul>
+              </div>
             </TiltCard>
           </div>
         </div>
