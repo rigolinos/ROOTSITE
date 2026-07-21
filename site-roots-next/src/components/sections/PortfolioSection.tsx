@@ -158,17 +158,17 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
   return (
     <div 
-      className="section-content w-full max-w-[1200px] opacity-0" 
+      className="section-content w-full max-w-[1200px] opacity-0 px-4 md:px-8" 
       ref={containerRef} 
     >
       <h2 
-        className="section-title text-center mb-16 relative z-20"
+        className="section-title text-center mb-10 md:mb-16 relative z-20"
       >
-        <span className="text-glow uppercase tracking-widest block mb-2" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>Projetos Desenvolvidos</span>
-        <span className="text-white/70 font-light tracking-wide text-sm md:text-lg block">Conheça alguns dos ecossistemas digitais que criamos para nossos clientes.</span>
+        <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3 uppercase">Casos de Sucesso</span>
+        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block max-w-2xl mx-auto leading-snug">
+          Ecossistemas digitais desenhados para autoridade e alta conversão.
+        </span>
       </h2>
-      
-      {/* Portal Removido */}
 
       <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 md:border-y border-white/[0.05]" onMouseLeave={handleMouseLeaveGrid}>
         {/* Animated Cross Lines (Horizontal & Vertical) */}
@@ -181,7 +181,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
             href={proj.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`portfolio-card-anim block no-underline group relative overflow-hidden cursor-pointer border-b border-white/[0.05] ${
+            className={`portfolio-card-anim block no-underline group relative overflow-hidden cursor-pointer border-b border-white/[0.05] transition-all duration-500 hover:bg-white/[0.03] ${
               i === 4 ? 'md:col-span-2' : ''
             } ${
               i % 2 === 0 && i !== 4 ? 'md:border-r border-white/[0.05]' : ''
@@ -189,9 +189,17 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
             onMouseEnter={() => handleMouseEnter(i)}
           >
             {/* Content */}
-            <div className="flex flex-col items-center justify-center text-center py-10 px-6 md:p-14 lg:p-20 pointer-events-none bg-[#0A0F0D]/40">
-              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-glow mb-3">{proj.category}</div>
-              <h3 className="text-2xl md:text-5xl font-extralight tracking-tight text-white md:group-hover:text-glow transition-colors duration-500">{proj.name}</h3>
+            <div className="flex flex-col items-center justify-center text-center py-10 px-6 md:py-14 md:px-12 bg-[#0A0F0D]/40 transition-colors duration-500 group-hover:bg-transparent">
+              <div className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-glow mb-3">{proj.category}</div>
+              <h3 className="text-2xl md:text-4xl font-light tracking-tight text-white group-hover:text-glow transition-colors duration-300 mb-4">{proj.name}</h3>
+              <p className="text-xs md:text-sm text-white/75 font-light max-w-md leading-relaxed mb-6 group-hover:text-white/95 transition-colors duration-300">
+                {proj.description}
+              </p>
+              
+              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-white/60 group-hover:text-glow transition-all duration-300">
+                <span>Acessar Plataforma</span>
+                <span className="transform transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+              </div>
             </div>
           </a>
         ))}

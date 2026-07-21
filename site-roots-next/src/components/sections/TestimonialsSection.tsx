@@ -74,37 +74,39 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
   }, [isActive]);
 
   return (
-    <div className="section-content w-full max-w-[800px]" ref={containerRef} style={{ opacity: 0 }}>
+    <div className="section-content w-full max-w-[900px] px-4 md:px-8" ref={containerRef} style={{ opacity: 0 }}>
       <h2 
         className="section-title text-center mb-8 md:mb-16 relative z-20"
       >
-        <span className="text-glow uppercase tracking-widest block mb-2 leading-tight" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>O Que Nossos Clientes Dizem</span>
-        <span className="text-white/70 font-light tracking-wide text-sm md:text-lg block normal-case">Resultados reais de quem confiou sua marca à Root Code.</span>
+        <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3 uppercase">Pessoas & Resultados</span>
+        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block max-w-2xl mx-auto leading-snug">
+          A confiança de líderes corporativos e empreendedores exigentes.
+        </span>
       </h2>
       
       <div 
         ref={scrollContainerRef}
         onScroll={handleScroll}
-        className="testimonial-container mx-auto mt-4 md:mt-12 flex overflow-x-auto snap-x snap-mandatory hide-scrollbar touch-pan-x"
+        className="testimonial-container mx-auto mt-4 md:mt-10 flex overflow-x-auto snap-x snap-mandatory hide-scrollbar touch-pan-x"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {testimonials.map((test, index) => (
-          <div key={index} className="w-full flex-shrink-0 snap-center flex items-center justify-center text-center px-4 md:px-12 min-h-[380px] md:min-h-[300px]">
-            <div className="max-w-[700px] w-full">
-              <div className="text-glow text-6xl opacity-30 mb-6 leading-none select-none">"</div>
-              <p className="text-lg md:text-xl text-white/90 italic font-light leading-relaxed mb-8 px-4">
+          <div key={index} className="w-full flex-shrink-0 snap-center flex items-center justify-center text-center px-2 md:px-12 min-h-[380px] md:min-h-[300px]">
+            <div className="max-w-[720px] w-full">
+              <div className="text-glow text-5xl md:text-6xl opacity-40 mb-4 md:mb-6 leading-none select-none font-serif">"</div>
+              <p className="text-base md:text-xl text-white/95 italic font-light leading-relaxed mb-8 px-2 md:px-6">
                 {test.text}
               </p>
               <div className="flex flex-col items-center justify-center">
                 {test.logo ? (
-                  <img src={test.logo} alt={test.name} className="w-12 h-12 object-contain p-1 rounded-full border border-white/10 bg-white/5 mb-3" />
+                  <img src={test.logo} alt={test.name} className="w-12 h-12 object-contain p-1 rounded-full border border-white/10 bg-white/5 mb-3 shadow-[0_0_15px_rgba(74,222,128,0.15)]" />
                 ) : (
-                  <div className="w-12 h-12 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-sm font-black text-glow tracking-widest mb-3 shadow-[0_0_20px_rgba(74,222,128,0.1)]">
+                  <div className="w-12 h-12 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-sm font-black text-glow tracking-widest mb-3 shadow-[0_0_20px_rgba(74,222,128,0.15)]">
                     {test.initials}
                   </div>
                 )}
-                <h4 className="text-white font-bold tracking-wide">{test.name}</h4>
-                <span className="text-xs text-glow uppercase tracking-widest mt-1">{test.role}</span>
+                <h4 className="text-white font-bold tracking-wide text-sm md:text-base">{test.name}</h4>
+                <span className="text-xs text-glow uppercase tracking-widest mt-1 font-medium">{test.role}</span>
               </div>
             </div>
           </div>

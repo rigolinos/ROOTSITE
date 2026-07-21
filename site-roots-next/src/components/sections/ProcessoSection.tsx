@@ -13,10 +13,10 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
   const lineRef = useRef<HTMLDivElement>(null);
 
   const steps = [
-    { num: '01', title: 'DIAGNÓSTICO & ESTRATÉGIA', desc: 'Mapeamos os objetivos da sua empresa e definimos a estrutura ideal de conversão.' },
-    { num: '02', title: 'DESIGN & PROTOTIPAGEM', desc: 'Criamos o visual exclusivo do seu site para você aprovar antes de ir ao ar.' },
-    { num: '03', title: 'DESENVOLVIMENTO & PERFORMANCE', desc: 'Construímos o site com tecnologia de ponta para garantir velocidade extrema e segurança.' },
-    { num: '04', title: 'LANÇAMENTO & ACOMPANHAMENTO', desc: 'Colocamos seu site no ar e acompanhamos os primeiros resultados.' },
+    { num: '01', title: 'DIAGNÓSTICO & ESTRATÉGIA', desc: 'Analisamos seu mercado e desenhamos a estrutura exata de navegação para maximizar a captação de leads.' },
+    { num: '02', title: 'DESIGN CINEMATOGRÁFICO', desc: 'Criamos protótipos de alta fidelidade visando posicionamento premium e aprovação total antes do código.' },
+    { num: '03', title: 'ENGENHARIA DE PERFORMANCE', desc: 'Desenvolvemos com código puro e tecnologias modernas para carregamento instantâneo e segurança blindada.' },
+    { num: '04', title: 'LANÇAMENTO & ESCALA', desc: 'Publicamos sua plataforma otimizada para o Google (SEO) e acompanhamos a performance de conversão inicial.' },
   ];
 
   // Magnetic hover effect for the balloons
@@ -131,9 +131,11 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
         </defs>
       </svg>
 
-      <h2 className="section-title mb-12 md:mb-32 text-center relative z-20">
-        <span className="text-glow tracking-[0.3em] uppercase text-xl md:text-3xl font-light block mb-3">Como Transformamos Sua Presença Digital</span>
-        <span className="text-white/70 font-light tracking-wide text-sm md:text-lg normal-case block">Um método claro, transparente e sem jargões complicados.</span>
+      <h2 className="section-title mb-10 md:mb-24 text-center relative z-20">
+        <span className="text-glow tracking-[0.25em] uppercase text-xs md:text-sm font-semibold block mb-3">Nosso Método</span>
+        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block max-w-2xl mx-auto leading-snug">
+          Processo claro, previsível e sem jargões complicados.
+        </span>
       </h2>
       
       <div className="relative w-full">
@@ -146,20 +148,20 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
           className="absolute top-[48px] md:top-[64px] left-[5%] right-[5%] h-[2px] bg-glow shadow-[0_0_20px_rgba(74,222,128,0.8),0_0_40px_rgba(74,222,128,0.4)] hidden md:block origin-center" 
         />
 
-        <div className="flex flex-col md:flex-row justify-between relative z-10 gap-8 md:gap-4 px-[5%]">
+        <div className="flex flex-col md:flex-row justify-between relative z-10 gap-10 md:gap-4 px-[2%] md:px-[5%]">
           {steps.map((step, i) => (
-            <div key={i} className="process-step flex-1 flex flex-col md:items-center text-left md:text-center group">
+            <div key={i} className="process-step flex-1 flex flex-col items-center text-center group">
               
               {/* Premium Balloon - Liquid/Gooey */}
               <div 
-                className="process-circle w-16 h-16 md:w-32 md:h-32 mb-6 md:mb-12 relative cursor-crosshair group"
+                className="process-circle w-20 h-20 md:w-32 md:h-32 mb-6 md:mb-10 relative cursor-crosshair group"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ filter: 'url(#gooey)' }}
               >
                 {/* Main Body */}
                 <div className="absolute inset-0 bg-[#1B3022] rounded-full flex items-center justify-center transition-all duration-700 group-hover:scale-110 shadow-[0_10px_30px_rgba(0,0,0,0.8)] group-hover:shadow-[0_0_50px_rgba(74,222,128,0.2)] z-10 border border-[#98A99A]/20">
-                  <span className="text-white font-black text-xl md:text-4xl relative z-20 transition-all duration-500 group-hover:text-glow group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">{step.num}</span>
+                  <span className="text-white font-black text-2xl md:text-4xl relative z-20 transition-all duration-500 group-hover:text-glow group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">{step.num}</span>
                   {/* Inner Glow */}
                   <div className="absolute inset-0 rounded-full bg-glow/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
                 </div>
@@ -171,11 +173,11 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
               </div>
               
               {/* Premium Text */}
-              <div className="process-text">
-                <h3 className="text-xl md:text-2xl font-light text-white mb-4 tracking-[0.2em] group-hover:text-glow transition-colors duration-500">
+              <div className="process-text px-2">
+                <h3 className="text-base md:text-xl font-medium text-white mb-3 tracking-[0.15em] group-hover:text-glow transition-colors duration-500">
                   {step.title}
                 </h3>
-                <p className="text-sm md:text-base text-white/50 leading-relaxed max-w-[280px] line-clamp-2 md:line-clamp-none mx-auto font-light group-hover:text-white/80 transition-colors duration-500">
+                <p className="text-sm md:text-base text-white/75 leading-relaxed max-w-[300px] mx-auto font-light group-hover:text-white transition-colors duration-500">
                   {step.desc}
                 </p>
               </div>
