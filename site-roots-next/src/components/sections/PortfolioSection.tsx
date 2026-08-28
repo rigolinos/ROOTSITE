@@ -139,11 +139,11 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
   return (
     <div 
-      className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-16 opacity-0" 
+      className="relative z-10 w-full max-w-5xl mx-auto min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-16 opacity-0" 
       ref={containerRef} 
     >
       <h2 
-        className="section-title text-center mb-10 md:mb-16 relative z-20"
+        className="section-title text-center mb-10 md:mb-16 relative z-20 w-full"
       >
         <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3 uppercase">Casos de Sucesso</span>
         <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block max-w-2xl mx-auto leading-snug">
@@ -161,11 +161,12 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="portfolio-card-anim rounded-2xl border border-white/[0.08] bg-[#080d0a]/85 p-6 flex flex-col justify-between min-h-[180px] transition-all hover:border-emerald-500/40"
+              className="portfolio-card-anim rounded-2xl border border-white/[0.08] bg-[#080d0a]/85 transition-all hover:border-emerald-500/40 group"
+              style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '190px', position: 'relative' }}
               onMouseEnter={() => handleMouseEnter(i)}
             >
-              <div className="text-left">
-                <div className="flex items-center justify-between mb-3">
+              <div className="text-left w-full relative z-10">
+                <div className="flex items-center justify-between mb-3 w-full">
                   <span className="text-[11px] font-sans font-medium tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full uppercase">
                     {proj.category}
                   </span>
@@ -174,9 +175,9 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                 <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">{proj.name}</h3>
                 <p className="text-xs text-stone-300 leading-relaxed">{proj.description}</p>
               </div>
-              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.06]">
+              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.06] w-full relative z-10">
                 {proj.stack.map((tech, idx) => (
-                  <span key={idx} className="text-[10px] text-stone-400 bg-white/[0.04] px-2 py-0.5 rounded">
+                  <span key={idx} className="text-[10px] font-mono text-stone-400 bg-white/[0.04] px-2 py-0.5 rounded">
                     {tech}
                   </span>
                 ))}
@@ -193,11 +194,12 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="portfolio-card-anim rounded-2xl border border-white/[0.08] bg-[#080d0a]/85 p-6 flex flex-col justify-between min-h-[180px] transition-all hover:border-emerald-500/40"
+              className="portfolio-card-anim rounded-2xl border border-white/[0.08] bg-[#080d0a]/85 transition-all hover:border-emerald-500/40 group"
+              style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '190px', position: 'relative' }}
               onMouseEnter={() => handleMouseEnter(i + 2)}
             >
-              <div className="text-left">
-                <div className="flex items-center justify-between mb-3">
+              <div className="text-left w-full relative z-10">
+                <div className="flex items-center justify-between mb-3 w-full">
                   <span className="text-[11px] font-sans font-medium tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full uppercase">
                     {proj.category}
                   </span>
@@ -206,9 +208,9 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                 <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">{proj.name}</h3>
                 <p className="text-xs text-stone-300 leading-relaxed">{proj.description}</p>
               </div>
-              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.06]">
+              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.06] w-full relative z-10">
                 {proj.stack.map((tech, idx) => (
-                  <span key={idx} className="text-[10px] text-stone-400 bg-white/[0.04] px-2 py-0.5 rounded">
+                  <span key={idx} className="text-[10px] font-mono text-stone-400 bg-white/[0.04] px-2 py-0.5 rounded">
                     {tech}
                   </span>
                 ))}
@@ -219,10 +221,11 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
         {/* Banner Inferior (Seu Projeto Aqui) */}
         <div 
-          className="portfolio-card-anim w-full rounded-2xl border border-dashed border-emerald-500/40 bg-emerald-950/20 p-6 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="portfolio-card-anim w-full rounded-2xl border border-dashed border-emerald-500/40 bg-emerald-950/20 flex flex-col md:flex-row items-center justify-between gap-4"
+          style={{ padding: '24px 32px' }}
           onMouseEnter={() => handleMouseEnter(5)}
         >
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left w-full">
             <h3 className="text-base font-bold text-white mb-1">Próximo Case: Seu Projeto Aqui</h3>
             <p className="text-xs text-stone-300">Desenvolvemos sua plataforma sob medida com engenharia de ponta.</p>
           </div>
