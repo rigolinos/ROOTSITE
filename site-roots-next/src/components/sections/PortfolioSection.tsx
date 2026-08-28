@@ -139,7 +139,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
   return (
     <div 
-      className="section-content w-full max-w-[1200px] opacity-0 px-4 md:px-8" 
+      className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-16 opacity-0" 
       ref={containerRef} 
     >
       <h2 
@@ -151,71 +151,90 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
         </span>
       </h2>
 
-      <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-8 max-w-5xl" onMouseLeave={handleMouseLeaveGrid}>
-        {projects.map((proj, i) => {
-          const isLast = i === 5;
-          let colSpan = 'md:col-span-2';
-          if (i === 0 || i === 1) colSpan = 'md:col-span-3'; // Top row (Destaques)
-
-          if (isLast) {
-            return (
-              <div key={i} className="portfolio-card-anim md:col-span-6 w-full rounded-2xl border border-dashed border-emerald-500/40 bg-emerald-950/20 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4" onMouseEnter={() => handleMouseEnter(i)}>
-                <div className="max-w-xl text-left">
-                  <h3 className="text-lg font-bold text-white mb-1">Próximo Case: Seu Projeto Aqui</h3>
-                  <p className="text-xs text-stone-300 leading-relaxed">
-                    Desenvolvemos a sua plataforma sob medida com arquitetura de ponta e foco total nos seus resultados comerciais.
-                  </p>
-                </div>
-                <a
-                  href="https://wa.me/5551999019398"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full text-xs font-semibold tracking-wider text-emerald-300 bg-emerald-500/15 border border-emerald-500/40 hover:bg-emerald-500/25 transition-all whitespace-nowrap"
-                >
-                  SOLICITAR PROPOSTA NO WHATSAPP →
-                </a>
-              </div>
-            );
-          }
-
-          return (
+      <div className="w-full max-w-5xl mx-auto flex flex-col gap-4" onMouseLeave={handleMouseLeaveGrid}>
+        
+        {/* Linha 1 (2 Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {projects.slice(0, 2).map((proj, i) => (
             <a
               key={i}
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`portfolio-card-anim ${colSpan} relative rounded-2xl border border-white/[0.08] bg-[#080d0a]/80 p-6 flex flex-col justify-between min-h-[190px] overflow-hidden transition-all duration-300 hover:border-emerald-500/40 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)] group`}
+              className="portfolio-card-anim rounded-2xl border border-white/[0.08] bg-[#080d0a]/85 p-6 flex flex-col justify-between min-h-[180px] transition-all hover:border-emerald-500/40"
               onMouseEnter={() => handleMouseEnter(i)}
             >
-              {/* Topo do Card */}
-              <div>
+              <div className="text-left">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-mono tracking-widest text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-1 rounded-full uppercase">
+                  <span className="text-[11px] font-sans font-medium tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full uppercase">
                     {proj.category}
                   </span>
-                  <span className="text-stone-500 group-hover:text-emerald-400 transition-colors text-sm">↗</span>
+                  <span className="text-stone-500 text-sm group-hover:text-emerald-400 transition-colors">↗</span>
                 </div>
-
-                {/* Título & Descrição */}
-                <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">
-                  {proj.name}
-                </h3>
-                <p className="text-xs text-stone-300 leading-relaxed line-clamp-2">
-                  {proj.description}
-                </p>
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">{proj.name}</h3>
+                <p className="text-xs text-stone-300 leading-relaxed">{proj.description}</p>
               </div>
-
-              {/* Base / Stack Tecnológica */}
-              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.05]">
+              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.06]">
                 {proj.stack.map((tech, idx) => (
-                  <span key={idx} className="text-[10px] font-mono text-stone-400 bg-white/[0.03] px-2 py-0.5 rounded">
+                  <span key={idx} className="text-[10px] text-stone-400 bg-white/[0.04] px-2 py-0.5 rounded">
                     {tech}
                   </span>
                 ))}
               </div>
             </a>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Linha 2 (3 Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {projects.slice(2, 5).map((proj, i) => (
+            <a
+              key={i + 2}
+              href={proj.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="portfolio-card-anim rounded-2xl border border-white/[0.08] bg-[#080d0a]/85 p-6 flex flex-col justify-between min-h-[180px] transition-all hover:border-emerald-500/40"
+              onMouseEnter={() => handleMouseEnter(i + 2)}
+            >
+              <div className="text-left">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-sans font-medium tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full uppercase">
+                    {proj.category}
+                  </span>
+                  <span className="text-stone-500 text-sm group-hover:text-emerald-400 transition-colors">↗</span>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">{proj.name}</h3>
+                <p className="text-xs text-stone-300 leading-relaxed">{proj.description}</p>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.06]">
+                {proj.stack.map((tech, idx) => (
+                  <span key={idx} className="text-[10px] text-stone-400 bg-white/[0.04] px-2 py-0.5 rounded">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Banner Inferior (Seu Projeto Aqui) */}
+        <div 
+          className="portfolio-card-anim w-full rounded-2xl border border-dashed border-emerald-500/40 bg-emerald-950/20 p-6 flex flex-col md:flex-row items-center justify-between gap-4"
+          onMouseEnter={() => handleMouseEnter(5)}
+        >
+          <div className="text-center md:text-left">
+            <h3 className="text-base font-bold text-white mb-1">Próximo Case: Seu Projeto Aqui</h3>
+            <p className="text-xs text-stone-300">Desenvolvemos sua plataforma sob medida com engenharia de ponta.</p>
+          </div>
+          <a 
+            href="https://wa.me/5551999019398"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 rounded-full text-xs font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/40 hover:bg-emerald-500/25 whitespace-nowrap transition-all"
+          >
+            SOLICITAR PROPOSTA NO WHATSAPP →
+          </a>
+        </div>
       </div>
     </div>
   );
