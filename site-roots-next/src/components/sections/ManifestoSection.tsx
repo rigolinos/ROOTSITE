@@ -106,16 +106,9 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
   }, [isActive]);
 
   return (
-    <div className="section-content w-full relative max-w-[1200px] mx-auto min-h-[600px] flex flex-col justify-center px-4 md:px-8" ref={containerRef} style={{ opacity: 0 }}>
-      <h2 className="section-title w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-10 md:mb-16 uppercase relative z-20">
-        <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3 text-center">Diferencial Competitivo</span>
-        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block w-full text-center leading-snug">
-          Construímos ecossistemas digitais para empresas que recusam o genérico.
-        </span>
-      </h2>
-      
+    <div className="section-content w-full h-full relative max-w-[1200px] mx-auto flex flex-col justify-center px-4 md:px-8" ref={containerRef} style={{ opacity: 0 }}>
       {/* Structural Grid Lines (Visible on Desktop) */}
-      <div className="absolute inset-0 top-[100px] bottom-0 pointer-events-none z-0 hidden md:flex">
+      <div className="absolute inset-0 pointer-events-none z-0 hidden md:flex">
         {/* Horizontal Left */}
         <div ref={hLineLeft} className="absolute top-1/2 left-0 w-1/2 h-[1px] bg-white/[0.07] origin-right" />
         {/* Horizontal Right */}
@@ -126,7 +119,16 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
         <div ref={vLineBottom} className="absolute bottom-0 left-1/2 w-[1px] h-1/2 bg-white/[0.07] origin-top" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-4xl mx-auto relative z-10 h-full gap-y-6 md:gap-x-12 md:gap-y-12 items-stretch justify-items-stretch md:py-8">
+      {/* Title Block */}
+      <h2 className="section-title w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-10 md:mb-0 md:absolute md:top-[12vh] md:left-1/2 md:-translate-x-1/2 uppercase relative z-20">
+        <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3 text-center">Diferencial Competitivo</span>
+        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block w-full text-center leading-snug">
+          Construímos ecossistemas digitais para empresas que recusam o genérico.
+        </span>
+      </h2>
+      
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-4xl mx-auto relative z-10 gap-y-6 md:gap-x-12 md:gap-y-12 items-stretch justify-items-stretch md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
         {cards.map((card, i) => (
           <div
             key={i}
@@ -134,7 +136,7 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
             onMouseEnter={() => handleMouseEnter(i)}
             onMouseLeave={() => handleMouseLeave(i)}
           >
-            <div ref={(el) => { textRefs.current[i] = el; }}>
+            <div ref={(el) => { textRefs.current[i] = el; }} className="flex flex-col items-center text-center w-full">
               <div 
                 ref={(el) => { numRefs.current[i] = el; }}
                 className="text-emerald-400 font-mono text-xs mb-1 font-semibold tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] inline-block"
