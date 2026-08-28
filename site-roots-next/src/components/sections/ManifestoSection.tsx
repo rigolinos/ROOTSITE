@@ -107,9 +107,9 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
 
   return (
     <div className="section-content w-full relative max-w-[1200px] mx-auto min-h-[600px] flex flex-col justify-center px-4 md:px-8" ref={containerRef} style={{ opacity: 0 }}>
-      <h2 className="section-title text-center mb-10 md:mb-16 uppercase relative z-20">
-        <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3">Diferencial Competitivo</span>
-        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block max-w-2xl mx-auto leading-snug">
+      <h2 className="section-title w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-10 md:mb-16 uppercase relative z-20">
+        <span className="text-glow tracking-[0.25em] font-semibold text-xs md:text-sm block mb-3 text-center">Diferencial Competitivo</span>
+        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block w-full text-center leading-snug">
           Construímos ecossistemas digitais para empresas que recusam o genérico.
         </span>
       </h2>
@@ -126,11 +126,11 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
         <div ref={vLineBottom} className="absolute bottom-0 left-1/2 w-[1px] h-1/2 bg-white/[0.07] origin-top" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-4xl mx-auto relative z-10 h-full gap-6 md:gap-10 md:py-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-4xl mx-auto relative z-10 h-full gap-y-6 md:gap-x-12 md:gap-y-12 items-stretch justify-items-stretch md:py-8">
         {cards.map((card, i) => (
           <div
             key={i}
-            className="manifesto-quadrant p-5 rounded-xl bg-black/40 backdrop-blur-sm border border-emerald-500/20 flex flex-col justify-center relative group transition-all duration-300 hover:bg-black/50 hover:border-emerald-500/40"
+            className="manifesto-quadrant h-full min-h-[140px] flex flex-col justify-center p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-emerald-500/20 relative group transition-all duration-300 hover:bg-black/50 hover:border-emerald-500/40"
             onMouseEnter={() => handleMouseEnter(i)}
             onMouseLeave={() => handleMouseLeave(i)}
           >
