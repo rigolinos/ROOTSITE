@@ -67,7 +67,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       name: 'Seu Projeto Aqui', 
       category: 'Próximo Case', 
       stack: ['Sob Medida', 'Inovação', 'Futuro'], 
-      url: '#', 
+      url: 'https://wa.me/5551999019398', 
       gradient: 'from-emerald-900/40 to-emerald-950/40', 
       image: '',
       description: 'Desenvolvemos a sua plataforma sob medida com arquitetura de ponta e foco total nos seus resultados comerciais.',
@@ -152,35 +152,43 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       </h2>
 
       <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" onMouseLeave={handleMouseLeaveGrid}>
-        {projects.map((proj, i) => (
-          <a
-            key={i}
-            href={proj.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`portfolio-card-anim group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl transition-all duration-500 hover:border-glow/40 hover:shadow-[0_0_35px_rgba(74,222,128,0.12)] hover:-translate-y-1.5 flex flex-col justify-between p-7 md:p-9`}
-            onMouseEnter={() => handleMouseEnter(i)}
-          >
-            {/* Top / Body */}
-            <div className="flex flex-col items-start text-left">
-              <div className="inline-block px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] md:text-xs font-mono tracking-[0.2em] uppercase text-glow mb-4">
-                {proj.category}
-              </div>
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-white group-hover:text-glow transition-colors duration-300 mb-3">
-                {proj.name}
-              </h3>
-              <p className="text-sm md:text-[15px] text-white/75 font-light leading-relaxed group-hover:text-white/95 transition-colors duration-300">
-                {proj.description}
-              </p>
-            </div>
+        {projects.map((proj, i) => {
+          const isLast = i === 5;
+          const baseClasses = `portfolio-card-anim group relative flex flex-col justify-between p-5 rounded-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)]`;
+          const dynamicClasses = isLast
+            ? 'bg-emerald-950/20 border border-emerald-500/30 hover:border-emerald-500/50'
+            : 'bg-zinc-950/75 border border-white/[0.08] hover:border-emerald-500/40';
 
-            {/* Bottom / Footer */}
-            <div className="mt-8 pt-5 border-t border-white/[0.06] flex items-center justify-between text-xs uppercase tracking-widest font-medium text-white/60 group-hover:text-glow transition-all duration-300">
-              <span>Explorar Plataforma</span>
-              <span className="transform transition-transform duration-300 group-hover:translate-x-1.5 text-base leading-none">→</span>
-            </div>
-          </a>
-        ))}
+          return (
+            <a
+              key={i}
+              href={proj.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${baseClasses} ${dynamicClasses}`}
+              onMouseEnter={() => handleMouseEnter(i)}
+            >
+              {/* Top / Body */}
+              <div className="flex flex-col items-start text-left">
+                <div className="text-[11px] font-mono text-emerald-400/90 tracking-wider uppercase mb-2">
+                  {proj.category}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-1.5 transition-colors duration-300">
+                  {proj.name}
+                </h3>
+                <p className="text-xs text-stone-300 leading-relaxed line-clamp-2 mb-4 transition-colors duration-300">
+                  {proj.description}
+                </p>
+              </div>
+
+              {/* Bottom / Footer */}
+              <div className="mt-4 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-semibold tracking-wider text-emerald-400/80 group-hover:text-emerald-300 transition-all duration-300 uppercase">
+                <span>{isLast ? "INICIAR PROJETO" : "EXPLORAR PLATAFORMA"}</span>
+                <span className="transform transition-transform duration-300 group-hover:translate-x-1.5 text-base leading-none">→</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </div>
   );
