@@ -178,10 +178,6 @@ export default function SectionContent() {
       {/* Section 0: Hero */}
       <div className={`section-overlay ${activeSection === 0 ? 'active' : ''}`} id="section-hero" data-section="0">
         <HeroTypography />
-        <div className="scroll-indicator">
-          <span>Scroll</span>
-          <div className="scroll-arrow" />
-        </div>
       </div>
 
       {/* Section 1: Manifesto */}

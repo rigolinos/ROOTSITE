@@ -54,50 +54,59 @@ export default function HeroTypography() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="text-center w-full max-w-[1000px] flex flex-col items-center justify-start h-full px-4 pt-[20vh] md:pt-[18vh]">
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 mb-3 md:mb-5 backdrop-blur-md shadow-[0_0_20px_rgba(74,222,128,0.1)]">
-        <span className="w-2 h-2 rounded-full bg-glow animate-pulse" />
-        <span className="text-[10px] md:text-xs font-semibold tracking-[0.25em] text-white/90 uppercase">Estúdio de Engenharia Digital Premium</span>
+    <div ref={containerRef} className="relative z-10 w-full min-h-screen flex flex-col justify-between items-center px-4 pt-24 pb-12">
+      {/* BLOCO DE TEXTO SUPERIOR */}
+      <div className="flex flex-col items-center mt-4 md:mt-12 w-full">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 mb-3 md:mb-5 backdrop-blur-md shadow-[0_0_20px_rgba(74,222,128,0.1)]">
+          <span className="w-2 h-2 rounded-full bg-glow animate-pulse" />
+          <span className="text-[10px] md:text-xs font-semibold tracking-[0.25em] text-white/90 uppercase">Estúdio de Engenharia Digital Premium</span>
+        </div>
+
+        <h1
+          ref={titleRef}
+          className="text-glow mb-2 md:mb-3 select-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]"
+          style={{
+            fontSize: 'clamp(2.6rem, 7.5vw, 6rem)',
+            fontWeight: 800,
+            letterSpacing: '0.12em',
+            paddingLeft: '0.12em',
+            lineHeight: 1.05,
+          }}
+        >
+          ROOT CODE
+        </h1>
+
+        <p
+          ref={taglineRef}
+          className="will-change-transform mb-5 md:mb-7 text-glow select-none drop-shadow-[0_2px_15px_rgba(74,222,128,0.4)]"
+          style={{
+            fontSize: 'clamp(1rem, 2.5vw, 1.6rem)',
+            fontWeight: 400,
+            letterSpacing: '0.25em',
+            paddingLeft: '0.25em',
+            textTransform: 'uppercase',
+            color: '#34d399',
+          }}
+        >
+          {showTagline ? <TextScramble text="Eficiência Silenciosa" /> : 'Eficiência Silenciosa'}
+        </p>
+
+        <div
+          ref={subtitleRef}
+          className="will-change-transform w-full flex flex-col items-center"
+        >
+          <p
+            className="text-zinc-400 font-light leading-relaxed tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] text-xs md:text-base max-w-[320px] md:max-w-lg text-center"
+          >
+            Transformamos a complexidade do seu negócio em plataformas digitais de alta conversão, ultrarrápidas e desenhadas para impressionar clientes premium.
+          </p>
+        </div>
       </div>
 
-      <h1
-        ref={titleRef}
-        className="text-glow mb-2 md:mb-3 select-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]"
-        style={{
-          fontSize: 'clamp(2.6rem, 7.5vw, 6rem)',
-          fontWeight: 800,
-          letterSpacing: '0.12em',
-          paddingLeft: '0.12em',
-          lineHeight: 1.05,
-        }}
-      >
-        ROOT CODE
-      </h1>
-
-      <p
-        ref={taglineRef}
-        className="will-change-transform mb-5 md:mb-7 text-glow select-none drop-shadow-[0_2px_15px_rgba(74,222,128,0.4)]"
-        style={{
-          fontSize: 'clamp(1rem, 2.5vw, 1.6rem)',
-          fontWeight: 400,
-          letterSpacing: '0.25em',
-          paddingLeft: '0.25em',
-          textTransform: 'uppercase',
-          color: '#34d399', // emerald-400
-        }}
-      >
-        {showTagline ? <TextScramble text="Eficiência Silenciosa" /> : 'Eficiência Silenciosa'}
-      </p>
-
-      <div
-        ref={subtitleRef}
-        className="will-change-transform max-w-2xl mx-auto flex flex-col items-center"
-      >
-        <p
-          className="text-zinc-400 font-light leading-relaxed tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] text-xs md:text-base px-4 max-w-lg"
-        >
-          Transformamos a complexidade do seu negócio em plataformas digitais de alta conversão, ultrarrápidas e desenhadas para impressionar clientes premium.
-        </p>
+      {/* ANCORA BASE - SCROLL INDICATOR */}
+      <div className="flex flex-col items-center opacity-70">
+        <span className="text-[10px] tracking-[0.3em] text-white/70 uppercase mb-2">Scroll</span>
+        <div className="w-[1px] h-6 bg-glow animate-pulse"></div>
       </div>
     </div>
   );
