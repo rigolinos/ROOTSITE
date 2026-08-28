@@ -15,8 +15,8 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
   const projects = [
     { 
       name: 'Deep Rules', 
-      category: 'Plataforma Corporativa • B2B', 
-      stack: ['Governança Digital', 'Alta Performance', 'Design Exclusivo'], 
+      category: 'B2B PLATFORM', 
+      stack: ['React', 'Next.js', 'Governança'], 
       url: 'https://deep-rules.vercel.app/', 
       gradient: 'from-cyan-900/40 to-cyan-950/40', 
       image: '/projects/deep-rules.png',
@@ -25,8 +25,8 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
     },
     { 
       name: 'Mentes que Inspiram', 
-      category: 'Experiência Imersiva • Mídia', 
-      stack: ['Storytelling Visual', 'Cinematográfico', 'Interatividade'], 
+      category: 'IMMERSIVE WEB', 
+      stack: ['WebGL', 'Next.js', 'Framer'], 
       url: 'https://mentesqueinspiram.com/', 
       gradient: 'from-amber-900/40 to-amber-950/40', 
       image: '/projects/mentes-que-inspiram.png',
@@ -35,8 +35,8 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
     },
     { 
       name: 'Riff Sports', 
-      category: 'Landing Page de Alta Conversão • SaaS', 
-      stack: ['Captação de Clientes', 'Performance Extrema', 'Gestão de Quadras'], 
+      category: 'SAAS', 
+      stack: ['React', 'Tailwind', 'API'], 
       url: 'https://riffsports.vercel.app/', 
       gradient: 'from-green-900/40 to-green-950/40', 
       image: '/projects/riff-sports.png',
@@ -45,8 +45,8 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
     },
     { 
       name: 'Pet Connect', 
-      category: 'Plataforma Institucional • Conexão', 
-      stack: ['Sistema Inteligente', 'Painel de Gestão', 'Conectividade'], 
+      category: 'DASHBOARD', 
+      stack: ['Next.js', 'TypeScript', 'UI/UX'], 
       url: 'https://petsupport.vercel.app/', 
       gradient: 'from-blue-900/40 to-blue-950/40', 
       image: '/projects/petconnect.png',
@@ -55,8 +55,8 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
     },
     { 
       name: 'Cabeleireiros App', 
-      category: 'Marketplace • Agendamentos', 
-      stack: ['Captação Rápida', 'Portfólio Digital', 'Agendamento Online'], 
+      category: 'MARKETPLACE', 
+      stack: ['React', 'Supabase', 'Vercel'], 
       url: 'https://cabelereiros1.vercel.app/', 
       gradient: 'from-purple-900/40 to-purple-950/40', 
       image: '/projects/cabelereiros.png',
@@ -65,7 +65,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
     },
     { 
       name: 'Seu Projeto Aqui', 
-      category: 'Próximo Case', 
+      category: 'PRÓXIMO CASE', 
       stack: ['Sob Medida', 'Inovação', 'Futuro'], 
       url: 'https://wa.me/5551999019398', 
       gradient: 'from-emerald-900/40 to-emerald-950/40', 
@@ -151,13 +151,37 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
         </span>
       </h2>
 
-      <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" onMouseLeave={handleMouseLeaveGrid}>
+      <div className="portfolio-grid mx-auto relative z-10 grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-8 max-w-5xl" onMouseLeave={handleMouseLeaveGrid}>
         {projects.map((proj, i) => {
           const isLast = i === 5;
-          const baseClasses = `portfolio-card-anim group relative flex flex-col justify-between p-5 rounded-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)]`;
-          const dynamicClasses = isLast
-            ? 'bg-emerald-950/20 border border-emerald-500/30 hover:border-emerald-500/50'
-            : 'bg-zinc-950/75 border border-white/[0.08] hover:border-emerald-500/40';
+          let colSpan = 'md:col-span-2';
+          if (i === 0 || i === 1) colSpan = 'md:col-span-3'; // Top row (Destaques)
+
+          if (isLast) {
+            return (
+              <a
+                key={i}
+                href={proj.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portfolio-card-anim md:col-span-6 group relative flex flex-col md:flex-row items-center justify-between p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 border-2 border-dashed border-emerald-500/40 bg-gradient-to-r from-emerald-950/20 to-transparent hover:border-emerald-400/60 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1"
+                onMouseEnter={() => handleMouseEnter(i)}
+              >
+                <div className="flex flex-col items-center md:items-start text-center md:text-left mb-6 md:mb-0">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                    Próximo Case: Seu Projeto Aqui
+                  </h3>
+                  <p className="text-sm text-stone-300 leading-relaxed max-w-xl">
+                    Desenvolvemos a sua plataforma sob medida com arquitetura de ponta e foco total nos seus resultados comerciais.
+                  </p>
+                </div>
+                <div className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs px-6 py-3 rounded-full uppercase tracking-widest transition-colors shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center gap-2 flex-shrink-0">
+                  Solicitar Proposta no WhatsApp
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                </div>
+              </a>
+            );
+          }
 
           return (
             <a
@@ -165,26 +189,42 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${baseClasses} ${dynamicClasses}`}
+              className={`portfolio-card-anim ${colSpan} group relative flex flex-col justify-between p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/40 overflow-hidden`}
               onMouseEnter={() => handleMouseEnter(i)}
             >
-              {/* Top / Body */}
-              <div className="flex flex-col items-start text-left">
-                <div className="text-[11px] font-mono text-emerald-400/90 tracking-wider uppercase mb-2">
+              {/* Background Glow on hover */}
+              <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 60%)'}} />
+
+              {/* Top Header */}
+              <div className="flex items-start justify-between mb-6 relative z-10">
+                <div className="text-[10px] font-mono tracking-widest text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase shadow-sm">
                   {proj.category}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-1.5 transition-colors duration-300">
+                <div className="text-stone-500 group-hover:text-emerald-400 transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 17L17 7"></path>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="flex flex-col items-start text-left relative z-10 flex-1">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
                   {proj.name}
                 </h3>
-                <p className="text-xs text-stone-300 leading-relaxed line-clamp-2 mb-4 transition-colors duration-300">
+                <p className="text-sm text-stone-300 leading-relaxed line-clamp-2 mb-6">
                   {proj.description}
                 </p>
               </div>
 
-              {/* Bottom / Footer */}
-              <div className="mt-4 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-semibold tracking-wider text-emerald-400/80 group-hover:text-emerald-300 transition-all duration-300 uppercase">
-                <span>{isLast ? "INICIAR PROJETO" : "EXPLORAR PLATAFORMA"}</span>
-                <span className="transform transition-transform duration-300 group-hover:translate-x-1.5 text-base leading-none">→</span>
+              {/* Footer Stack Tags */}
+              <div className="flex flex-wrap items-center gap-2 relative z-10 mt-auto">
+                {proj.stack.map((tech, idx) => (
+                  <span key={idx} className="text-[10px] text-stone-400 font-medium bg-white/[0.04] border border-white/[0.05] px-2 py-0.5 rounded shadow-sm">
+                    {tech}
+                  </span>
+                ))}
               </div>
             </a>
           );
