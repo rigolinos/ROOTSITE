@@ -49,22 +49,22 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
   }, [isActive]);
 
   return (
-    <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-16 opacity-0" ref={containerRef}>
-      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-12 relative z-20">
+    <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-6 md:px-12 py-20 opacity-0" ref={containerRef}>
+      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-14 md:mb-16 relative z-20">
         <span className="text-emerald-400 font-sans text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
           PESSOAS & RESULTADOS
         </span>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+        <h2 className="text-3xl md:text-4xl font-bold text-white max-w-3xl mx-auto leading-tight">
           A confiança de líderes corporativos e empreendedores exigentes.
         </h2>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
         {testimonials.map((test, index) => (
           <div 
             key={index} 
-            className="bg-[#080d0a]/80 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(16,185,129,0.08)] group hover:border-emerald-500/30"
-            style={{ border: '1px solid rgba(255, 255, 255, 0.08)', padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px', position: 'relative' }}
+            className="bg-[#080d0a]/85 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(16,185,129,0.08)] group hover:border-emerald-500/30"
+            style={{ border: '1px solid rgba(255, 255, 255, 0.08)', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px', position: 'relative' }}
           >
             <div className="w-full relative z-10">
               <div className="flex items-center justify-between mb-4 w-full">
