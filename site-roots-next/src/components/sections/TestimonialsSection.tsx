@@ -61,23 +61,27 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
         {testimonials.map((test, index) => (
-          <div key={index} className="bg-zinc-950/70 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-7 md:p-8 flex flex-col justify-between backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(16,185,129,0.08)]">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-emerald-400 text-3xl font-serif leading-none">“</span>
-                <div className="flex text-emerald-400 text-xs tracking-widest">★★★★★</div>
+          <div 
+            key={index} 
+            className="bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(16,185,129,0.08)]"
+            style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px', position: 'relative' }}
+          >
+            <div className="w-full relative z-10">
+              <div className="flex items-center justify-between mb-4 w-full">
+                <span className="text-emerald-400 text-2xl font-serif leading-none">“</span>
+                <span className="text-emerald-400 text-xs tracking-widest">★★★★★</span>
               </div>
-              <p className="text-sm md:text-base text-stone-200 leading-relaxed font-normal mb-8">
+              <p className="text-xs md:text-sm text-stone-200 leading-relaxed mb-6">
                 {test.text}
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-bold text-emerald-400 font-mono shrink-0">
+            <div className="flex items-center gap-3 pt-3 border-t border-white/[0.04] w-full relative z-10">
+              <div className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-[10px] font-bold text-emerald-400 font-mono shrink-0">
                 {test.initials}
               </div>
               <div className="flex flex-col text-left">
-                <span className="text-sm font-bold text-white mb-0.5">{test.name}</span>
-                <span className="text-[11px] text-stone-400 font-sans tracking-wide">{test.role}</span>
+                <h4 className="text-xs font-bold text-white leading-none mb-1">{test.name}</h4>
+                <p className="text-[10px] text-stone-400 font-sans leading-none">{test.role}</p>
               </div>
             </div>
           </div>
