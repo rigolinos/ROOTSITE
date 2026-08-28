@@ -50,7 +50,7 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
 
   return (
     <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-6 md:px-12 py-20 opacity-0" ref={containerRef}>
-      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-14 md:mb-16 relative z-20">
+      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center -mt-12 md:-mt-16 mb-20 md:mb-24 relative z-20">
         <span className="text-emerald-400 font-sans text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
           PESSOAS & RESULTADOS
         </span>
