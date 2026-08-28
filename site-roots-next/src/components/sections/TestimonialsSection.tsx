@@ -50,11 +50,11 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
 
   return (
     <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-6 md:px-12 py-20 opacity-0" ref={containerRef}>
-      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center -mt-12 md:-mt-16 mb-20 md:mb-24 relative z-20">
-        <span className="text-emerald-400 font-sans text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+      <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center -mt-24 md:-mt-32 mb-24 md:mb-32 lg:mb-40 relative z-20">
+        <span className="text-emerald-400 font-sans text-[11px] tracking-[0.25em] uppercase font-bold mb-4">
           PESSOAS & RESULTADOS
         </span>
-        <h2 className="text-3xl md:text-4xl font-bold text-white max-w-3xl mx-auto leading-tight">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-3xl mx-auto leading-tight">
           A confiança de líderes corporativos e empreendedores exigentes.
         </h2>
       </div>
