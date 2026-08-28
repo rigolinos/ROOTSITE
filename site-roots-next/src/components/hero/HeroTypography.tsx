@@ -54,7 +54,7 @@ export default function HeroTypography() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="text-center w-full max-w-[1000px] flex flex-col items-center justify-center h-full px-4 pt-0">
+    <div ref={containerRef} className="text-center w-full max-w-[1000px] flex flex-col items-center justify-start h-full px-4 pt-[14vh]">
       <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 mb-3 md:mb-5 backdrop-blur-md shadow-[0_0_20px_rgba(74,222,128,0.1)]">
         <span className="w-2 h-2 rounded-full bg-glow animate-pulse" />
         <span className="text-[10px] md:text-xs font-semibold tracking-[0.25em] text-white/90 uppercase">Estúdio de Engenharia Digital Premium</span>
