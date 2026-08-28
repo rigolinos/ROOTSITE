@@ -261,7 +261,7 @@ export class VisualEngine {
 
     switch (section) {
       case 0:
-        this._drawHeroLeaf(ctx, cx, cy, baseSize, p);
+        this._drawHeroLeaf(ctx, cx, cy + 120, baseSize * 1.15, p);
         break;
       case 1:
         this._drawDeconstruction(ctx, cx, cy, baseSize, p);

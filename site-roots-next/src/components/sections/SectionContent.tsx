@@ -219,7 +219,7 @@ export default function SectionContent() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="plan-icon text-3xl">🌱</span>
-                  <div className="plan-badge font-mono text-[0.65rem] tracking-wider text-glow bg-white/[0.04] px-3 py-1 rounded-full border border-white/10">[ PROPOSTA SOB MEDIDA ]</div>
+                  <div className="tier-badge font-mono text-[0.65rem] tracking-wider text-glow bg-white/[0.04] px-3 py-1 rounded-full border border-white/10">[ Manutenção & Hospedagem ]</div>
                 </div>
                 <h3 className="plan-name text-2xl font-bold text-white mb-2">Essencial</h3>
                 <p className="plan-desc text-sm text-white/75 font-light leading-relaxed mb-6">Ideal para lançar um produto, serviço ou campanha com foco total e imediato em captação de clientes.</p>
@@ -279,7 +279,7 @@ export default function SectionContent() {
       <div className={`section-overlay ${activeSection === 6 ? 'active' : ''}`} id="section-gestao" data-section="6">
         <div className="section-content performance-content w-full max-w-[1000px]">
           <h2 className="section-title text-glow">
-            Evolução &amp; Manutenção Contínua
+            Evolução & Manutenção Contínua
           </h2>
           <p className="text-white/70 text-center mb-10 md:mb-14 text-sm md:text-lg font-light max-w-2xl mx-auto">
             Seu site sempre atualizado, seguro e gerando resultados sem você se preocupar com tecnologia.
@@ -289,7 +289,7 @@ export default function SectionContent() {
             {/* Tier 1 */}
             <TiltCard className="tier-card p-8 md:p-10 rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 hover:border-glow/30">
               <div>
-                <span className="text-xs font-semibold text-glow uppercase tracking-widest block mb-3 font-mono">[ Manutenção &amp; Hospedagem ]</span>
+                <span className="text-xs font-semibold text-glow uppercase tracking-widest block mb-3 font-mono">[ Manutenção & Hospedagem ]</span>
                 <h3 className="tier-name text-2xl md:text-3xl font-bold text-white mb-6">Suporte Standard</h3>
                 <ul className="tier-features space-y-3.5 text-white/80 text-sm md:text-base font-light leading-relaxed">
                   <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Hospedagem de alta velocidade</span></li>

@@ -42,7 +42,7 @@ export default function NextSectionHint() {
 
   return (
     <div 
-      className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[15] hidden md:flex flex-col items-center gap-1 transition-opacity duration-500 ${
+      className={`fixed bottom-14 left-1/2 -translate-x-1/2 z-[15] hidden md:flex flex-col items-center gap-1 transition-opacity duration-500 ${
         isTransitioning ? 'opacity-0' : 'opacity-20'
       }`}
     >

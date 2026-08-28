@@ -104,51 +104,42 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-[200] pointer-events-none opacity-0"
+        className="fixed top-0 left-0 right-0 z-[200] pointer-events-none opacity-0 border-b border-white/[0.04] bg-[#0A0F0D]/70 backdrop-blur-xl transition-all duration-500"
         style={{ transform: 'translateY(-60px)' }}
       >
-        <div className="max-w-7xl mx-auto w-full pt-8 md:pt-10 pb-5 flex items-center justify-between pointer-events-auto" style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
+        <div className="max-w-[1400px] mx-auto w-full py-5 flex items-center justify-between pointer-events-auto px-6 md:px-10">
+          
+          {/* Logo (Left) */}
           <button
             onClick={() => scrollToSection(0)}
-            className="text-white font-bold tracking-widest cursor-pointer hover:text-glow transition-all duration-300 select-none bg-transparent border-none outline-none"
-            style={{ fontSize: '0.85rem', letterSpacing: '0.25em' }}
+            className="w-32 text-left text-white font-bold tracking-[0.25em] cursor-pointer hover:text-glow transition-all duration-300 select-none bg-transparent border-none outline-none"
+            style={{ fontSize: '0.85rem' }}
           >
             ROOT CODE
           </button>
 
-          {/* Desktop Navigation Menu */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-10">
-            <button
-              onClick={() => scrollToSection(2)}
-              className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
-              style={{ letterSpacing: '0.15em' }}
-            >
-              Processo
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
-            </button>
-            <button
-              onClick={() => scrollToSection(3)}
-              className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
-              style={{ letterSpacing: '0.15em' }}
-            >
-              Projetos
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
-            </button>
-            <button
-              onClick={() => scrollToSection(5)}
-              className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
-              style={{ letterSpacing: '0.15em' }}
-            >
-              Serviços
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
-            </button>
+          {/* Desktop Navigation Menu (Center) */}
+          <div className="hidden md:flex flex-1 items-center justify-center gap-10">
+            {['Processo', 'Projetos', 'Serviços'].map((item, idx) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection([2, 3, 5][idx])}
+                className="text-white/60 hover:text-white text-[0.7rem] font-medium tracking-widest uppercase transition-all duration-300 cursor-pointer bg-transparent border-none outline-none relative group"
+                style={{ letterSpacing: '0.15em' }}
+              >
+                {item}
+                <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
+              </button>
+            ))}
+          </div>
+
+          {/* Contact CTA (Right) */}
+          <div className="hidden md:flex w-32 justify-end">
             <button
               onClick={() => scrollToSection(8)}
-              className="text-sage hover:text-glow text-xs font-medium tracking-wider transition-all duration-300 relative py-1 group cursor-pointer bg-transparent border-none outline-none"
-              style={{ letterSpacing: '0.15em' }}
+              className="px-5 py-2 rounded-full border border-emerald-500/20 hover:border-emerald-400/50 bg-emerald-500/5 hover:bg-emerald-400/10 text-emerald-400 text-[0.65rem] font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-[0_0_15px_rgba(74,222,128,0.05)] hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] outline-none"
             >
               Contato
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-glow transition-all duration-300 group-hover:w-full" />
             </button>
           </div>
 

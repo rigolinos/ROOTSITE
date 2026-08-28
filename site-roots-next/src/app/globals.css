@@ -198,7 +198,7 @@ html.lenis body {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 1000vh; /* 10 sections × 100vh */
+  height: 900vh; /* 9 sections × 100vh */
 }
 
 body.loaded #scroll-container {
@@ -239,8 +239,6 @@ body.loaded #scroll-container {
 
 .section-content {
   text-align: center;
-  max-width: 900px;
-  padding: 2rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -443,7 +441,6 @@ body.loaded #scroll-container {
 }
 
 .plan-features li::before {
-  content: '✓';
   position: absolute;
   left: 0;
   color: var(--color-glow);
@@ -460,9 +457,6 @@ body.loaded #scroll-container {
 }
 
 .plan-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   font-size: 0.65rem;
   background: rgba(74, 222, 128, 0.15);
   color: var(--color-glow);
@@ -536,7 +530,6 @@ body.loaded #scroll-container {
 }
 
 .tier-features li::before {
-  content: '✓';
   position: absolute;
   left: 0;
   color: var(--color-glow);
@@ -591,7 +584,6 @@ body.loaded #scroll-container {
   letter-spacing: 0.05em;
   transition: all 0.4s var(--transition-smooth);
   border: 1px solid rgba(74, 222, 128, 0.3);
-  margin-top: 2rem;
   position: relative;
   overflow: hidden;
   animation: glowPulse 3s ease infinite;
@@ -711,9 +703,6 @@ body.loaded #scroll-container {
                0 0 120px rgba(74, 222, 128, 0.2);
 }
 
-.hidden {
-  display: none !important;
-}
 
 /* --------------------------------------------------------------------------
    Responsive — Tablet & Below
@@ -775,6 +764,11 @@ body.loaded #scroll-container {
 
   .section-title {
     font-size: 1.8rem;
+  }
+
+  .cta-button--primary {
+    font-size: 0.9rem;
+    padding: 0.9rem 2rem;
   }
 }
 
@@ -940,37 +934,6 @@ body.loaded #scroll-container {
   z-index: 0;
 }
 
-.portfolio-grid {
-  display: flex;
-  gap: 1.5rem;
-  max-width: 1000px;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.portfolio-card {
-  width: calc(33.333% - 1rem);
-  min-width: 280px;
-  background: rgba(27, 48, 34, 0.3);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(152, 169, 154, 0.15);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.4s var(--transition-smooth);
-}
-.portfolio-card:hover {
-  transform: translateY(-5px);
-}
-
-.testimonial-container {
-  position: relative;
-  max-width: 800px;
-  width: 100%;
-  height: 300px;
-}
 
 .faq-accordion {
   max-width: 800px;

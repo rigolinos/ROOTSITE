@@ -69,7 +69,7 @@ export default function FAQSection({ isActive }: FAQSectionProps) {
   }, [openIndex]);
 
   return (
-    <div className="section-content w-full max-w-[850px] px-4 md:px-8" ref={containerRef} style={{ opacity: 0 }}>
+    <div className="section-content w-full max-w-3xl mx-auto px-4 md:px-8" ref={containerRef} style={{ opacity: 0 }}>
       <h2 
         className="section-title text-center mb-10 md:mb-16 relative z-20"
       >

@@ -154,7 +154,7 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
               
               {/* Premium Balloon - Liquid/Gooey */}
               <div 
-                className="process-circle w-20 h-20 md:w-32 md:h-32 mb-6 md:mb-10 relative cursor-crosshair group"
+                className="process-circle w-20 h-20 md:w-32 md:h-32 mb-6 md:mb-10 relative cursor-pointer group"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ filter: 'url(#gooey)' }}

@@ -137,8 +137,8 @@ export default function VisualCanvas() {
       if (canvasRef.current) {
         const SECTION_CANVAS_OPACITY: Record<number, number> = {
           0: 1.0,   // Hero — canvas is protagonist
-          1: 0.35,  // Manifesto — text + canvas coexist
-          2: 0.30,  // Processo — structured content
+          1: 0.20,  // Manifesto — text + canvas coexist
+          2: 0.18,  // Processo — structured content
           3: 0.20,  // Projetos — cards need focus
           4: 0.18,  // Depoimentos — social proof, text important
           5: 0.10,  // Planos — purchase decision, minimal distraction

@@ -126,7 +126,7 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
         <div ref={vLineBottom} className="absolute bottom-0 left-1/2 w-[1px] h-1/2 bg-white/[0.07] origin-top" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full relative z-10 h-full gap-6 md:gap-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full relative z-10 h-full gap-6 md:gap-0 md:py-8">
         {cards.map((card, i) => (
           <div
             key={i}

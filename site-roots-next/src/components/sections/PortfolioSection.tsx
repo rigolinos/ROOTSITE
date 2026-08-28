@@ -63,40 +63,21 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
       description: 'Plataforma focada em agendamentos e exibição de portfólio para profissionais de beleza, facilitando o contato direto e conversão no WhatsApp.',
       bullets: ['Landing Page de Alta Conversão', 'Agendamento Prático', 'Visual Premium']
     },
+    { 
+      name: 'Seu Projeto Aqui', 
+      category: 'Próximo Case', 
+      stack: ['Sob Medida', 'Inovação', 'Futuro'], 
+      url: '#', 
+      gradient: 'from-emerald-900/40 to-emerald-950/40', 
+      image: '',
+      description: 'Desenvolvemos a sua plataforma sob medida com arquitetura de ponta e foco total nos seus resultados comerciais.',
+      bullets: ['Arquitetura de Ponta', 'Resultados Comerciais', 'Foco no Futuro']
+    },
   ];
 
-  const portalRef = useRef<HTMLDivElement>(null);
-  const xTo = useRef<any>(null);
-  const yTo = useRef<any>(null);
-  const [mounted, setMounted] = useState(false);
   const [activeProject, setActiveProject] = useState<number>(0);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
-  useEffect(() => {
-    if (portalRef.current) {
-      gsap.set(portalRef.current, { 
-        xPercent: -50, 
-        yPercent: -120,
-        scale: 0.8,
-        opacity: 0,
-        filter: 'blur(10px)'
-      });
-      xTo.current = gsap.quickTo(portalRef.current, 'x', { duration: 0.15, ease: 'power3' });
-      yTo.current = gsap.quickTo(portalRef.current, 'y', { duration: 0.15, ease: 'power3' });
-    }
-
-    const handleWindowMouseMove = (e: MouseEvent) => {
-      if (xTo.current && yTo.current) {
-        xTo.current(e.clientX);
-        yTo.current(e.clientY);
-      }
-    };
-    window.addEventListener('mousemove', handleWindowMouseMove);
-    return () => window.removeEventListener('mousemove', handleWindowMouseMove);
-  }, [mounted]);
 
   const handleMouseEnter = (i: number) => {
     setActiveProject(i);
@@ -177,9 +158,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
             href={proj.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`portfolio-card-anim group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl transition-all duration-500 hover:border-glow/40 hover:shadow-[0_0_35px_rgba(74,222,128,0.12)] hover:-translate-y-1.5 flex flex-col justify-between p-7 md:p-9 ${
-              i === 4 ? 'md:col-span-2 md:max-w-3xl md:mx-auto md:w-full' : ''
-            }`}
+            className={`portfolio-card-anim group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl transition-all duration-500 hover:border-glow/40 hover:shadow-[0_0_35px_rgba(74,222,128,0.12)] hover:-translate-y-1.5 flex flex-col justify-between p-7 md:p-9`}
             onMouseEnter={() => handleMouseEnter(i)}
           >
             {/* Top / Body */}
