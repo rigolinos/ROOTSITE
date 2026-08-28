@@ -164,7 +164,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                 href={proj.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="portfolio-card-anim md:col-span-6 group relative flex flex-col md:flex-row items-center justify-between p-8 md:p-10 rounded-2xl backdrop-blur-xl transition-all duration-300 border-2 border-dashed border-emerald-500/40 bg-gradient-to-r from-emerald-950/20 to-transparent hover:border-emerald-400/60 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 gap-6"
+                className="portfolio-card-anim md:col-span-6 group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 border-2 border-dashed border-emerald-500/40 bg-gradient-to-r from-emerald-950/20 to-transparent hover:border-emerald-400/60 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 gap-6"
                 onMouseEnter={() => handleMouseEnter(i)}
               >
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
@@ -189,23 +189,21 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`portfolio-card-anim ${colSpan} group relative flex flex-col justify-between p-6 rounded-2xl min-h-[160px] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/40 overflow-hidden`}
+              className={`portfolio-card-anim ${colSpan} group relative flex flex-col justify-between p-6 md:p-7 min-h-[160px] rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/40 overflow-hidden`}
               onMouseEnter={() => handleMouseEnter(i)}
             >
               {/* Background Glow on hover */}
               <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 60%)'}} />
 
               {/* Top Header */}
-              <div className="flex items-start justify-between mb-6 relative z-10">
-                <div className="text-[10px] font-sans font-semibold tracking-wider text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase shadow-sm">
+              <div className="flex items-center justify-between mb-4 relative z-10">
+                <span className="text-[11px] font-mono font-medium tracking-wider text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase">
                   {proj.category}
-                </div>
-                <div className="text-stone-500 group-hover:text-emerald-400 transition-colors">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7"></path>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </div>
+                </span>
+                <svg className="w-4 h-4 text-stone-500 group-hover:text-emerald-400 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17L17 7"></path>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
               </div>
 
               {/* Body */}
@@ -213,15 +211,15 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
                   {proj.name}
                 </h3>
-                <p className="text-xs md:text-sm text-stone-300 leading-relaxed mb-6">
+                <p className="text-xs md:text-sm text-stone-300 leading-relaxed mb-4">
                   {proj.description}
                 </p>
               </div>
 
               {/* Footer Stack Tags */}
-              <div className="flex flex-wrap items-center gap-2 relative z-10 mt-auto">
+              <div className="flex flex-wrap gap-2 pt-4 mt-auto border-t border-white/[0.04] relative z-10">
                 {proj.stack.map((tech, idx) => (
-                  <span key={idx} className="text-[10px] font-sans text-stone-300 font-medium tracking-wide bg-white/[0.04] border border-white/[0.05] px-2 py-0.5 rounded shadow-sm">
+                  <span key={idx} className="text-[10px] text-stone-400 font-mono bg-white/[0.03] px-2 py-0.5 rounded">
                     {tech}
                   </span>
                 ))}
