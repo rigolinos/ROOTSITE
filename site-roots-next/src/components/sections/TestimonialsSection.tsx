@@ -50,16 +50,16 @@ export default function TestimonialsSection({ isActive }: TestimonialsSectionPro
 
   return (
     <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-16 opacity-0" ref={containerRef}>
-      <h2 className="section-title w-full relative z-20">
-        <span className="text-emerald-400 font-mono text-xs tracking-[0.2em] uppercase mb-2 text-center block">
-          Pessoas & Resultados
+      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-12 relative z-20">
+        <span className="text-emerald-400 font-mono text-xs tracking-[0.2em] uppercase mb-2">
+          PESSOAS & RESULTADOS
         </span>
-        <span className="text-2xl md:text-3xl font-bold text-white text-center max-w-2xl mx-auto mb-10 block">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
           A confiança de líderes corporativos e empreendedores exigentes.
-        </span>
-      </h2>
+        </h2>
+      </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
         {testimonials.map((test, index) => (
           <div key={index} className="bg-zinc-950/80 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-between backdrop-blur-xl transition-all min-h-[220px]">
             <div>
