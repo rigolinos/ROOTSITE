@@ -119,7 +119,7 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
   }, [isActive]);
 
   return (
-    <div className="section-content w-full max-w-[1400px] px-4 md:px-12" ref={containerRef} style={{ opacity: 0 }}>
+    <div className="section-content w-full max-w-[1400px] mx-auto px-4 md:px-12" ref={containerRef} style={{ opacity: 0 }}>
       {/* Global Gooey Filter Definition */}
       <svg className="hidden">
         <defs>
@@ -131,9 +131,9 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
         </defs>
       </svg>
 
-      <div className="w-full max-w-2xl mx-auto text-center mb-14 flex flex-col items-center section-title relative z-20">
+      <div className="w-full flex flex-col items-center justify-center text-center mb-14 section-title relative z-20">
         <span className="text-emerald-400 font-mono text-xs tracking-[0.2em] uppercase mb-2">NOSSO MÉTODO</span>
-        <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+        <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight max-w-2xl text-center">
           Processo claro, previsível e sem jargões complicados.
         </h2>
       </div>
