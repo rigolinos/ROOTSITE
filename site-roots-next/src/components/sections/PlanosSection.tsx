@@ -32,15 +32,15 @@ export default function PlanosSection({ isActive }: PlanosSectionProps) {
     <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-20 opacity-0" ref={containerRef}>
       
       {/* Header & Toggle */}
-      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-12 relative z-20">
+      <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center mb-10 md:mb-16 relative z-20 flex-none mt-10 md:mt-0">
         <span className="font-mono text-xs tracking-[0.2em] font-semibold text-emerald-400 uppercase mb-2">
           INVESTIMENTO TRANSPARENTE
         </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6 relative block">
           Escolha o formato ideal para acelerar seu negócio.
         </h2>
         
-        <div className="inline-flex p-1 rounded-full bg-zinc-900/90 border border-white/[0.08] backdrop-blur-md mb-8 relative z-30">
+        <div className="inline-flex p-1 rounded-full bg-zinc-900/90 border border-white/[0.08] backdrop-blur-md relative z-30 shadow-xl">
           <button 
             onClick={() => setActiveTab('projetos')}
             className={`transition-all px-5 py-1.5 text-xs ${activeTab === 'projetos' ? 'bg-emerald-500 text-black font-semibold shadow-lg rounded-full' : 'text-stone-400 hover:text-white font-medium'}`}
@@ -58,7 +58,7 @@ export default function PlanosSection({ isActive }: PlanosSectionProps) {
 
       {/* Grid: Projetos */}
       {activeTab === 'projetos' && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto transition-all duration-500 relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto transition-all duration-500 relative z-20 flex-none">
           {/* Card 1 */}
           <div 
             className="bg-[#080d0a]/85 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-7 md:p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between group"
@@ -145,7 +145,7 @@ export default function PlanosSection({ isActive }: PlanosSectionProps) {
 
       {/* Grid: Manutenção */}
       {activeTab === 'manutencao' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto transition-all duration-500 relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto transition-all duration-500 relative z-20 flex-none">
           {/* Manutenção 1 */}
           <div 
             className="bg-[#080d0a]/85 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-7 md:p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between group"
