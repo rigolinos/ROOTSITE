@@ -159,27 +159,22 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
           if (isLast) {
             return (
-              <a
-                key={i}
-                href={proj.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="portfolio-card-anim md:col-span-6 group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 border-2 border-dashed border-emerald-500/40 bg-gradient-to-r from-emerald-950/20 to-transparent hover:border-emerald-400/60 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 gap-6"
-                onMouseEnter={() => handleMouseEnter(i)}
-              >
-                <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
-                    Próximo Case: Seu Projeto Aqui
-                  </h3>
-                  <p className="text-sm text-stone-300 leading-relaxed max-w-xl">
+              <div key={i} className="portfolio-card-anim md:col-span-6 w-full rounded-2xl border border-dashed border-emerald-500/40 bg-emerald-950/20 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4" onMouseEnter={() => handleMouseEnter(i)}>
+                <div className="max-w-xl text-left">
+                  <h3 className="text-lg font-bold text-white mb-1">Próximo Case: Seu Projeto Aqui</h3>
+                  <p className="text-xs text-stone-300 leading-relaxed">
                     Desenvolvemos a sua plataforma sob medida com arquitetura de ponta e foco total nos seus resultados comerciais.
                   </p>
                 </div>
-                <div className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 font-semibold text-xs px-5 py-2.5 rounded-full uppercase tracking-widest transition-colors flex items-center gap-2 flex-shrink-0">
-                  Solicitar Proposta no WhatsApp
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </div>
-              </a>
+                <a
+                  href="https://wa.me/5551999019398"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full text-xs font-semibold tracking-wider text-emerald-300 bg-emerald-500/15 border border-emerald-500/40 hover:bg-emerald-500/25 transition-all whitespace-nowrap"
+                >
+                  SOLICITAR PROPOSTA NO WHATSAPP →
+                </a>
+              </div>
             );
           }
 
@@ -189,37 +184,31 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`portfolio-card-anim ${colSpan} group relative flex flex-col justify-between p-6 md:p-7 min-h-[160px] rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/40 overflow-hidden`}
+              className={`portfolio-card-anim ${colSpan} relative rounded-2xl border border-white/[0.08] bg-[#080d0a]/80 p-6 flex flex-col justify-between min-h-[190px] overflow-hidden transition-all duration-300 hover:border-emerald-500/40 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)] group`}
               onMouseEnter={() => handleMouseEnter(i)}
             >
-              {/* Background Glow on hover */}
-              <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 60%)'}} />
+              {/* Topo do Card */}
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-mono tracking-widest text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-1 rounded-full uppercase">
+                    {proj.category}
+                  </span>
+                  <span className="text-stone-500 group-hover:text-emerald-400 transition-colors text-sm">↗</span>
+                </div>
 
-              {/* Top Header */}
-              <div className="flex items-center justify-between mb-4 relative z-10">
-                <span className="text-[11px] font-mono font-medium tracking-wider text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase">
-                  {proj.category}
-                </span>
-                <svg className="w-4 h-4 text-stone-500 group-hover:text-emerald-400 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7"></path>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-
-              {/* Body */}
-              <div className="flex flex-col items-start text-left relative z-10 flex-1">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                {/* Título & Descrição */}
+                <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">
                   {proj.name}
                 </h3>
-                <p className="text-xs md:text-sm text-stone-300 leading-relaxed mb-4">
+                <p className="text-xs text-stone-300 leading-relaxed line-clamp-2">
                   {proj.description}
                 </p>
               </div>
 
-              {/* Footer Stack Tags */}
-              <div className="flex flex-wrap gap-2 pt-4 mt-auto border-t border-white/[0.04] relative z-10">
+              {/* Base / Stack Tecnológica */}
+              <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-white/[0.05]">
                 {proj.stack.map((tech, idx) => (
-                  <span key={idx} className="text-[10px] text-stone-400 font-mono bg-white/[0.03] px-2 py-0.5 rounded">
+                  <span key={idx} className="text-[10px] font-mono text-stone-400 bg-white/[0.03] px-2 py-0.5 rounded">
                     {tech}
                   </span>
                 ))}
