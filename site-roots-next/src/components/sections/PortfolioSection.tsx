@@ -164,10 +164,10 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                 href={proj.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="portfolio-card-anim md:col-span-6 group relative flex flex-col md:flex-row items-center justify-between p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 border-2 border-dashed border-emerald-500/40 bg-gradient-to-r from-emerald-950/20 to-transparent hover:border-emerald-400/60 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1"
+                className="portfolio-card-anim md:col-span-6 group relative flex flex-col md:flex-row items-center justify-between p-8 md:p-10 rounded-2xl backdrop-blur-xl transition-all duration-300 border-2 border-dashed border-emerald-500/40 bg-gradient-to-r from-emerald-950/20 to-transparent hover:border-emerald-400/60 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 gap-6"
                 onMouseEnter={() => handleMouseEnter(i)}
               >
-                <div className="flex flex-col items-center md:items-start text-center md:text-left mb-6 md:mb-0">
+                <div className="flex flex-col items-center md:items-start text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
                     Próximo Case: Seu Projeto Aqui
                   </h3>
@@ -175,7 +175,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                     Desenvolvemos a sua plataforma sob medida com arquitetura de ponta e foco total nos seus resultados comerciais.
                   </p>
                 </div>
-                <div className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs px-6 py-3 rounded-full uppercase tracking-widest transition-colors shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center gap-2 flex-shrink-0">
+                <div className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 font-semibold text-xs px-5 py-2.5 rounded-full uppercase tracking-widest transition-colors flex items-center gap-2 flex-shrink-0">
                   Solicitar Proposta no WhatsApp
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </div>
@@ -189,7 +189,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               href={proj.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`portfolio-card-anim ${colSpan} group relative flex flex-col justify-between p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/40 overflow-hidden`}
+              className={`portfolio-card-anim ${colSpan} group relative flex flex-col justify-between p-6 rounded-2xl min-h-[160px] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] bg-[#080d0a]/80 border border-white/[0.08] hover:border-emerald-500/40 overflow-hidden`}
               onMouseEnter={() => handleMouseEnter(i)}
             >
               {/* Background Glow on hover */}
@@ -197,7 +197,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
 
               {/* Top Header */}
               <div className="flex items-start justify-between mb-6 relative z-10">
-                <div className="text-[10px] font-mono tracking-widest text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase shadow-sm">
+                <div className="text-[10px] font-sans font-semibold tracking-wider text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase shadow-sm">
                   {proj.category}
                 </div>
                 <div className="text-stone-500 group-hover:text-emerald-400 transition-colors">
@@ -213,7 +213,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
                   {proj.name}
                 </h3>
-                <p className="text-sm text-stone-300 leading-relaxed line-clamp-2 mb-6">
+                <p className="text-xs md:text-sm text-stone-300 leading-relaxed mb-6">
                   {proj.description}
                 </p>
               </div>
@@ -221,7 +221,7 @@ export default function PortfolioSection({ isActive }: PortfolioSectionProps) {
               {/* Footer Stack Tags */}
               <div className="flex flex-wrap items-center gap-2 relative z-10 mt-auto">
                 {proj.stack.map((tech, idx) => (
-                  <span key={idx} className="text-[10px] text-stone-400 font-medium bg-white/[0.04] border border-white/[0.05] px-2 py-0.5 rounded shadow-sm">
+                  <span key={idx} className="text-[10px] font-sans text-stone-300 font-medium tracking-wide bg-white/[0.04] border border-white/[0.05] px-2 py-0.5 rounded shadow-sm">
                     {tech}
                   </span>
                 ))}
