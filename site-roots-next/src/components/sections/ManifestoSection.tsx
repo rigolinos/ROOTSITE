@@ -57,10 +57,10 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
   };
 
   const cards = [
-    { num: '01', title: 'Imersão & Estratégia Comercial', desc: 'Mergulhamos no seu modelo de negócio para entender exatamente quem é o seu cliente ideal e como transformar cada visita em oportunidade real.' },
-    { num: '02', title: 'Velocidade Extrema (< 1s)', desc: 'Cada segundo de carregamento custa até 20% de conversão. Nossas plataformas carregam instantaneamente no 4G e 5G em qualquer smartphone.' },
-    { num: '03', title: 'Engenharia & Design Exclusivos', desc: 'Recusamos templates prontos. Sua marca recebe uma arquitetura digital única, moderna e impossível de ser copiada pela concorrência.' },
-    { num: '04', title: 'Suporte & Evolução Contínua', desc: 'Sua empresa nunca fica desamparada. Mantemos seu ecossistema digital sempre seguro, atualizado, monitorado e evoluindo sem parar.' },
+    { num: '01', title: 'Site no Ar em até 48 Horas*', desc: 'Agilidade máxima para lançar sua plataforma e começar a captar clientes sem semanas de espera.' },
+    { num: '02', title: 'Projetos a partir de R$ 850', desc: 'Engenharia digital de alto padrão e visual premium com investimento acessível e transparente.' },
+    { num: '03', title: 'Projetos 100% Personalizados', desc: 'Arquitetura exclusiva desenhada para a sua marca. Recusamos temas prontos e templates genéricos.' },
+    { num: '04', title: 'Infraestrutura Completa', desc: 'Hospedagem ultrarrápida, domínio, segurança blindada e suporte contínuo inclusos.' },
   ];
 
   useEffect(() => {
@@ -126,23 +126,23 @@ export default function ManifestoSection({ isActive }: ManifestoSectionProps) {
         <div ref={vLineBottom} className="absolute bottom-0 left-1/2 w-[1px] h-1/2 bg-white/[0.07] origin-top" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full relative z-10 h-full gap-6 md:gap-0 md:py-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-4xl mx-auto relative z-10 h-full gap-6 md:gap-10 md:py-8">
         {cards.map((card, i) => (
           <div
             key={i}
-            className="manifesto-quadrant p-6 md:p-14 rounded-2xl md:rounded-none bg-white/[0.02] md:bg-transparent border border-white/[0.05] md:border-none flex flex-col justify-center relative group transition-all duration-300 hover:bg-white/[0.04] md:hover:bg-transparent"
+            className="manifesto-quadrant p-5 rounded-xl bg-black/40 backdrop-blur-sm border border-emerald-500/20 flex flex-col justify-center relative group transition-all duration-300 hover:bg-black/50 hover:border-emerald-500/40"
             onMouseEnter={() => handleMouseEnter(i)}
             onMouseLeave={() => handleMouseLeave(i)}
           >
             <div ref={(el) => { textRefs.current[i] = el; }}>
               <div 
                 ref={(el) => { numRefs.current[i] = el; }}
-                className="text-glow/80 font-mono text-xs md:text-sm mb-4 md:mb-6 tracking-widest group-hover:text-glow transition-colors duration-300 inline-block font-semibold"
+                className="text-emerald-400 font-mono text-xs mb-1 font-semibold tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] inline-block"
               >
                 {card.num} //
               </div>
-              <h3 className="text-lg md:text-2xl font-normal text-white mb-3 md:mb-4 tracking-wide group-hover:text-glow transition-colors duration-300">{card.title}</h3>
-              <p className="text-sm md:text-base text-white/75 leading-relaxed font-light group-hover:text-white transition-colors duration-300">{card.desc}</p>
+              <h3 className="text-base md:text-lg font-bold text-white mb-1.5 tracking-wide group-hover:text-glow transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{card.title}</h3>
+              <p className="text-xs md:text-sm text-stone-300 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{card.desc}</p>
             </div>
           </div>
         ))}
