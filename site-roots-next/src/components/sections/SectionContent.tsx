@@ -8,6 +8,7 @@ import ManifestoSection from '@/components/sections/ManifestoSection';
 import ProcessoSection from '@/components/sections/ProcessoSection';
 import PortfolioSection from '@/components/sections/PortfolioSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import PlanosSection from '@/components/sections/PlanosSection';
 import FAQSection from '@/components/sections/FAQSection';
 
 // ── 3D Tilt Card Component ────────────────────────
@@ -202,73 +203,7 @@ export default function SectionContent() {
 
       {/* Section 5: Serviços (Planos) */}
       <div className={`section-overlay ${activeSection === 5 ? 'active' : ''}`} id="section-servicos" data-section="5">
-        <div className="section-content planos-content w-full max-w-[1200px]">
-          <h2 className="section-title text-glow">
-            Soluções Sob Medida
-          </h2>
-          <p className="text-white/70 text-center mb-8 md:mb-12 text-sm md:text-lg font-light max-w-xl mx-auto">
-            Escolha o formato ideal para o momento do seu negócio.
-          </p>
-          <div className="plans-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-4 mx-auto">
-            {/* Plan 1: Essencial */}
-            <TiltCard className="plan-card p-8 md:p-9 rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 hover:border-glow/30" data-plan="essencial">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="plan-icon text-3xl">🌱</span>
-                  <div className="tier-badge font-mono text-[0.65rem] tracking-wider text-glow bg-white/[0.04] px-3 py-1 rounded-full border border-white/10">[ Manutenção & Hospedagem ]</div>
-                </div>
-                <h3 className="plan-name text-2xl font-bold text-white mb-2">Essencial</h3>
-                <p className="plan-desc text-sm text-white/75 font-light leading-relaxed mb-6">Ideal para lançar um produto, serviço ou campanha com foco total e imediato em captação de clientes.</p>
-                <ul className="plan-features space-y-3 text-white/80 text-sm font-light mb-8">
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Design focado em conversão para WhatsApp</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Otimização total para telas mobile</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Formulários inteligentes de captação</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Integração com ferramentas de anúncios</span></li>
-                </ul>
-              </div>
-              <span className="plan-audience text-xs font-semibold text-glow/80 uppercase tracking-widest pt-4 border-t border-white/[0.06] block">Lançamentos e profissionais liberais</span>
-            </TiltCard>
-
-            {/* Plan 2: Profissional */}
-            <TiltCard className="plan-card p-8 md:p-9 rounded-2xl border border-glow/40 bg-[#0A0F0D]/80 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 shadow-[0_0_35px_rgba(74,222,128,0.12)] relative overflow-hidden" isFeatured data-plan="profissional">
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-glow to-transparent" />
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="plan-icon text-3xl">🌿</span>
-                  <div className="plan-badge font-mono text-[0.65rem] tracking-wider text-glow bg-glow/15 px-3 py-1 rounded-full font-bold">★ MAIS SOLICITADO</div>
-                </div>
-                <h3 className="plan-name text-2xl font-bold text-white mb-2">Profissional</h3>
-                <p className="plan-desc text-sm text-white/80 font-light leading-relaxed mb-6">A solução completa para empresas que buscam autoridade inquestionável, posicionamento premium e múltiplos canais.</p>
-                <ul className="plan-features space-y-3 text-white/85 text-sm font-light mb-8">
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Múltiplas páginas personalizadas</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Painel amigável para atualizar conteúdos (CMS)</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>SEO avançado para ser encontrado no Google</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Integração completa com CRM e automações</span></li>
-                </ul>
-              </div>
-              <span className="plan-audience text-xs font-semibold text-glow uppercase tracking-widest pt-4 border-t border-white/[0.08] block">Clínicas, escritórios e empresas B2B</span>
-            </TiltCard>
-
-            {/* Plan 3: Experience */}
-            <TiltCard className="plan-card p-8 md:p-9 rounded-2xl border border-white/[0.08] bg-[#0A0F0D]/70 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 hover:border-glow/30" data-plan="experience">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="plan-icon text-3xl">🌳</span>
-                  <div className="plan-badge font-mono text-[0.65rem] tracking-wider text-glow bg-white/[0.04] px-3 py-1 rounded-full border border-white/10">[ PROJETO EXCLUSIVO ]</div>
-                </div>
-                <h3 className="plan-name text-2xl font-bold text-white mb-2">Experience</h3>
-                <p className="plan-desc text-sm text-white/75 font-light leading-relaxed mb-6">Uma experiência visual cinematográfica com animações 3D e interatividade avançada para marcas que lideram seus mercados.</p>
-                <ul className="plan-features space-y-3 text-white/80 text-sm font-light mb-8">
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Animações interativas e elementos 3D</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Experiência de navegação exclusiva</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Arquitetura de altíssimo desempenho</span></li>
-                  <li className="flex items-start gap-2.5"><span className="text-glow font-bold">✓</span><span>Design assinado para impressionar investidores</span></li>
-                </ul>
-              </div>
-              <span className="plan-audience text-xs font-semibold text-glow/80 uppercase tracking-widest pt-4 border-t border-white/[0.06] block">Marcas de luxo, construtoras e startups</span>
-            </TiltCard>
-          </div>
-        </div>
+        <PlanosSection isActive={activeSection === 5} />
       </div>
 
       {/* Section 6: Performance (Gestão) */}

@@ -1,296 +1,195 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { gsap, ScrollTrigger } from '@/lib/gsap-register';
+import { useState, useRef, useEffect } from 'react';
+import { gsap } from '@/lib/gsap-register';
 import { MOTION } from '@/lib/animations';
 
-/**
- * Planos Section — Horizontal Scroll Showcase
- * Cards scroll horizontally while viewport is pinned.
- * 3D tilt effect on desktop hover.
- */
+interface PlanosSectionProps {
+  isActive: boolean;
+}
 
-const plans = [
-  {
-    icon: '🌱',
-    name: 'Essencial',
-    price: null,
-    desc: 'Ideal para quem precisa lançar um produto, serviço ou campanha com foco total e imediato em captação de clientes.',
-    features: [
-      'Design focado em conversão direta para WhatsApp',
-      'Otimização total para telas de celulares',
-      'Formulários inteligentes de captação de leads',
-      'Integração com ferramentas de anúncios e métricas'
-    ],
-    audience: 'Lançamentos e profissionais liberais',
-    featured: false,
-    badge: 'PROPOSTA SOB MEDIDA',
-  },
-  {
-    icon: '🌿',
-    name: 'Profissional',
-    price: null,
-    desc: 'A solução completa para empresas que buscam autoridade inquestionável, posicionamento premium e múltiplos canais de contato.',
-    features: [
-      'Múltiplas páginas personalizadas para cada serviço',
-      'Painel amigável para você atualizar conteúdos (CMS)',
-      'SEO avançado para sua empresa ser encontrada no Google',
-      'Integração completa com CRM e automações'
-    ],
-    audience: 'Clínicas, escritórios e empresas B2B',
-    featured: true,
-    badge: '★ MAIS SOLICITADO',
-  },
-  {
-    icon: '🌳',
-    name: 'Experience',
-    price: null,
-    desc: 'Uma experiência visual cinematográfica com animações 3D e interatividade avançada para marcas que lideram seus mercados.',
-    features: [
-      'Animações interativas e elementos 3D sob medida',
-      'Experiência de navegação exclusiva e memorável',
-      'Arquitetura de altíssimo desempenho e segurança',
-      'Design assinado para impressionar investidores'
-    ],
-    audience: 'Marcas de luxo, construtoras e startups',
-    featured: false,
-    badge: 'PROJETO EXCLUSIVO',
-  },
-];
-
-export default function PlanosSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+export default function PlanosSection({ isActive }: PlanosSectionProps) {
+  const [activeTab, setActiveTab] = useState<'projetos' | 'manutencao'>('projetos');
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
-
+    if (!containerRef.current) return;
     const ctx = gsap.context(() => {
-      // Title reveal
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: MOTION.duration.default,
-          ease: MOTION.ease.slide,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            end: 'top 40%',
-            scrub: MOTION.scrub.smooth,
-          },
-        }
-      );
-
-      // Horizontal scroll — only on desktop
-      const mm = ScrollTrigger.matchMedia({
-        // Desktop: horizontal scroll
-        '(min-width: 768px)': () => {
-          const totalScroll = track.scrollWidth - window.innerWidth;
-
-          gsap.to(track, {
-            x: -totalScroll,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: `+=${totalScroll}`,
-              pin: true,
-              scrub: MOTION.scrub.smooth,
-              anticipatePin: 1,
-            },
-          });
-
-          // Cards stagger entrance
-          cardsRef.current.forEach((card, i) => {
-            if (!card) return;
-            gsap.fromTo(
-              card,
-              { y: 60, opacity: 0, rotateY: -5 },
-              {
-                y: 0,
-                opacity: 1,
-                rotateY: 0,
-                duration: MOTION.duration.default,
-                ease: MOTION.ease.slide,
-                scrollTrigger: {
-                  trigger: card,
-                  start: 'left 80%',
-                  end: 'left 40%',
-                  scrub: MOTION.scrub.smooth,
-                  containerAnimation: gsap.getById?.('horizontal') || undefined,
-                },
-              }
-            );
-          });
-        },
-
-        // Mobile: vertical reveal with stagger
-        '(max-width: 767px)': () => {
-          cardsRef.current.forEach((card, i) => {
-            if (!card) return;
-            gsap.fromTo(
-              card,
-              { y: 60, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: MOTION.duration.default,
-                delay: i * 0.15,
-                ease: MOTION.ease.slide,
-                scrollTrigger: {
-                  trigger: card,
-                  start: 'top 85%',
-                  toggleActions: 'play none none reverse',
-                },
-              }
-            );
-          });
-        },
-      });
-    }, section);
-
+      if (isActive) {
+        gsap.fromTo(
+          containerRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, ease: MOTION.ease.reveal }
+        );
+      } else {
+        gsap.to(containerRef.current, { opacity: 0, duration: 0.4 });
+      }
+    }, containerRef);
     return () => ctx.revert();
-  }, []);
-
-  // 3D Tilt handler
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-    const card = cardsRef.current[index];
-    if (!card) return;
-
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-    gsap.to(card, {
-      rotateY: x * 10,
-      rotateX: -y * 10,
-      duration: 0.4,
-      ease: 'power3.out',
-    });
-
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('root-hover', { detail: { segmentId: String(index) } }));
-    }
-  };
-
-  const handleMouseLeave = (index: number) => {
-    const card = cardsRef.current[index];
-    if (!card) return;
-
-    gsap.to(card, {
-      rotateY: 0,
-      rotateX: 0,
-      duration: MOTION.duration.min,
-      ease: MOTION.ease.fade,
-    });
-
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('root-hover', { detail: { segmentId: null } }));
-    }
-  };
+  }, [isActive]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{ minHeight: '100dvh' }}
-    >
-      {/* Title */}
-      <div ref={titleRef} className="text-center pt-20 md:pt-32 pb-10 md:pb-16 px-6 opacity-0 max-w-3xl mx-auto">
-        <h2
-          className="text-white mb-3 text-glow"
-          style={{
-            fontSize: 'clamp(2rem, 5vw, 4rem)',
-            fontWeight: 700,
-            lineHeight: 1.1,
-            letterSpacing: '-0.02em',
-          }}
-        >
-          Soluções Sob Medida
+    <div className="relative z-10 w-full min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-20 opacity-0" ref={containerRef}>
+      
+      {/* Header & Toggle */}
+      <div className="w-full max-w-3xl mx-auto text-center flex flex-col items-center mb-12 relative z-20">
+        <span className="text-emerald-400 font-mono text-xs tracking-[0.2em] uppercase mb-2 text-center">
+          INVESTIMENTO TRANSPARENTE
+        </span>
+        <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+          Escolha o formato ideal para acelerar seu negócio.
         </h2>
-        <p className="text-white/70 text-base md:text-xl font-light tracking-wide">
-          Escolha o formato ideal para o momento do seu negócio.
-        </p>
-      </div>
-
-      {/* Cards Track */}
-      <div
-        ref={trackRef}
-        className="flex md:flex-nowrap flex-wrap gap-6 md:gap-8 px-6 md:px-20 pb-20 md:pb-0 justify-center md:justify-start"
-        style={{ perspective: '1200px' }}
-      >
-        {plans.map((plan, i) => (
-          <div
-            key={plan.name}
-            ref={(el) => { cardsRef.current[i] = el; }}
-            className={`
-              glass-card relative overflow-hidden
-              w-full md:w-[400px] md:min-w-[400px]
-              p-8 md:p-10 flex flex-col
-              transition-all duration-500
-              hover:-translate-y-2
-              ${plan.featured ? 'glass-card-featured' : ''}
-            `}
-            style={{ transformStyle: 'preserve-3d' }}
-            onMouseMove={(e) => handleMouseMove(e, i)}
-            onMouseLeave={() => handleMouseLeave(i)}
-            data-cursor="pointer"
+        
+        <div className="inline-flex p-1 rounded-full bg-zinc-900/90 border border-white/[0.08] backdrop-blur-md mb-10 relative z-30">
+          <button 
+            onClick={() => setActiveTab('projetos')}
+            className={`px-5 py-2 text-xs transition-all ${activeTab === 'projetos' ? 'bg-emerald-500 text-black font-semibold shadow-lg rounded-full' : 'text-stone-400 hover:text-white font-medium'}`}
           >
-            {/* Featured top line */}
-            {plan.featured && (
-              <div
-                className="absolute top-0 left-0 right-0 h-[2px]"
-                style={{
-                  background: 'linear-gradient(90deg, transparent, #4ADE80, transparent)',
-                }}
-              />
-            )}
-
-            {/* Badge */}
-            {plan.badge && (
-              <span
-                className="absolute top-4 right-4 text-glow px-3 py-1 rounded-full"
-                style={{
-                  fontSize: '0.65rem',
-                  background: 'rgba(74, 222, 128, 0.15)',
-                  color: '#4ADE80',
-                  fontWeight: 600,
-                }}
-              >
-                {plan.badge}
-              </span>
-            )}
-
-            <span className="text-3xl mb-4">{plan.icon}</span>\r
-            <h3 className="text-white text-xl font-bold mb-2">{plan.name}</h3>\r
-            {plan.price && <p className="text-glow text-sm font-semibold mb-4">{plan.price}</p>}\r
-            <p className="text-white/60 text-sm mb-6 leading-relaxed">{plan.desc}</p>
-
-            <ul className="flex-1 space-y-2 mb-6">
-              {plan.features.map((feat) => (
-                <li key={feat} className="text-white/60 text-sm pl-5 relative">
-                  <span className="absolute left-0 text-glow text-xs font-bold">✓</span>
-                  {feat}
-                </li>
-              ))}
-            </ul>
-
-            <span
-              className="text-sage uppercase text-xs font-semibold"
-              style={{ letterSpacing: '0.1em' }}
-            >
-              {plan.audience}
-            </span>
-          </div>
-        ))}
+            Novos Projetos
+          </button>
+          <button 
+            onClick={() => setActiveTab('manutencao')}
+            className={`px-5 py-2 text-xs transition-all ${activeTab === 'manutencao' ? 'bg-emerald-500 text-black font-semibold shadow-lg rounded-full' : 'text-stone-400 hover:text-white font-medium'}`}
+          >
+            Manutenção & Gestão
+          </button>
+        </div>
       </div>
-    </section>
+
+      {/* Grid: Projetos */}
+      {activeTab === 'projetos' && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto transition-all duration-500 relative z-20">
+          {/* Card 1 */}
+          <div 
+            className="bg-[#080d0a]/85 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between group"
+            style={{ padding: '32px', minHeight: '100%', position: 'relative' }}
+          >
+            <div className="w-full relative z-10">
+              <span className="inline-block text-[10px] font-mono font-semibold tracking-wider text-emerald-400 bg-emerald-950/50 px-2.5 py-1 rounded-full mb-6">
+                ENTREGA EM ATÉ 48H
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Landing Express</h3>
+              <p className="text-emerald-400 font-semibold mb-4 text-sm">A partir de R$ 850</p>
+              <p className="text-xs text-stone-400 mb-8 border-b border-white/[0.06] pb-6 leading-relaxed">
+                Ideal para: Lançamentos rápidos, infoprodutos e campanhas diretas.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {['No ar em até 48 horas', 'Foco total em conversão no WhatsApp', 'Carregamento instantâneo no mobile', 'Domínio e hospedagem configurados'].map((item, i) => (
+                  <li key={i} className="flex items-start text-xs text-stone-300 leading-snug">
+                    <span className="text-emerald-400 mr-2 shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a href="https://wa.me/5551999019398" target="_blank" rel="noopener noreferrer" className="w-full py-3 rounded-full text-xs font-bold text-white bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors mt-auto block relative z-10">
+              Quero meu Site Express →
+            </a>
+          </div>
+
+          {/* Card 2 */}
+          <div 
+            className="bg-[#080d0a]/95 border border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.1)] rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between transform md:-translate-y-4 relative overflow-hidden group"
+            style={{ padding: '32px', minHeight: '100%', position: 'relative' }}
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-50 z-0" />
+            <div className="w-full relative z-10">
+              <span className="inline-block text-[10px] font-sans font-bold tracking-wider text-emerald-300 bg-emerald-950/80 border border-emerald-500/50 px-3 py-1 rounded-full mb-6">
+                ★ MAIS ESCOLHIDO
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Institucional & B2B</h3>
+              <p className="text-emerald-400 font-semibold mb-4 text-sm">Sob Medida</p>
+              <p className="text-xs text-stone-400 mb-8 border-b border-white/[0.06] pb-6 leading-relaxed">
+                Ideal para: Empresas e clínicas que exigem autoridade e posicionamento premium.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {['Múltiplas páginas exclusivas (Sem templates)', 'Otimizado para o topo do Google (SEO)', 'Painel simples para você editar fotos e textos', 'Integração direta com CRM e formulários inteligentes'].map((item, i) => (
+                  <li key={i} className="flex items-start text-xs text-stone-300 leading-snug">
+                    <span className="text-emerald-400 mr-2 shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a href="https://wa.me/5551999019398" target="_blank" rel="noopener noreferrer" className="w-full py-3 rounded-full text-xs font-bold text-emerald-950 bg-emerald-400 hover:bg-emerald-300 text-center transition-colors shadow-[0_0_20px_rgba(16,185,129,0.4)] mt-auto block relative z-10">
+              Solicitar Orçamento →
+            </a>
+          </div>
+
+          {/* Card 3 */}
+          <div 
+            className="bg-[#080d0a]/85 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between group"
+            style={{ padding: '32px', minHeight: '100%', position: 'relative' }}
+          >
+            <div className="w-full relative z-10">
+              <span className="inline-block text-[10px] font-mono font-semibold tracking-wider text-stone-400 bg-white/5 border border-white/10 px-3 py-1 rounded-full mb-6">
+                EXCLUSIVO
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Software & Web 3D</h3>
+              <p className="text-stone-400 font-semibold mb-4 text-sm">Projetos Especiais</p>
+              <p className="text-xs text-stone-400 mb-8 border-b border-white/[0.06] pb-6 leading-relaxed">
+                Ideal para: Startups, marcas de luxo e plataformas complexas.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {['Design assinado com efeitos e 3D', 'Arquitetura escalável com banco de dados', 'Integrações completas via API', 'Suporte técnico prioritário'].map((item, i) => (
+                  <li key={i} className="flex items-start text-xs text-stone-300 leading-snug">
+                    <span className="text-emerald-400 mr-2 shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a href="https://wa.me/5551999019398" target="_blank" rel="noopener noreferrer" className="w-full py-3 rounded-full text-xs font-bold text-white bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors mt-auto block relative z-10">
+              Falar com Engenheiro →
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Grid: Manutenção */}
+      {activeTab === 'manutencao' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto transition-all duration-500 relative z-20">
+          {/* Manutenção 1 */}
+          <div 
+            className="bg-[#080d0a]/85 border border-white/[0.08] hover:border-emerald-500/30 rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between group"
+            style={{ padding: '32px', minHeight: '100%', position: 'relative' }}
+          >
+            <div className="w-full relative z-10">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Suporte Standard</h3>
+              <p className="text-emerald-400 font-semibold mb-4 text-sm">Hospedagem & Blindagem</p>
+              <ul className="space-y-4 mb-8 mt-6">
+                {['Hospedagem em servidores ultrarrápidos (Edge/Cloud)', 'Backups diários automatizados e restauração imediata', 'Monitoramento de segurança e certificado SSL ativo', 'Suporte técnico direto via WhatsApp'].map((item, i) => (
+                  <li key={i} className="flex items-start text-xs text-stone-300 leading-snug">
+                    <span className="text-emerald-400 mr-2 shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a href="https://wa.me/5551999019398" target="_blank" rel="noopener noreferrer" className="w-full py-3 rounded-full text-xs font-bold text-white bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors mt-auto block relative z-10">
+              Assinar Suporte →
+            </a>
+          </div>
+
+          {/* Manutenção 2 */}
+          <div 
+            className="bg-[#080d0a]/95 border border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.1)] rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+            style={{ padding: '32px', minHeight: '100%', position: 'relative' }}
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-50 z-0" />
+            <div className="w-full relative z-10">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Gestão Growth</h3>
+              <p className="text-emerald-400 font-semibold mb-4 text-sm">Parceria Estratégica</p>
+              <ul className="space-y-4 mb-8 mt-6">
+                {['Tudo do plano Suporte Standard', 'Relatórios mensais de acessos, conversões e SEO', 'Reunião mensal de alinhamento e otimização', 'Horas inclusas para novas melhorias e alterações no site'].map((item, i) => (
+                  <li key={i} className="flex items-start text-xs text-stone-300 leading-snug">
+                    <span className="text-emerald-400 mr-2 shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a href="https://wa.me/5551999019398" target="_blank" rel="noopener noreferrer" className="w-full py-3 rounded-full text-xs font-bold text-emerald-950 bg-emerald-400 hover:bg-emerald-300 text-center transition-colors shadow-[0_0_20px_rgba(16,185,129,0.4)] mt-auto block relative z-10">
+              Contratar Gestão →
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
