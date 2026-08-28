@@ -131,12 +131,12 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
         </defs>
       </svg>
 
-      <h2 className="section-title mb-10 md:mb-24 text-center relative z-20">
-        <span className="text-glow tracking-[0.25em] uppercase text-xs md:text-sm font-semibold block mb-3">Nosso Método</span>
-        <span className="text-white font-light tracking-wide text-xl md:text-3xl normal-case block max-w-2xl mx-auto leading-snug">
+      <div className="w-full max-w-2xl mx-auto text-center mb-14 flex flex-col items-center section-title relative z-20">
+        <span className="text-emerald-400 font-mono text-xs tracking-[0.2em] uppercase mb-2">NOSSO MÉTODO</span>
+        <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
           Processo claro, previsível e sem jargões complicados.
-        </span>
-      </h2>
+        </h2>
+      </div>
       
       <div className="relative w-full">
         {/* Background Subtle Line */}
@@ -174,12 +174,10 @@ export default function ProcessoSection({ isActive }: ProcessoSectionProps) {
               
               {/* Premium Text */}
               <div className="process-text px-2 w-full flex flex-col items-center">
-                <div className="min-h-[52px] md:min-h-[64px] flex items-center justify-center mb-3">
-                  <h3 className="text-base md:text-lg font-semibold text-white tracking-[0.12em] uppercase group-hover:text-glow transition-colors duration-500 leading-snug">
-                    {step.title}
-                  </h3>
-                </div>
-                <p className="text-sm md:text-[15px] text-white/80 leading-relaxed max-w-[280px] mx-auto font-light group-hover:text-white transition-colors duration-500">
+                <h3 className="text-xs md:text-sm font-bold tracking-wider text-stone-100 uppercase mt-4 mb-2 text-center group-hover:text-emerald-400 transition-colors duration-500">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-stone-300 leading-relaxed text-center max-w-[220px] mx-auto group-hover:text-stone-200 transition-colors duration-500">
                   {step.desc}
                 </p>
               </div>
